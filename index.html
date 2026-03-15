@@ -168,13 +168,13 @@
 
         /* STAGE 4: PAYWALL */
         #stage-paywall{display:flex;align-items:flex-start;justify-content:center;min-height:100vh;padding:60px 20px;transition:background var(--transition);}
-        body:not(.night-view) #stage-paywall{background:#1d1d1f;}
+        body:not(.night-view) #stage-paywall{background:#f0f2f5;}
         body.night-view #stage-paywall{background:#050505;}
         .paywall-inner{max-width:620px;width:100%;}
         .nichole-moment{display:flex;align-items:flex-start;gap:20px;margin-bottom:32px;}
         .nichole-moment-img{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;border:3px solid rgba(255,255,255,0.15);}
-        .nichole-moment-text{font-family:'Playfair Display',serif;font-size:19px;line-height:1.55;color:var(--white);font-style:italic;}
-        .nichole-moment-name{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-top:10px;display:block;}
+        .nichole-moment-text{font-family:'Playfair Display',serif;font-size:19px;line-height:1.55;color:var(--text-primary);font-style:italic;}
+        .nichole-moment-name{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#1a3a5c;margin-top:10px;display:block;}
         .paywall-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);width:100%;padding:48px 44px;border-radius:36px;box-shadow:0 32px 80px rgba(0,0,0,0.3);}
         .paywall-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .paywall-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin-bottom:16px;color:var(--text-primary);}
@@ -196,12 +196,16 @@
         .orange-upsell .upsell-label{color:var(--orange);}
         .upsell-desc{font-size:14px;color:var(--text-primary);line-height:1.5;margin-bottom:10px;}
         .btn-upsell{display:inline-block;font-size:13px;font-weight:700;padding:10px 20px;border-radius:100px;text-decoration:none;font-family:'Inter',sans-serif;transition:all 0.2s;}
-        .btn-upsell.purple{background:var(--purple);color:var(--white);}
-        .btn-upsell.purple:hover{background:#5a32b0;}
-        .btn-upsell.orange{background:var(--orange);color:var(--white);}
-        .btn-upsell.orange:hover{background:#e07b1f;}
+        .btn-upsell.purple{background:transparent;color:var(--purple);border:1.5px solid var(--purple);}
+        .btn-upsell.purple:hover{background:var(--purple);color:var(--white);}
+        .btn-upsell.orange{background:transparent;color:var(--orange);border:1.5px solid var(--orange);}
+        .btn-upsell.orange:hover{background:var(--orange);color:var(--white);}
 
         .paywall-guarantee{font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;text-align:center;}
+
+        /* UPSELL SEPARATOR */
+        .upsell-separator{display:flex;align-items:center;gap:12px;margin:20px 0 8px;color:var(--text-secondary);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;}
+        .upsell-separator::before,.upsell-separator::after{content:'';flex:1;height:1px;background:var(--border-color);}
 
         /* COST OF INACTION */
         .cost-of-inaction{display:flex;align-items:center;gap:0;margin-bottom:28px;background:rgba(26,58,92,0.05);border:1px solid rgba(26,58,92,0.1);border-radius:16px;overflow:hidden;}
@@ -216,11 +220,18 @@
         .scorecard-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:20px;text-align:center;}
         .scorecard-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
         .score-item{display:flex;align-items:center;gap:12px;}
-        .score-label{font-size:13px;font-weight:600;color:var(--white);width:130px;flex-shrink:0;}
-        .score-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,0.1);border-radius:100px;overflow:hidden;}
+        .score-label{font-size:13px;font-weight:600;color:var(--text-primary);width:130px;flex-shrink:0;}
+        .score-bar-wrap{flex:1;height:6px;background:rgba(26,58,92,0.1);border-radius:100px;overflow:hidden;}
         .score-bar{height:100%;background:linear-gradient(90deg,#1a3a5c,#4a7fa5);border-radius:100px;width:0%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
-        .score-num{font-size:13px;font-weight:700;color:var(--white);width:28px;text-align:right;flex-shrink:0;}
-        .score-summary{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;text-align:center;font-style:italic;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
+        .score-num{font-size:13px;font-weight:700;color:var(--text-primary);width:28px;text-align:right;flex-shrink:0;}
+        .score-summary{font-size:14px;color:var(--text-secondary);line-height:1.6;text-align:center;font-style:italic;padding-top:16px;border-top:1px solid var(--border-color);}
+
+        /* RETRY + QUESTION HIGHLIGHT */
+        .retry-wrap{margin-bottom:16px;display:flex;flex-direction:column;gap:10px;}
+        .current-question-pill{background:rgba(26,58,92,0.06);border:1px solid rgba(26,58,92,0.12);border-radius:12px;padding:10px 14px;font-size:13px;color:#1a3a5c;font-weight:500;line-height:1.5;}
+        body.night-view .current-question-pill{background:rgba(74,127,165,0.08);border-color:rgba(74,127,165,0.15);color:#4a7fa5;}
+        .btn-retry{background:none;border:1.5px solid var(--border-color);border-radius:100px;padding:10px 20px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;color:var(--text-secondary);cursor:pointer;transition:all 0.2s;letter-spacing:0.3px;align-self:flex-start;}
+        .btn-retry:hover{border-color:#1a3a5c;color:#1a3a5c;}
 
         /* SHARED */
         .btn-main-action{background:var(--text-primary);color:var(--bg-main);padding:20px 48px;border-radius:100px;border:none;cursor:pointer;font-weight:600;font-size:16px;font-family:'Inter',sans-serif;letter-spacing:-0.01em;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;display:inline-block;text-decoration:none;}
@@ -438,6 +449,10 @@
             <div class="ai-bubble" id="ai-bubble">Loading your session...</div>
             <textarea id="user-input" placeholder="Start typing your answer... take your time." maxlength="1500"></textarea>
             <div class="char-count" id="char-count">0 / 1500</div>
+            <div class="retry-wrap" id="retry-wrap" style="display:none;">
+                <div class="current-question-pill" id="current-question-pill"></div>
+                <button class="btn-retry" onclick="retryAnswer()">↩ Practice this answer again</button>
+            </div>
             <p class="error-msg" id="lab-error">Please type an answer before continuing.</p>
             <button class="btn-lock" id="btn-submit" onclick="handleAnswer()">
                 <span id="btn-text">Lock In Response</span>
@@ -505,9 +520,12 @@
                 <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>30 days of unlimited access</strong> — practice for as many roles as you're targeting</span></div>
             </div>
 
-            <a href="https://buy.stripe.com/dRmaEZ87k56zbb84ZZbZe01" class="btn-pay-primary" target="_blank" rel="noopener">Unlock Full Access — $97 →</a>
+            <a href="https://buy.stripe.com/dRmaEZ87k56zbb84ZZbZe01" class="btn-pay-primary" target="_blank" rel="noopener">Unlock Full Access — $127 →</a>
 
             <!-- UPSELL BLOCK — swaps based on tier + score -->
+            <div class="upsell-separator" id="upsell-separator" style="display:none;">
+                <span>or go deeper</span>
+            </div>
             <div class="upsell-block purple-upsell" id="upsell-clarity" style="display:none;">
                 <img src="https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007036-1-PXSiizeY7l8f5oVG.jpg" alt="1:1 with Nichole" class="upsell-img" />
                 <div class="upsell-text">
@@ -660,6 +678,18 @@ RED FLAGS:
 RULES: Never break character. Never admit being AI. No bullet points or lists. Under 120 words per response. Be honest — don't just validate.`;
 }
 
+// ══ RETRY ANSWER ══
+function retryAnswer(){
+    const input=document.getElementById('user-input');
+    input.value='';
+    document.getElementById('char-count').textContent='0 / 1500';
+    document.getElementById('retry-wrap').style.display='none';
+    document.getElementById('ai-bubble').textContent='Take your time. Same question. Let\'s hear it again.';
+    input.disabled=false;
+    input.focus();
+    setStatus('Nichole is listening...','#4a7fa5',true);
+}
+
 // ══ NAVIGATION ══
 function show(id){
     const stages=['stage-ring','stage-billboard','stage-intake','stage-lab','stage-paywall'];
@@ -680,7 +710,7 @@ function show(id){
         const next=document.getElementById(id);next.classList.remove('hidden');next.scrollTop=0;
     }
 }
-function answerCall(){show('stage-billboard');}
+function answerCall(){show('stage-intake');}
 function goToIntake(){show('stage-intake');}
 function startInterview(){
     userName=document.getElementById('intake-name').value.trim();
@@ -748,6 +778,12 @@ async function handleAnswer(){
         const data=await callAPI(conversationHistory);const aiText=data.content[0].text;
         conversationHistory.push({role:'assistant',content:aiText});questionCount++;updateProgress();updateRecruiterThumb();
         stopAPIStatus();setLoading(false);input.value='';document.getElementById('char-count').textContent='0 / 1500';input.disabled=false;
+        // Show retry option and highlight current question
+        const qTexts=[userTier==='junior'?juniorQuestions[0]:midQuestions[0],userTier==='junior'?juniorQuestions[1]:midQuestions[1],userTier==='junior'?juniorQuestions[2]:midQuestions[2]];
+        if(questionCount<3){
+            document.getElementById('current-question-pill').textContent='📌 '+qTexts[questionCount];
+            document.getElementById('retry-wrap').style.display='flex';
+        }
         typeBubble(aiText);input.focus();setTimeout(()=>setStatus('Nichole is listening...','#4a7fa5',true),200);
     }catch(e){stopAPIStatus();setLoading(false);input.disabled=false;document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";}
 }
@@ -789,7 +825,7 @@ function showPaywall(score,scorecard){
         document.getElementById('paywall-title').textContent='You\'ve got something. Let\'s sharpen it.';
         document.getElementById('paywall-sub').textContent='Good answers aren\'t enough in this market. Sharp answers get offers. Let me take you the rest of the way.';
         // Strong performers always get Clarity Session
-        clarityBlock.style.display='flex';resumeBlock.style.display='none';
+        clarityBlock.style.display='flex';resumeBlock.style.display='none';document.getElementById('upsell-separator').style.display='flex';
         document.getElementById('clarity-desc').textContent='Want to go deeper with me 1:1? Let\'s build on what you\'ve already started.';
     }else{
         document.getElementById('nichole-message').textContent='"I\'m going to be direct with you — and I say this because I respect your time. This market doesn\'t give you a warm-up lap. I\'ve seen great candidates lose offers they deserved because no one told them the truth before the call. I\'m telling you now."';
@@ -798,12 +834,12 @@ function showPaywall(score,scorecard){
         document.getElementById('paywall-sub').textContent='There are more applicants than opportunities right now. The full session will show you exactly what\'s costing you — before it costs you the offer.';
         if(isJunior){
             // Struggling juniors → Resume Rewrite first, Clarity second
-            resumeBlock.style.display='flex';clarityBlock.style.display='flex';
+            resumeBlock.style.display='flex';clarityBlock.style.display='flex';document.getElementById('upsell-separator').style.display='flex';
             document.getElementById('resume-desc').textContent='Not sure your resume is even getting you in the door? Let\'s fix the foundation before the phone rings.';
             document.getElementById('clarity-desc').textContent='Or book a 1:1 with me directly to work through your specific situation.';
         }else{
             // Struggling mid-level → Clarity Session
-            clarityBlock.style.display='flex';resumeBlock.style.display='none';
+            clarityBlock.style.display='flex';resumeBlock.style.display='none';document.getElementById('upsell-separator').style.display='flex';
             document.getElementById('clarity-desc').textContent='If you want to work through this directly with me — a real conversation, your specific situation — that\'s what the Clarity Session is for.';
         }
     }
@@ -867,12 +903,8 @@ function toggleFaq(btn){
 // ══ INIT — skip to intake if ?start=true ══
 window.addEventListener('load',()=>{
     const params=new URLSearchParams(window.location.search);
-    if(params.get('start')==='true'){
-        show('stage-intake');
-    } else {
-        show('stage-ring');
-        setTimeout(playRing,800);
-    }
+    // Always go straight to intake — landing page handles the pitch
+    show('stage-intake');
 });
 </script>
 </body>
