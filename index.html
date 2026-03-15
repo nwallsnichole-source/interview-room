@@ -144,6 +144,8 @@
 
         .lab-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);padding:48px 44px;border-radius:40px;box-shadow:0 50px 100px rgba(0,0,0,0.05);transition:background var(--transition);}
         body.night-view .lab-card{box-shadow:0 50px 100px rgba(0,0,0,0.5);}
+        body.night-view #stage-lab::before,body.night-view #stage-intake::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(74,127,165,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(74,127,165,0.04) 1px,transparent 1px);background-size:40px 40px;z-index:0;}
+        body.night-view .lab-wrap,body.night-view .intake-card{position:relative;z-index:1;}
         .q-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .ai-bubble{font-family:'Playfair Display',serif;font-size:21px;line-height:1.5;color:var(--text-primary);margin-bottom:28px;min-height:80px;}
 
@@ -203,6 +205,11 @@
 
         .paywall-guarantee{font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;text-align:center;}
 
+        /* SECURITY BADGES */
+        .security-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:16px;margin-bottom:8px;}
+        .sec-badge{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:100px;background:rgba(26,58,92,0.06);border:1px solid rgba(26,58,92,0.12);color:#1a3a5c;}
+        body.night-view .sec-badge{background:rgba(74,127,165,0.08);border-color:rgba(74,127,165,0.2);color:#4a7fa5;}
+
         /* UPSELL SEPARATOR */
         .upsell-separator{display:flex;align-items:center;gap:12px;margin:20px 0 8px;color:var(--text-secondary);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;}
         .upsell-separator::before,.upsell-separator::after{content:'';flex:1;height:1px;background:var(--border-color);}
@@ -222,7 +229,7 @@
         .score-item{display:flex;align-items:center;gap:12px;}
         .score-label{font-size:13px;font-weight:600;color:var(--text-primary);width:130px;flex-shrink:0;}
         .score-bar-wrap{flex:1;height:6px;background:rgba(26,58,92,0.1);border-radius:100px;overflow:hidden;}
-        .score-bar{height:100%;background:linear-gradient(90deg,#1a3a5c,#4a7fa5);border-radius:100px;width:0%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+        .score-bar{height:100%;background:linear-gradient(90deg,#c0392b,#e67e22,#1a3a5c,#34c759);background-size:400% 100%;border-radius:100px;width:0%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
         .score-num{font-size:13px;font-weight:700;color:var(--text-primary);width:28px;text-align:right;flex-shrink:0;}
         .score-summary{font-size:14px;color:var(--text-secondary);line-height:1.6;text-align:center;font-style:italic;padding-top:16px;border-top:1px solid var(--border-color);}
 
@@ -379,6 +386,14 @@
                 <button class="faq-question" onclick="toggleFaq(this)">How long does a session take?<span class="faq-icon">+</span></button>
                 <div class="faq-answer">The free trial is 3 questions — about 10 minutes. The full paid session runs 6–7 questions, roughly 20–25 minutes. There's no timer. Take your time and treat it like the real thing.</div>
             </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">🛡️ How does this help with clearance-safe answers?<span class="faq-icon">+</span></button>
+                <div class="faq-answer">We flag anything that risks over-sharing classified or sensitive program details and coach you to pivot to impact without specifics. You can talk about what you accomplished without ever naming the contract, agency, or classification. That's the skill — and it's learnable.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">🏛️ Who specifically is this built for?<span class="faq-icon">+</span></button>
+                <div class="faq-answer">DMV GovCon professionals with Secret, TS, or SCI clearances facing recompete limbo, contract endings, or new bid opportunities. If you've been heads-down executing on a contract and suddenly need to interview again — this is exactly where you start.</div>
+            </div>
 
             <div class="faq-cta">
                 <p class="faq-cta-text">Ready to find out where you really stand?</p>
@@ -393,7 +408,7 @@
     <div class="intake-card">
         <div class="intake-eyebrow">Before we begin</div>
         <h2 class="intake-title">Let's set the stage.</h2>
-        <p class="intake-sub">Two quick things and we're in. This session is built around you — not a generic simulation.</p>
+        <p class="intake-sub">Two quick things and we're in. Clearance-safe. Private. Built for the DMV professional.</p>
 
         <input type="text" id="intake-name" class="intake-field" placeholder="Your first name (required)" maxlength="50" />
         <select id="intake-industry" class="role-select">
@@ -514,13 +529,13 @@
             </div>
 
             <div class="paywall-features">
-                <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>6–7 questions</strong> — the full phone screen, tailored to your experience level</span></div>
-                <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>Real-time recruiter feedback</strong> after every answer — specific coaching on your exact words</span></div>
-                <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>Red flag detection</strong> — know before it costs you the offer</span></div>
-                <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>30 days of unlimited access</strong> — practice for as many roles as you're targeting</span></div>
+                <div class="paywall-feature"><div class="pf-icon">✓</div><span>⏱️ <strong>6–7 questions</strong> — the full phone screen, tailored to your experience level</span></div>
+                <div class="paywall-feature"><div class="pf-icon">✓</div><span>🎯 <strong>Real-time recruiter feedback</strong> — specific coaching on your exact words</span></div>
+                <div class="paywall-feature"><div class="pf-icon">✓</div><span>🚩 <strong>Red flag detection</strong> — know before it costs you the offer</span></div>
+                <div class="paywall-feature"><div class="pf-icon">✓</div><span>🔓 <strong>30 days of unlimited access</strong> — practice for as many roles as you're targeting</span></div>
             </div>
 
-            <a href="https://buy.stripe.com/dRmaEZ87k56zbb84ZZbZe01" class="btn-pay-primary" target="_blank" rel="noopener">Unlock Full Access — $127 →</a>
+            <a href="https://buy.stripe.com/dRmaEZ87k56zbb84ZZbZe01" class="btn-pay-primary" target="_blank" rel="noopener">Unlock Unlimited Practice + Recruiter Notes — $147 →</a>
 
             <!-- UPSELL BLOCK — swaps based on tier + score -->
             <div class="upsell-separator" id="upsell-separator" style="display:none;">
@@ -531,7 +546,7 @@
                 <div class="upsell-text">
                     <div class="upsell-label">Or go deeper</div>
                     <div class="upsell-desc" id="clarity-desc">Want to work through this 1:1 with me directly? Let's get on a call.</div>
-                    <a href="https://calendly.com/nwallsnichole/interviewing-coaching" class="btn-upsell purple" target="_blank" rel="noopener">Book a Clarity Session — $247</a>
+                    <a href="https://calendly.com/nwallsnichole/interviewing-coaching" class="btn-upsell purple" target="_blank" rel="noopener">Book 1:1 Mock + Strategy — $247 (or free intro call)</a>
                 </div>
             </div>
 
@@ -674,6 +689,8 @@ RED FLAGS:
 - Flip interview: "We'll have time for your questions at the end."
 - Profanity: "I'm going to stop you there. This is a professional space. Let's reset."
 - Gibberish: "I'm not sure I caught that. Let's try again."
+
+GOVCON CLEARANCE AWARENESS: If a candidate over-shares classified details, program names, agency names, or sensitive contract info, gently redirect: "I appreciate the detail — but in a real screen, you'd want to frame that around impact, not specifics. Let's try that again with the details protected." Coach them to speak in outcomes and skills, not classified context.
 
 RULES: Never break character. Never admit being AI. No bullet points or lists. Under 120 words per response. Be honest — don't just validate.`;
 }
@@ -854,7 +871,13 @@ function showPaywall(score,scorecard){
             const val=scorecard[f]||5;
             document.getElementById(`sc-${f}-num`).textContent=`${val}/10`;
             setTimeout(()=>{
-                document.getElementById(`sc-${f}`).style.width=`${val*10}%`;
+                const bar=document.getElementById(`sc-${f}`);
+                bar.style.width=`${val*10}%`;
+                // Color: red(<5), orange(5-6), navy(7-8), green(9-10)
+                if(val<=4)bar.style.background='linear-gradient(90deg,#c0392b,#e74c3c)';
+                else if(val<=6)bar.style.background='linear-gradient(90deg,#e67e22,#f28c28)';
+                else if(val<=8)bar.style.background='linear-gradient(90deg,#1a3a5c,#4a7fa5)';
+                else bar.style.background='linear-gradient(90deg,#1a3a5c,#34c759)';
             },300+(i*150));
         });
         if(scorecard.summary)document.getElementById('sc-summary').textContent=`"${scorecard.summary}"`;
