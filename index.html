@@ -210,6 +210,15 @@
         .sec-badge{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;border-radius:100px;background:rgba(26,58,92,0.06);border:1px solid rgba(26,58,92,0.12);color:#1a3a5c;}
         body.night-view .sec-badge{background:rgba(74,127,165,0.08);border-color:rgba(74,127,165,0.2);color:#4a7fa5;}
 
+        /* DISCOVERY PRIMARY CTA */
+        .btn-discovery-primary{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#0a1d37,#1a3a5c);color:var(--white);padding:20px 24px;border-radius:20px;text-decoration:none;margin-bottom:16px;transition:all 0.3s;border:1px solid rgba(74,127,165,0.2);box-shadow:0 12px 32px rgba(10,29,55,0.3);}
+        .btn-discovery-primary:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(10,29,55,0.4);}
+        .discovery-icon{font-size:24px;flex-shrink:0;}
+        .discovery-text{flex:1;display:flex;flex-direction:column;gap:3px;}
+        .discovery-label{font-size:16px;font-weight:800;letter-spacing:-0.01em;}
+        .discovery-sub{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.4;}
+        .discovery-arrow{font-size:20px;flex-shrink:0;opacity:0.6;}
+
         /* UPSELL SEPARATOR */
         .upsell-separator{display:flex;align-items:center;gap:12px;margin:20px 0 8px;color:var(--text-secondary);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;}
         .upsell-separator::before,.upsell-separator::after{content:'';flex:1;height:1px;background:var(--border-color);}
@@ -828,36 +837,39 @@ SCORECARD:{"overall":"STRONG","communication":7,"authenticity":8,"impact":6,"con
 
 // ══ DUAL PAYWALL WITH TIER ROUTING ══
 function showPaywall(score,scorecard){
+    // Dynamic discovery call copy based on industry
+    const industryLabel=userIndustry==='govcon'||userIndustry===''?'GovCon':userIndustry==='corporate'?'corporate':userIndustry==='tech'?'tech':'professional';
+    const isGovCon=userIndustry==='govcon';
+    const discoverySub=document.getElementById('discovery-sub');
+    if(discoverySub){
+        if(isGovCon){
+            discoverySub.textContent='Real GovCon phone screens are make-or-break. Full mock + clearance-safe strategy — on this call.';
+        } else {
+            discoverySub.textContent=`Real ${industryLabel} phone screens are make-or-break. Full mock, gap analysis, and strategy — on this call.`;
+        }
+    }
     document.getElementById('recruiter-thumb').classList.remove('visible');
     document.getElementById('sound-toggle').classList.remove('visible');
     if(soundOn)toggleSound();
 
     const isJunior=userTier==='junior';
-    const clarityBlock=document.getElementById('upsell-clarity');
     const resumeBlock=document.getElementById('upsell-resume');
 
     if(score==='STRONG'){
-        document.getElementById('nichole-message').textContent='"Hold on — I want to stop here. You\'ve got something. I don\'t say that to everyone. Let\'s make sure you\'re fully ready when it counts."';
+        document.getElementById('nichole-message').textContent='"Hold on — I want to stop here. You\'ve got something. I don\'t say that to everyone. One call with me and you\'ll be dangerous."';
         document.getElementById('paywall-eyebrow').textContent='You showed up.';
-        document.getElementById('paywall-title').textContent='You\'ve got something. Let\'s sharpen it.';
-        document.getElementById('paywall-sub').textContent='Good answers aren\'t enough in this market. Sharp answers get offers. Let me take you the rest of the way.';
-        // Strong performers always get Clarity Session
-        clarityBlock.style.display='flex';resumeBlock.style.display='none';document.getElementById('upsell-separator').style.display='flex';
-        document.getElementById('clarity-desc').textContent='Want to go deeper with me 1:1? Let\'s build on what you\'ve already started.';
+        document.getElementById('paywall-title').textContent='You\'ve got something. Let\'s make it undeniable.';
+        document.getElementById('paywall-sub').textContent='You\'re closer than you think. One focused call and we\'ll sharpen everything that\'s holding you back from the offer.';
+        document.getElementById('upsell-resume').style.display='none';
     }else{
-        document.getElementById('nichole-message').textContent='"I\'m going to be direct with you — and I say this because I respect your time. This market doesn\'t give you a warm-up lap. I\'ve seen great candidates lose offers they deserved because no one told them the truth before the call. I\'m telling you now."';
+        document.getElementById('nichole-message').textContent='"I\'m going to be direct with you — and I say this because I respect your time. This market doesn\'t give you a warm-up lap. One call changes everything. Let me show you exactly what\'s costing you the offer."';
         document.getElementById('paywall-eyebrow').textContent='Let\'s be honest.';
-        document.getElementById('paywall-title').textContent='You only get one shot. Let\'s make it count.';
-        document.getElementById('paywall-sub').textContent='There are more applicants than opportunities right now. The full session will show you exactly what\'s costing you — before it costs you the offer.';
+        document.getElementById('paywall-title').textContent='One call. Real feedback. Real strategy.';
+        document.getElementById('paywall-sub').textContent='Your clearance is active. The opportunity is there. What\'s missing is the preparation — and that\'s fixable. Today.';
         if(isJunior){
-            // Struggling juniors → Resume Rewrite first, Clarity second
-            resumeBlock.style.display='flex';clarityBlock.style.display='flex';document.getElementById('upsell-separator').style.display='flex';
-            document.getElementById('resume-desc').textContent='Not sure your resume is even getting you in the door? Let\'s fix the foundation before the phone rings.';
-            document.getElementById('clarity-desc').textContent='Or book a 1:1 with me directly to work through your specific situation.';
-        }else{
-            // Struggling mid-level → Clarity Session
-            clarityBlock.style.display='flex';resumeBlock.style.display='none';document.getElementById('upsell-separator').style.display='flex';
-            document.getElementById('clarity-desc').textContent='If you want to work through this directly with me — a real conversation, your specific situation — that\'s what the Clarity Session is for.';
+            document.getElementById('upsell-resume').style.display='flex';
+        } else {
+            document.getElementById('upsell-resume').style.display='none';
         }
     }
     show('stage-paywall');
