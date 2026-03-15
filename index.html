@@ -69,9 +69,9 @@
         body:not(.night-view) .billboard-hero{background:linear-gradient(135deg,#f5f5f7 0%,#ede8fb 100%);}
         body.night-view .billboard-hero{background:linear-gradient(135deg,#0a0a0a 0%,#0d0816 100%);}
         .billboard-grid{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-        .billboard-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--orange);margin-bottom:20px;}
+        .billboard-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#4a7fa5;margin-bottom:20px;}
         .billboard-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.8rem);line-height:1.08;letter-spacing:-0.02em;color:var(--text-primary);margin-bottom:20px;}
-        .billboard-differentiator{font-size:16px;color:var(--text-secondary);line-height:1.7;margin-bottom:28px;padding:16px 20px;background:rgba(242,140,40,0.08);border-left:3px solid var(--orange);border-radius:0 12px 12px 0;}
+        .billboard-differentiator{font-size:16px;color:var(--text-secondary);line-height:1.7;margin-bottom:28px;padding:16px 20px;background:rgba(26,58,92,0.06);border-left:3px solid #1a3a5c;border-radius:0 12px 12px 0;}
         .billboard-sub{font-size:15px;color:var(--text-secondary);line-height:1.7;margin-bottom:32px;}
         .billboard-sub strong{color:var(--text-primary);}
         .billboard-personal{margin-bottom:28px;padding:24px 0;border-top:1px solid var(--border-color);border-bottom:1px solid var(--border-color);}
@@ -92,7 +92,7 @@
         .faq-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);text-align:center;margin-bottom:48px;color:var(--text-primary);}
         .faq-item{border-bottom:1px solid var(--border-color);}
         .faq-question{width:100%;background:none;border:none;text-align:left;padding:24px 0;font-size:17px;font-weight:600;font-family:'Inter',sans-serif;color:var(--text-primary);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;line-height:1.4;transition:color 0.2s;}
-        .faq-question:hover{color:var(--orange);}
+        .faq-question:hover{color:#1a3a5c;}
         .faq-icon{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--border-color);display:flex;align-items:center;justify-content:center;font-size:18px;transition:all 0.3s;color:var(--text-secondary);}
         .faq-item.open .faq-icon{background:var(--text-primary);color:var(--bg-main);transform:rotate(45deg);}
         .faq-answer{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s;font-size:16px;color:var(--text-secondary);line-height:1.7;}
@@ -103,16 +103,16 @@
         /* STAGE 2: INTAKE */
         #stage-intake{background:var(--bg-main);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:80px 20px 48px;transition:background var(--transition);}
         .intake-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);max-width:520px;width:100%;padding:52px 48px;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,0.07);text-align:center;}
-        .intake-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--orange);margin-bottom:16px;}
+        .intake-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .intake-title{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:12px;line-height:1.2;color:var(--text-primary);}
         .intake-sub{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.6;}
         .intake-field{width:100%;border:1px solid var(--border-color);border-radius:14px;padding:16px 20px;font-size:16px;font-family:'Inter',sans-serif;margin-bottom:14px;transition:border 0.3s;background:rgba(0,0,0,0.02);color:var(--text-primary);}
         body.night-view .intake-field{background:rgba(255,255,255,0.04);}
-        .intake-field:focus{outline:none;border-color:var(--orange);}
+        .intake-field:focus{outline:none;border-color:#1a3a5c;}
         .intake-field::placeholder{color:var(--text-secondary);}
         .role-select{width:100%;border:1px solid var(--border-color);border-radius:14px;padding:16px 20px;font-size:16px;font-family:'Inter',sans-serif;margin-bottom:20px;background:rgba(0,0,0,0.02);color:var(--text-primary);appearance:none;cursor:pointer;}
         body.night-view .role-select{background:rgba(255,255,255,0.04);}
-        .role-select:focus{outline:none;border-color:var(--orange);}
+        .role-select:focus{outline:none;border-color:#1a3a5c;}
 
         /* TIER TOGGLE */
         .tier-container{margin-bottom:28px;text-align:center;}
@@ -131,12 +131,12 @@
         .notepad-icon{font-size:18px;flex-shrink:0;}
         .notepad-lines{flex:1;display:flex;flex-direction:column;gap:5px;}
         .notepad-line{height:3px;background:var(--border-color);border-radius:100px;transition:background 0.5s;}
-        .notepad-line.checked{background:var(--orange);}
-        .notepad-line.active{background:rgba(242,140,40,0.35);}
+        .notepad-line.checked{background:#1a3a5c;}
+        .notepad-line.active{background:rgba(74,127,165,0.35);}
         .notepad-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-secondary);flex-shrink:0;}
 
         /* TIER BADGE in lab */
-        .tier-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(242,140,40,0.1);border:1px solid rgba(242,140,40,0.2);border-radius:100px;padding:6px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:20px;}
+        .tier-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(242,140,40,0.1);border:1px solid rgba(242,140,40,0.2);border-radius:100px;padding:6px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#4a7fa5;margin-bottom:20px;}
 
         .recruiter-status-bar{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;min-height:22px;margin-bottom:12px;display:flex;align-items:center;gap:8px;transition:color 0.3s;}
         .status-dot{width:6px;height:6px;border-radius:50%;animation:s-blink 1s infinite;display:none;flex-shrink:0;}
@@ -144,12 +144,12 @@
 
         .lab-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);padding:48px 44px;border-radius:40px;box-shadow:0 50px 100px rgba(0,0,0,0.05);transition:background var(--transition);}
         body.night-view .lab-card{box-shadow:0 50px 100px rgba(0,0,0,0.5);}
-        .q-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--orange);margin-bottom:16px;}
+        .q-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .ai-bubble{font-family:'Playfair Display',serif;font-size:21px;line-height:1.5;color:var(--text-primary);margin-bottom:28px;min-height:80px;}
 
         textarea{width:100%;min-height:160px;background:rgba(0,0,0,0.02);border:1px solid var(--border-color);border-radius:24px;padding:24px;font-size:17px;color:var(--text-primary);font-family:'Inter',sans-serif;resize:none;outline:none;transition:all 0.4s ease;margin-bottom:8px;line-height:1.6;}
         body.night-view textarea{background:rgba(255,255,255,0.03);}
-        textarea:focus{background:var(--bg-main);border-color:var(--orange);transform:scale(1.005);}
+        textarea:focus{background:var(--bg-main);border-color:#1a3a5c;transform:scale(1.005);}
         textarea::placeholder{color:var(--text-secondary);}
         textarea:disabled{opacity:0.5;cursor:not-allowed;}
         .char-count{font-size:12px;color:var(--text-secondary);text-align:right;margin-bottom:20px;}
@@ -176,7 +176,7 @@
         .nichole-moment-text{font-family:'Playfair Display',serif;font-size:19px;line-height:1.55;color:var(--white);font-style:italic;}
         .nichole-moment-name{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-top:10px;display:block;}
         .paywall-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);width:100%;padding:48px 44px;border-radius:36px;box-shadow:0 32px 80px rgba(0,0,0,0.3);}
-        .paywall-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--orange);margin-bottom:16px;}
+        .paywall-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .paywall-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin-bottom:16px;color:var(--text-primary);}
         .paywall-sub{font-size:16px;color:var(--text-secondary);margin-bottom:28px;line-height:1.6;}
         .paywall-features{margin-bottom:32px;display:flex;flex-direction:column;gap:12px;}
@@ -203,6 +203,17 @@
 
         .paywall-guarantee{font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;text-align:center;}
 
+        /* SCORECARD */
+        .scorecard-block{background:rgba(26,58,92,0.06);border:1px solid rgba(26,58,92,0.15);border-radius:24px;padding:28px;margin-bottom:24px;}
+        .scorecard-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:20px;text-align:center;}
+        .scorecard-grid{display:flex;flex-direction:column;gap:14px;margin-bottom:20px;}
+        .score-item{display:flex;align-items:center;gap:12px;}
+        .score-label{font-size:13px;font-weight:600;color:var(--white);width:130px;flex-shrink:0;}
+        .score-bar-wrap{flex:1;height:6px;background:rgba(255,255,255,0.1);border-radius:100px;overflow:hidden;}
+        .score-bar{height:100%;background:linear-gradient(90deg,#1a3a5c,#4a7fa5);border-radius:100px;width:0%;transition:width 1.2s cubic-bezier(0.4,0,0.2,1);}
+        .score-num{font-size:13px;font-weight:700;color:var(--white);width:28px;text-align:right;flex-shrink:0;}
+        .score-summary{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;text-align:center;font-style:italic;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
+
         /* SHARED */
         .btn-main-action{background:var(--text-primary);color:var(--bg-main);padding:18px 40px;border-radius:100px;border:none;cursor:pointer;font-weight:700;font-size:16px;font-family:'Inter',sans-serif;transition:all 0.25s;display:inline-block;text-decoration:none;}
         .btn-main-action:hover{transform:translateY(-2px);}
@@ -212,20 +223,36 @@
         /* MOBILE */
         @media(max-width:768px){
             .billboard-grid{grid-template-columns:1fr;gap:28px;}
-            .billboard-hero{padding:80px 20px 48px;}
+            .billboard-hero{padding:80px 16px 48px;}
             .billboard-right{order:-1;}
+            .billboard-title{font-size:2rem;}
+            .billboard-differentiator{font-size:15px;}
+            .billboard-sub{font-size:14px;}
             .free-badge-corner{top:-8px;right:-8px;}
-            .faq-section{padding:60px 20px;}
-            .lab-card{padding:28px 20px;}
-            .intake-card{padding:36px 24px;}
-            .paywall-card{padding:32px 20px;}
-            .ai-bubble{font-size:18px;min-height:60px;}
-            .recruiter-thumb{width:56px;height:56px;bottom:16px;right:16px;}
+            .btn-enter-billboard{width:100%;justify-content:center;padding:18px 24px;font-size:16px;}
+            .faq-section{padding:48px 16px;}
+            .faq-question{font-size:15px;padding:20px 0;}
+            .lab-card{padding:24px 16px;border-radius:24px;}
+            .intake-card{padding:32px 20px;border-radius:28px;}
+            .paywall-card{padding:28px 16px;border-radius:24px;}
+            .ai-bubble{font-size:17px;min-height:60px;margin-bottom:20px;}
+            textarea{min-height:120px;font-size:16px;padding:16px;border-radius:16px;}
+            .btn-lock{padding:18px 32px;font-size:15px;}
+            .recruiter-thumb{width:52px;height:52px;bottom:16px;right:12px;}
             .nichole-moment{flex-direction:column;gap:12px;}
+            .nichole-moment-text{font-size:16px;}
             .upsell-block{flex-direction:column;text-align:center;}
-            .view-switch,.sound-toggle{top:12px;padding:8px 14px;}
+            .view-switch,.sound-toggle{top:12px;padding:8px 12px;font-size:9px;}
             .view-switch{left:12px;}
             .sound-toggle{right:12px;}
+            .notepad-progress{padding:10px 14px;}
+            .score-label{width:100px;font-size:12px;}
+            .paywall-title{font-size:1.6rem;}
+            .scorecard-block{padding:20px 16px;}
+            .lab-wrap{padding-top:8px;}
+            #stage-lab{padding:72px 12px 120px;}
+            #stage-intake{padding:72px 16px 48px;}
+            #stage-paywall{padding:48px 16px;}
         }
     </style>
 </head>
@@ -337,11 +364,9 @@
     <div class="intake-card">
         <div class="intake-eyebrow">Before we begin</div>
         <h2 class="intake-title">Let's set the stage.</h2>
-        <p class="intake-sub">I need a few details before we start. This session is personalized to you — not a generic simulation.</p>
+        <p class="intake-sub">Two quick things and we're in. This session is built around you — not a generic simulation.</p>
 
         <input type="text" id="intake-name" class="intake-field" placeholder="Your first name (required)" maxlength="50" />
-        <input type="email" id="intake-email" class="intake-field" placeholder="Your email address (required)" />
-        <input type="text" id="intake-role" class="intake-field" placeholder="Role you're targeting (e.g. Program Analyst, Senior PM)" maxlength="100" />
         <select id="intake-industry" class="role-select">
             <option value="" disabled selected>Your industry / background</option>
             <option value="govcon">Government Contracting / Defense</option>
@@ -350,6 +375,8 @@
             <option value="nonprofit">Nonprofit / Public Health</option>
             <option value="other">Other</option>
         </select>
+        <input type="hidden" id="intake-email" value="" />
+        <input type="hidden" id="intake-role" value="Professional" />
 
         <!-- TIER TOGGLE -->
         <div class="tier-container" id="tier-container">
@@ -389,7 +416,7 @@
         </div>
 
         <div class="lab-card">
-            <div class="q-label" id="q-label">Question 1 of 3 — Free Trial</div>
+            <div class="q-label" id="q-label">Question 1 of 3</div>
             <div class="ai-bubble" id="ai-bubble">Loading your session...</div>
             <textarea id="user-input" placeholder="Start typing your answer... take your time." maxlength="1500"></textarea>
             <div class="char-count" id="char-count">0 / 1500</div>
@@ -412,6 +439,34 @@
                 <div class="nichole-moment-text" id="nichole-message">"You've given me a real sense of who you are. Now let's talk about what comes next."</div>
                 <span class="nichole-moment-name">Nichole Walls · Nehemiah's Ladder</span>
             </div>
+        </div>
+
+        <!-- SCORECARD -->
+        <div class="scorecard-block" id="scorecard-block" style="display:none;">
+            <div class="scorecard-title">Your Recruiter Scorecard</div>
+            <div class="scorecard-grid">
+                <div class="score-item">
+                    <div class="score-label">Communication</div>
+                    <div class="score-bar-wrap"><div class="score-bar" id="sc-communication"></div></div>
+                    <div class="score-num" id="sc-communication-num">—</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Authenticity</div>
+                    <div class="score-bar-wrap"><div class="score-bar" id="sc-authenticity"></div></div>
+                    <div class="score-num" id="sc-authenticity-num">—</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Impact Language</div>
+                    <div class="score-bar-wrap"><div class="score-bar" id="sc-impact"></div></div>
+                    <div class="score-num" id="sc-impact-num">—</div>
+                </div>
+                <div class="score-item">
+                    <div class="score-label">Confidence</div>
+                    <div class="score-bar-wrap"><div class="score-bar" id="sc-confidence"></div></div>
+                    <div class="score-num" id="sc-confidence-num">—</div>
+                </div>
+            </div>
+            <div class="score-summary" id="sc-summary"></div>
         </div>
 
         <div class="paywall-card">
@@ -520,7 +575,7 @@ inputArea.addEventListener('input',function(){
     const found=fillerWords.find(f=>lower.includes(f));
     if(found)setStatus(`Careful — "${found}" weakens your signal.`,'#ff453a',true);
     else if(len>40)setStatus('Nichole is locked in on your narrative.','#34c759',true);
-    else setStatus('Nichole is listening...','#34c759',true);
+    else setStatus('Nichole is listening...','#4a7fa5',true);
 });
 inputArea.addEventListener('keypress',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();handleAnswer();}});
 
@@ -532,7 +587,7 @@ function setStatus(msg,color,showDot){
 // ══ API STATUS ══
 const apiMsgs=['Reviewing your answer...','Taking notes...','Thinking...','Typing feedback...','Almost done...'];
 let apiTimer=null;
-function startAPIStatus(){let i=0;setStatus(apiMsgs[0],'var(--orange)',true);apiTimer=setInterval(()=>{i=(i+1)%apiMsgs.length;setStatus(apiMsgs[i],'var(--orange)',true);},1600);}
+function startAPIStatus(){let i=0;setStatus(apiMsgs[0],'#4a7fa5',true);apiTimer=setInterval(()=>{i=(i+1)%apiMsgs.length;setStatus(apiMsgs[i],'#4a7fa5',true);},1600);}
 function stopAPIStatus(){clearInterval(apiTimer);setStatus('','',false);}
 
 // ══ QUESTION BANKS ══
@@ -594,8 +649,8 @@ function startInterview(){
     userRole=document.getElementById('intake-role').value.trim();
     userIndustry=document.getElementById('intake-industry').value;
     const err=document.getElementById('intake-error');
-    if(!userName||!userEmail||!userRole||!userIndustry){err.classList.add('visible');return;}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(userEmail)){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
+    if(!userName||!userIndustry){err.classList.add('visible');return;}
+    // email collected at paywall
     err.classList.remove('visible');
     conversationHistory=[];questionCount=0;backspaceCount=0;
 
@@ -617,7 +672,7 @@ function updateProgress(){
         else if(i===questionCount+1)p.classList.add('active');
     }
     document.getElementById('notepad-label').textContent=`Q${questionCount+1} of 3`;
-    document.getElementById('q-label').textContent=`Question ${questionCount+1} of 3 — Free Trial`;
+    document.getElementById('q-label').textContent=`Question ${questionCount+1} of 3`;
 }
 
 // ══ API ══
@@ -634,7 +689,7 @@ async function askFirstQuestion(){
         conversationHistory.push({role:'user',content:messages[0].content});conversationHistory.push({role:'assistant',content:aiText});
         stopAPIStatus();setLoading(false);typeBubble(aiText);
         document.getElementById('user-input').disabled=false;document.getElementById('user-input').focus();
-        setStatus('Nichole is listening...','#34c759',true);
+        setStatus('Nichole is listening...','#4a7fa5',true);
     }catch(e){stopAPIStatus();setLoading(false);document.getElementById('ai-bubble').textContent="Something went wrong. Please refresh and try again.";}
 }
 
@@ -647,27 +702,35 @@ async function handleAnswer(){
     conversationHistory.push({role:'user',content:val});
     try{
         const data=await callAPI(conversationHistory);const aiText=data.content[0].text;
-        conversationHistory.push({role:'assistant',content:aiText});questionCount++;updateProgress();
+        conversationHistory.push({role:'assistant',content:aiText});questionCount++;updateProgress();updateRecruiterThumb();
         stopAPIStatus();setLoading(false);input.value='';document.getElementById('char-count').textContent='0 / 1500';input.disabled=false;
-        typeBubble(aiText);input.focus();setStatus('Nichole is listening...','#34c759',true);
+        typeBubble(aiText);input.focus();setStatus('Nichole is listening...','#4a7fa5',true);
     }catch(e){stopAPIStatus();setLoading(false);input.disabled=false;document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";}
 }
 
 async function getFeedbackThenPaywall(val){
     setLoading(true);startAPIStatus();document.getElementById('user-input').disabled=true;
     conversationHistory.push({role:'user',content:val});
-    const closingMessages=[...conversationHistory,{role:'user',content:`Give honest feedback on that last answer only. End with: "That wraps up your free session. You've given me a good sense of who you are so far." Then on a new line output exactly one tag: [SCORE:STRONG] or [SCORE:NEEDS-WORK] based on overall quality of all three answers.`}];
+    const closingMessages=[...conversationHistory,{role:'user',content:`Give honest feedback on that last answer only. End your feedback with: "That wraps up your free session. You've given me a good sense of who you are so far."
+
+Then on a new line, output a JSON scorecard in this exact format and nothing else after it:
+SCORECARD:{"overall":"STRONG","communication":7,"authenticity":8,"impact":6,"confidence":7,"summary":"One honest sentence about their overall performance."}`}];
     try{
         const data=await callAPI(closingMessages);let aiText=data.content[0].text;
-        const score=aiText.includes('[SCORE:STRONG]')?'STRONG':'NEEDS-WORK';
-        aiText=aiText.replace(/\[SCORE:(STRONG|NEEDS-WORK)\]/g,'').trim();
+        let score='NEEDS-WORK';
+        let scorecard=null;
+        const scMatch=aiText.match(/SCORECARD:(\{.*\})/);
+        if(scMatch){
+            try{scorecard=JSON.parse(scMatch[1]);score=scorecard.overall;}catch(e){}
+            aiText=aiText.replace(/SCORECARD:\{.*\}/,'').trim();
+        }
         stopAPIStatus();setLoading(false);
-        typeBubble(aiText,()=>setTimeout(()=>showPaywall(score),3000));
+        typeBubble(aiText,()=>setTimeout(()=>showPaywall(score,scorecard),3000));
     }catch(e){stopAPIStatus();setLoading(false);setTimeout(()=>showPaywall('NEEDS-WORK'),1500);}
 }
 
 // ══ DUAL PAYWALL WITH TIER ROUTING ══
-function showPaywall(score){
+function showPaywall(score,scorecard){
     document.getElementById('recruiter-thumb').classList.remove('visible');
     document.getElementById('sound-toggle').classList.remove('visible');
     if(soundOn)toggleSound();
@@ -701,6 +764,39 @@ function showPaywall(score){
         }
     }
     show('stage-paywall');
+
+    // Render scorecard if available
+    if(scorecard){
+        const block=document.getElementById('scorecard-block');
+        block.style.display='block';
+        const fields=['communication','authenticity','impact','confidence'];
+        fields.forEach((f,i)=>{
+            const val=scorecard[f]||5;
+            document.getElementById(`sc-${f}-num`).textContent=`${val}/10`;
+            setTimeout(()=>{
+                document.getElementById(`sc-${f}`).style.width=`${val*10}%`;
+            },300+(i*150));
+        });
+        if(scorecard.summary)document.getElementById('sc-summary').textContent=`"${scorecard.summary}"`;
+    }
+}
+
+// ══ RECRUITER THUMB SWAP ══
+const thumbImages=[
+    'https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007039-dWemne56ajop0RZV.jpg',
+    'https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007037-MalIVUilzSH8q6CZ.jpg',
+    'https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007038-bD6Fu6UMTFXoPpi7.jpg'
+];
+function updateRecruiterThumb(){
+    const img=document.querySelector('.recruiter-thumb img');
+    if(img&&thumbImages[questionCount]){
+        img.style.opacity='0';
+        img.style.transition='opacity 0.5s ease';
+        setTimeout(()=>{
+            img.src=thumbImages[questionCount];
+            img.style.opacity='1';
+        },500);
+    }
 }
 
 // ══ UI HELPERS ══
@@ -712,8 +808,8 @@ function typeBubble(text,callback){
     const bubble=document.getElementById('ai-bubble');bubble.textContent='';let i=0;
     function type(){
         if(i<text.length){bubble.textContent+=text[i];const ch=text[i];i++;
-            let delay=16;
-            if(ch==='.')delay=380;else if(ch===',')delay=160;else if(ch==='?')delay=320;else if(ch==='!')delay=280;else if(Math.random()<0.015)delay=100;
+            let delay=22;
+            if(ch==='.')delay=520;else if(ch===',')delay=220;else if(ch==='?')delay=440;else if(ch==='!')delay=380;else if(ch===' ')delay=60;else if(Math.random()<0.03)delay=140;
             setTimeout(type,delay);
         }else if(callback)callback();
     }type();
