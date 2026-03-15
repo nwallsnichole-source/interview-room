@@ -16,7 +16,7 @@
             --orange: #f28c28;
             --purple: #6941C6;
             --green: #b8c950;
-            --green-call: #34c759;
+            --green-call: #1a3a5c;
             --white: #ffffff;
             --transition: 0.8s cubic-bezier(0.4,0,0.2,1);
         }
@@ -43,7 +43,7 @@
         .sound-toggle.visible{display:flex;}
         .recruiter-thumb{position:fixed;bottom:24px;right:20px;width:72px;height:72px;border-radius:50%;border:3px solid var(--white);overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.2);z-index:100;display:none;}
         .recruiter-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;}
-        .recruiter-thumb .status-live{position:absolute;bottom:2px;right:2px;width:14px;height:14px;background:var(--green-call);border-radius:50%;border:2px solid var(--white);animation:live-pulse 2s infinite;}
+        .recruiter-thumb .status-live{position:absolute;bottom:2px;right:2px;width:14px;height:14px;background:#34c759;border-radius:50%;border:2px solid var(--white);animation:live-pulse 2s infinite;}
         @keyframes live-pulse{0%,100%{opacity:1}50%{opacity:0.4}}
         .recruiter-thumb.visible{display:block;}
 
@@ -51,17 +51,17 @@
         #stage-ring{background:var(--bg-main);display:flex;align-items:center;justify-content:center;min-height:100vh;transition:background var(--transition);}
         .ring-inner{text-align:center;padding:40px 20px;}
         .phone-wrap{position:relative;width:120px;height:120px;margin:0 auto 36px;}
-        .phone-pulse{position:absolute;inset:0;border-radius:50%;background:rgba(52,199,89,0.15);animation:pulse-ring 1.4s ease-out infinite;}
+        .phone-pulse{position:absolute;inset:0;border-radius:50%;background:rgba(26,58,92,0.15);animation:pulse-ring 1.4s ease-out infinite;}
         .phone-pulse:nth-child(2){animation-delay:0.4s;}
         .phone-pulse:nth-child(3){animation-delay:0.8s;}
         @keyframes pulse-ring{0%{transform:scale(0.8);opacity:1}100%{transform:scale(1.8);opacity:0}}
-        .phone-icon{position:relative;z-index:2;width:120px;height:120px;background:var(--green-call);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;animation:phone-shake 0.5s ease-in-out infinite alternate;box-shadow:0 0 40px rgba(52,199,89,0.4);}
+        .phone-icon{position:relative;z-index:2;width:120px;height:120px;background:#1a3a5c;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:48px;animation:phone-shake 0.5s ease-in-out infinite alternate;box-shadow:0 0 40px rgba(26,58,92,0.5);}
         @keyframes phone-shake{0%{transform:rotate(-8deg)}100%{transform:rotate(8deg)}}
-        .ring-from{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:var(--green-call);margin-bottom:12px;}
+        .ring-from{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#4a90b8;margin-bottom:12px;}
         .ring-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.4rem);color:var(--text-primary);margin-bottom:8px;line-height:1.2;}
         .ring-sub{font-size:15px;color:var(--text-secondary);margin-bottom:48px;}
-        .btn-answer{background:var(--green-call);color:var(--white);border:none;border-radius:100px;padding:20px 52px;font-size:18px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 30px rgba(52,199,89,0.35);}
-        .btn-answer:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(52,199,89,0.45);}
+        .btn-answer{background:#1a3a5c;color:var(--white);border:none;border-radius:100px;padding:20px 52px;font-size:18px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;transition:all 0.3s;box-shadow:0 8px 30px rgba(26,58,92,0.3);}
+        .btn-answer:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(26,58,92,0.4);}
 
         /* STAGE 1: BILLBOARD */
         #stage-billboard{background:var(--bg-main);transition:background var(--transition);}
@@ -246,7 +246,7 @@
 </button>
 
 <!-- STAGE 0: PHONE RING -->
-<div id="stage-ring" class="stage">
+<div id="stage-ring" class="stage hidden">
     <div class="ring-inner">
         <div class="phone-wrap">
             <div class="phone-pulse"></div>
@@ -730,6 +730,7 @@ window.addEventListener('load',()=>{
     if(params.get('start')==='true'){
         show('stage-intake');
     } else {
+        show('stage-ring');
         setTimeout(playRing,800);
     }
 });
