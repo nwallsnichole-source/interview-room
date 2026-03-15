@@ -1038,34 +1038,43 @@ function setLoading(on){
     btn.disabled=on;t.style.display=on?'none':'block';d.className=on?'typing-dots visible':'typing-dots';
 }
 function typeBubble(text,callback){
+    // Cancel any in-progress typing
+    if(window._typeTimer){clearTimeout(window._typeTimer);window._typeTimer=null;}
+
     const bubble=document.getElementById('ai-bubble');
     const overlay=document.getElementById('frost-overlay');
+
+    // Clear bubble immediately and completely
     bubble.textContent='';
-    // Step 1: Show frost overlay
-    if(overlay){overlay.style.transition='none';overlay.style.opacity='1';overlay.style.backdropFilter='blur(20px)';}
-    // Step 2: Wait for frost to settle, then clear it and start typing
-    setTimeout(()=>{
-        if(overlay){overlay.style.transition='opacity 0.9s ease';overlay.style.opacity='0';}
-        // Step 3: Only start typing AFTER frost clears (no overlap)
-        setTimeout(()=>{
-            let i=0;
-            function type(){
-                if(i<text.length){
-                    bubble.textContent+=text[i];
-                    const ch=text[i];i++;
-                    let delay=24;
-                    if(ch==='.')delay=480;
-                    else if(ch===',')delay=200;
-                    else if(ch==='?')delay=400;
-                    else if(ch==='!')delay=350;
-                    else if(ch===' ')delay=55;
-                    else if(Math.random()<0.02)delay=120;
-                    setTimeout(type,delay);
-                }else if(callback)callback();
-            }
-            type();
-        },700);
-    },400);
+
+    // Remove frost overlay entirely — no animation, no race condition
+    if(overlay){
+        overlay.style.transition='none';
+        overlay.style.opacity='0';
+        overlay.style.pointerEvents='none';
+    }
+
+    // Simple sequential character-by-character typing, no concurrent animations
+    let i=0;
+    function typeNext(){
+        if(i>=text.length){
+            window._typeTimer=null;
+            if(callback)callback();
+            return;
+        }
+        const ch=text[i];
+        bubble.textContent+=ch;
+        i++;
+        let delay=20;
+        if(ch==='.')delay=460;
+        else if(ch===',')delay=180;
+        else if(ch==='?')delay=380;
+        else if(ch==='!')delay=320;
+        else if(ch===' ')delay=50;
+        else if(Math.random()<0.02)delay=110;
+        window._typeTimer=setTimeout(typeNext,delay);
+    }
+    typeNext();
 }
 function toggleFaq(btn){
     const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');
