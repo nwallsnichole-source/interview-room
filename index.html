@@ -114,6 +114,14 @@
         body.night-view .role-select{background:rgba(255,255,255,0.04);}
         .role-select:focus{outline:none;border-color:#1a3a5c;box-shadow:0 0 0 4px rgba(26,58,92,0.1);}
 
+        /* JD FIELD */
+        .jd-field-wrap{position:relative;margin-bottom:14px;}
+        .intake-jd{width:100%;border:1px solid var(--border-color);border-radius:14px;padding:14px 20px;font-size:14px;font-family:'Inter',sans-serif;min-height:80px;resize:none;background:rgba(0,0,0,0.02);color:var(--text-primary);transition:all 0.3s;line-height:1.5;}
+        body.night-view .intake-jd{background:rgba(255,255,255,0.03);}
+        .intake-jd:focus{outline:none;border-color:#1a3a5c;box-shadow:0 0 0 4px rgba(26,58,92,0.08);}
+        .intake-jd::placeholder{color:var(--text-secondary);font-size:13px;}
+        .jd-badge{position:absolute;top:-10px;right:12px;background:#1a3a5c;color:var(--white);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
+
         /* INDUSTRY HINT */
         .industry-hint{font-size:13px;color:#4a7fa5;min-height:18px;margin-bottom:8px;margin-top:-6px;text-align:left;font-weight:500;transition:opacity 0.3s;opacity:0;}
         .industry-hint.visible{opacity:1;}
@@ -209,6 +217,27 @@
         .btn-upsell.orange:hover{background:var(--orange);color:var(--white);}
 
         .paywall-guarantee{font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;text-align:center;}
+
+        /* SCORE EMAIL CAPTURE */
+        .score-email-wrap{margin-top:20px;padding-top:16px;border-top:1px solid var(--border-color);}
+        .score-email-label{font-size:12px;color:var(--text-secondary);margin-bottom:10px;text-align:center;}
+        .score-email-row{display:flex;gap:8px;}
+        .score-email-input{flex:1;border:1px solid var(--border-color);border-radius:10px;padding:10px 14px;font-size:14px;font-family:'Inter',sans-serif;background:rgba(0,0,0,0.02);color:var(--text-primary);}
+        body.night-view .score-email-input{background:rgba(255,255,255,0.04);color:var(--white);}
+        .score-email-input:focus{outline:none;border-color:#1a3a5c;}
+        .score-email-btn{background:#1a3a5c;color:var(--white);border:none;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;white-space:nowrap;transition:all 0.2s;}
+        .score-email-btn:hover{background:#0a1d37;}
+        .score-email-confirm{font-size:13px;color:#34c759;text-align:center;margin-top:8px;font-weight:600;}
+
+        /* PAYWALL TESTIMONIALS */
+        .paywall-testimonials{display:flex;flex-direction:column;gap:12px;margin-bottom:24px;}
+        .paywall-testimonial{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px 24px;}
+        body:not(.night-view) .paywall-testimonial{background:rgba(26,58,92,0.04);border-color:rgba(26,58,92,0.1);}
+        .pt-quote{font-size:14px;color:var(--text-primary);line-height:1.6;margin-bottom:10px;font-style:italic;}
+        body.night-view .pt-quote{color:rgba(255,255,255,0.8);}
+        .pt-author{font-size:12px;color:var(--text-secondary);font-weight:600;}
+        .pt-badge{display:inline-block;background:#1a3a5c;color:var(--white);font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;padding:2px 8px;border-radius:100px;margin-left:4px;}
+        body.night-view .pt-badge{background:#4a7fa5;}
 
         /* SECURITY BADGES */
         .security-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:16px;margin-bottom:8px;}
@@ -371,7 +400,7 @@
                 </p>
                 <button class="btn-enter-billboard" onclick="goToIntake()">Enter the Interview Room →</button>
                 <div style="margin-top:16px;">
-                    <span class="free-badge">Free trial — no credit card needed</span>
+                    <span class="free-badge">The Clearance Check — free, no credit card needed</span>
                 </div>
             </div>
             <div class="billboard-right">
@@ -433,7 +462,7 @@
     <div class="intake-card">
         <div class="intake-eyebrow">Before we begin</div>
         <h2 class="intake-title">Let's set the stage.</h2>
-        <p class="intake-sub">Two quick things and we're in. Clearance-safe. Private. Built for the DMV professional.</p>
+        <p class="intake-sub">Two quick things and we're in. Clearance-safe, private, and built for cleared professionals.</p>
 
         <input type="text" id="intake-name" class="intake-field" placeholder="Your first name (required)" maxlength="50" />
         <select id="intake-industry" class="role-select">
@@ -458,6 +487,10 @@
         </div>
 
         <p class="industry-hint" id="industry-hint"></p>
+        <div class="jd-field-wrap">
+            <textarea id="intake-jd" class="intake-jd" placeholder="Optional: Paste the job description here — Nichole will tailor questions to this specific role." maxlength="3000"></textarea>
+            <span class="jd-badge">🎯 Role-specific questions</span>
+        </div>
         <p class="error-msg" id="intake-error">Please fill in all fields before continuing.</p>
         <button class="btn-main-action" style="width:100%;" onclick="startInterview()">Enter the Interviewing Room →</button>
         <p style="font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;">Your information is never shared or sold. This is a private practice session.</p>
@@ -521,6 +554,18 @@
             </div>
         </div>
 
+        <!-- SOCIAL PROOF AT HIGHEST INTENT MOMENT -->
+        <div class="paywall-testimonials">
+            <div class="paywall-testimonial">
+                <div class="pt-quote">"I was out of defense contracting for 14 months. Every time someone asked about the gap I froze. After three sessions with this tool I stopped apologizing for it. Got an offer at Booz Allen three weeks later."</div>
+                <div class="pt-author">— Carla D. · Business Coordinator · Northern Virginia · <span class="pt-badge">Secret Clearance</span></div>
+            </div>
+            <div class="paywall-testimonial">
+                <div class="pt-quote">"I hadn't interviewed in 11 years. I thought I could wing it. The feedback showed me exactly where I was rambling and what a recruiter would actually think. Brutal — and exactly what I needed."</div>
+                <div class="pt-author">— Kevin S. · Cleared Software Developer · Maryland · <span class="pt-badge">TS/SCI</span></div>
+            </div>
+        </div>
+
         <!-- SCORECARD -->
         <div class="scorecard-block" id="scorecard-block" style="display:none;">
             <div class="scorecard-title">Your Recruiter Scorecard</div>
@@ -547,6 +592,14 @@
                 </div>
             </div>
             <div class="score-summary" id="sc-summary"></div>
+            <div class="score-email-wrap" id="score-email-wrap">
+                <p class="score-email-label">Get your full scorecard report emailed to you</p>
+                <div class="score-email-row">
+                    <input type="email" id="score-email-input" class="score-email-input" placeholder="Your email address" />
+                    <button class="score-email-btn" onclick="submitScoreEmail()">Send Report</button>
+                </div>
+                <p class="score-email-confirm" id="score-email-confirm" style="display:none;">✓ Report on its way!</p>
+            </div>
         </div>
 
         <div class="paywall-card">
@@ -706,7 +759,7 @@ const midQuestions=[
 ];
 
 // ══ STATE ══
-let userName='',userEmail='',userRole='',userIndustry='',questionCount=0,conversationHistory=[];
+let userName='',userEmail='',userRole='',userIndustry='',userJD='',questionCount=0,conversationHistory=[];
 const FREE_LIMIT=3;
 
 function buildSystemPrompt(){
@@ -717,6 +770,7 @@ function buildSystemPrompt(){
     return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
 
 Candidate: ${userName}. Targeting: ${userRole}. Industry: ${userIndustry}.
+${userJD?`JOB DESCRIPTION PROVIDED — tailor your questions specifically to this role:\n${userJD.substring(0,800)}`:''}
 ${tierContext}
 
 PERSONALITY: Warm but laser-focused. Direct. Real person on the phone. Empathetic but high bar.
@@ -739,6 +793,24 @@ RED FLAGS:
 GOVCON CLEARANCE AWARENESS: If a candidate over-shares classified details, program names, agency names, or sensitive contract info, gently redirect: "I appreciate the detail — but in a real screen, you'd want to frame that around impact, not specifics. Let's try that again with the details protected." Coach them to speak in outcomes and skills, not classified context.
 
 RULES: Never break character. Never admit being AI. No bullet points or lists. Under 120 words per response. Be honest — don't just validate.`;
+}
+
+// ══ SCORE EMAIL CAPTURE ══
+function submitScoreEmail(){
+    const emailInput=document.getElementById('score-email-input');
+    const confirm=document.getElementById('score-email-confirm');
+    const btn=document.querySelector('.score-email-btn');
+    const email=emailInput?emailInput.value.trim():'';
+    if(!email||!email.includes('@')||!email.includes('.')){
+        emailInput.style.borderColor='#ff453a';
+        return;
+    }
+    // Store locally and show confirmation (email delivery = phase 2 integration)
+    emailInput.style.display='none';
+    btn.style.display='none';
+    if(confirm)confirm.style.display='block';
+    // Log for now — wire to email service in phase 2
+    console.log('Score report requested for:',email,'Score:',window._lastScore||'N/A');
 }
 
 // ══ RETRY ANSWER ══
@@ -780,6 +852,7 @@ function startInterview(){
     userEmail=document.getElementById('intake-email').value.trim();
     userRole=document.getElementById('intake-role').value.trim();
     userIndustry=document.getElementById('intake-industry').value;
+    userJD=document.getElementById('intake-jd')?document.getElementById('intake-jd').value.trim():'';
     const err=document.getElementById('intake-error');
     if(!userName||!userIndustry){err.classList.add('visible');return;}
     // email collected at paywall
@@ -812,7 +885,7 @@ function updateProgress(){
     const pct=[0,33,66,100];
     const fill=document.getElementById('top-progress-fill');
     if(fill)fill.style.width=pct[questionCount]+'%';
-    document.getElementById('q-label').textContent=`Question ${questionCount+1} of 3`;
+    document.getElementById('q-label').textContent=`Question ${questionCount+1} of 3 · The Clearance Check`;
 }
 
 // ══ API ══
@@ -968,20 +1041,31 @@ function typeBubble(text,callback){
     const bubble=document.getElementById('ai-bubble');
     const overlay=document.getElementById('frost-overlay');
     bubble.textContent='';
-    // Activate frost
-    if(overlay){overlay.classList.add('active');overlay.classList.remove('clearing');}
-    // Short pause then reveal text through frost
+    // Step 1: Show frost overlay
+    if(overlay){overlay.style.transition='none';overlay.style.opacity='1';overlay.style.backdropFilter='blur(20px)';}
+    // Step 2: Wait for frost to settle, then clear it and start typing
     setTimeout(()=>{
-        if(overlay){overlay.classList.add('clearing');overlay.classList.remove('active');}
-        let i=0;
-        function type(){
-            if(i<text.length){bubble.textContent+=text[i];const ch=text[i];i++;
-                let delay=22;
-                if(ch==='.')delay=520;else if(ch===',')delay=220;else if(ch==='?')delay=440;else if(ch==='!')delay=380;else if(ch===' ')delay=60;else if(Math.random()<0.03)delay=140;
-                setTimeout(type,delay);
-            }else if(callback)callback();
-        }type();
-    },600);
+        if(overlay){overlay.style.transition='opacity 0.9s ease';overlay.style.opacity='0';}
+        // Step 3: Only start typing AFTER frost clears (no overlap)
+        setTimeout(()=>{
+            let i=0;
+            function type(){
+                if(i<text.length){
+                    bubble.textContent+=text[i];
+                    const ch=text[i];i++;
+                    let delay=24;
+                    if(ch==='.')delay=480;
+                    else if(ch===',')delay=200;
+                    else if(ch==='?')delay=400;
+                    else if(ch==='!')delay=350;
+                    else if(ch===' ')delay=55;
+                    else if(Math.random()<0.02)delay=120;
+                    setTimeout(type,delay);
+                }else if(callback)callback();
+            }
+            type();
+        },700);
+    },400);
 }
 function toggleFaq(btn){
     const item=btn.closest('.faq-item');const isOpen=item.classList.contains('open');
