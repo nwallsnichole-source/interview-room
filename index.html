@@ -41,7 +41,7 @@
         .sound-toggle{position:fixed;top:20px;right:20px;z-index:1000;background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);border-radius:100px;padding:10px 18px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;display:none;align-items:center;gap:8px;color:var(--text-secondary);transition:all 0.3s;}
         .sound-toggle:hover{color:var(--text-primary);}
         .sound-toggle.visible{display:flex;}
-        .recruiter-thumb{position:fixed;bottom:24px;right:20px;width:72px;height:72px;border-radius:50%;border:3px solid var(--white);overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.2);z-index:100;display:none;}
+        .recruiter-thumb{position:fixed;bottom:24px;right:20px;width:96px;height:96px;border-radius:50%;border:3px solid var(--white);overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.25);z-index:100;display:none;}
         .recruiter-thumb img{width:100%;height:100%;object-fit:cover;object-position:top;}
         .recruiter-thumb .status-live{position:absolute;bottom:2px;right:2px;width:14px;height:14px;background:#34c759;border-radius:50%;border:2px solid var(--white);animation:live-pulse 2s infinite;}
         @keyframes live-pulse{0%,100%{opacity:1}50%{opacity:0.4}}
@@ -108,11 +108,11 @@
         .intake-sub{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.6;}
         .intake-field{width:100%;border:1px solid var(--border-color);border-radius:14px;padding:16px 20px;font-size:16px;font-family:'Inter',sans-serif;margin-bottom:14px;transition:border 0.3s;background:rgba(0,0,0,0.02);color:var(--text-primary);}
         body.night-view .intake-field{background:rgba(255,255,255,0.04);}
-        .intake-field:focus{outline:none;border-color:#1a3a5c;}
+        .intake-field:focus{outline:none;border-color:#1a3a5c;box-shadow:0 0 0 4px rgba(26,58,92,0.1);transform:translateY(-1px);}
         .intake-field::placeholder{color:var(--text-secondary);}
         .role-select{width:100%;border:1px solid var(--border-color);border-radius:14px;padding:16px 20px;font-size:16px;font-family:'Inter',sans-serif;margin-bottom:20px;background:rgba(0,0,0,0.02);color:var(--text-primary);appearance:none;cursor:pointer;}
         body.night-view .role-select{background:rgba(255,255,255,0.04);}
-        .role-select:focus{outline:none;border-color:#1a3a5c;}
+        .role-select:focus{outline:none;border-color:#1a3a5c;box-shadow:0 0 0 4px rgba(26,58,92,0.1);}
 
         /* TIER TOGGLE */
         .tier-container{margin-bottom:28px;text-align:center;}
@@ -203,6 +203,14 @@
 
         .paywall-guarantee{font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;text-align:center;}
 
+        /* COST OF INACTION */
+        .cost-of-inaction{display:flex;align-items:center;gap:0;margin-bottom:28px;background:rgba(26,58,92,0.05);border:1px solid rgba(26,58,92,0.1);border-radius:16px;overflow:hidden;}
+        .coi-stat{flex:1;padding:16px 20px;text-align:center;}
+        .coi-num{display:block;font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:700;color:#1a3a5c;line-height:1;}
+        body.night-view .coi-num{color:#4a7fa5;}
+        .coi-label{display:block;font-size:11px;color:var(--text-secondary);line-height:1.4;margin-top:4px;}
+        .coi-divider{width:1px;height:60px;background:rgba(26,58,92,0.1);flex-shrink:0;}
+
         /* SCORECARD */
         .scorecard-block{background:rgba(26,58,92,0.06);border:1px solid rgba(26,58,92,0.15);border-radius:24px;padding:28px;margin-bottom:24px;}
         .scorecard-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:20px;text-align:center;}
@@ -215,13 +223,17 @@
         .score-summary{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.6;text-align:center;font-style:italic;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08);}
 
         /* SHARED */
-        .btn-main-action{background:var(--text-primary);color:var(--bg-main);padding:18px 40px;border-radius:100px;border:none;cursor:pointer;font-weight:700;font-size:16px;font-family:'Inter',sans-serif;transition:all 0.25s;display:inline-block;text-decoration:none;}
-        .btn-main-action:hover{transform:translateY(-2px);}
+        .btn-main-action{background:var(--text-primary);color:var(--bg-main);padding:20px 48px;border-radius:100px;border:none;cursor:pointer;font-weight:600;font-size:16px;font-family:'Inter',sans-serif;letter-spacing:-0.01em;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;display:inline-block;text-decoration:none;}
+        .btn-main-action:hover{transform:scale(1.04);box-shadow:0 12px 32px rgba(0,0,0,0.2);}
         .error-msg{font-size:13px;color:#ff453a;margin-top:8px;display:none;}
         .error-msg.visible{display:block;}
 
         /* MOBILE */
         @media(max-width:768px){
+            .lobby-card{padding:40px 24px;border-radius:28px;}
+            .lobby-title{font-size:1.8rem;}
+            .lobby-avatar-wrap{width:100px;height:100px;}
+            .lobby-avatar{width:100px;height:100px;}
             .billboard-grid{grid-template-columns:1fr;gap:28px;}
             .billboard-hero{padding:80px 16px 48px;}
             .billboard-right{order:-1;}
@@ -272,19 +284,25 @@
     <span id="sound-label">Office Sounds</span>
 </button>
 
-<!-- STAGE 0: PHONE RING -->
+<!-- STAGE 0: LOBBY -->
 <div id="stage-ring" class="stage hidden">
-    <div class="ring-inner">
-        <div class="phone-wrap">
-            <div class="phone-pulse"></div>
-            <div class="phone-pulse"></div>
-            <div class="phone-pulse"></div>
-            <div class="phone-icon">📞</div>
+    <div class="lobby-bg">
+        <div class="lobby-lines"></div>
+    </div>
+    <div class="lobby-inner">
+        <div class="lobby-card">
+            <div class="lobby-reception-dot"></div>
+            <div class="lobby-eyebrow">Nehemiah's Ladder · Talent Advisory</div>
+            <h1 class="lobby-title">You're next.<br><em>She's ready for you.</em></h1>
+            <p class="lobby-sub">Nichole Walls is waiting in her office.<br>Take a breath. You've got this.</p>
+            <div class="lobby-avatar-wrap">
+                <div class="lobby-avatar-ring"></div>
+                <img src="https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007039-dWemne56ajop0RZV.jpg" class="lobby-avatar" alt="Nichole Walls" />
+                <div class="lobby-status-pill">● Available Now</div>
+            </div>
+            <button class="btn-enter-lobby" onclick="answerCall()">Enter Her Office →</button>
+            <p class="lobby-privacy">Private session · No recording · Your answers stay with you</p>
         </div>
-        <div class="ring-from">Incoming Call</div>
-        <h1 class="ring-title">Nehemiah's Ladder<br>Recruiting</h1>
-        <p class="ring-sub">Nichole Walls · Senior Talent Advisor</p>
-        <button class="btn-answer" onclick="answerCall()">Answer</button>
     </div>
 </div>
 
@@ -474,6 +492,12 @@
             <h2 class="paywall-title" id="paywall-title">Want the full recruiter experience?</h2>
             <p class="paywall-sub" id="paywall-sub">You've seen how this works. The full session goes deeper — built to get you hired.</p>
 
+            <div class="cost-of-inaction">
+                <div class="coi-stat"><span class="coi-num">12</span><span class="coi-label">weeks the average candidate spends searching</span></div>
+                <div class="coi-divider"></div>
+                <div class="coi-stat"><span class="coi-num">20</span><span class="coi-label">minutes to be more prepared than 90% of them</span></div>
+            </div>
+
             <div class="paywall-features">
                 <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>6–7 questions</strong> — the full phone screen, tailored to your experience level</span></div>
                 <div class="paywall-feature"><div class="pf-icon">✓</div><span><strong>Real-time recruiter feedback</strong> after every answer — specific coaching on your exact words</span></div>
@@ -585,7 +609,7 @@ function setStatus(msg,color,showDot){
 }
 
 // ══ API STATUS ══
-const apiMsgs=['Reviewing your answer...','Taking notes...','Thinking...','Typing feedback...','Almost done...'];
+const apiMsgs=['Nichole is typing...','Taking notes...','Nichole is thinking...','Writing feedback...','Almost done...'];
 let apiTimer=null;
 function startAPIStatus(){let i=0;setStatus(apiMsgs[0],'#4a7fa5',true);apiTimer=setInterval(()=>{i=(i+1)%apiMsgs.length;setStatus(apiMsgs[i],'#4a7fa5',true);},1600);}
 function stopAPIStatus(){clearInterval(apiTimer);setStatus('','',false);}
@@ -611,7 +635,7 @@ function buildSystemPrompt(){
         ?`This candidate is JUNIOR level (0-5 years experience). Focus on Execution, Reliability, and Potential. Use accessible language. Look for growth mindset, reliability, and ability to take direction. Be encouraging but honest. GovCon/Corporate context — help them move from task-speak to impact-speak.`
         :`This candidate is MID-LEVEL (5-15 years experience). Focus on Strategy, Influence, and ROI. Use terms like Stakeholder Management, Operational Excellence, Strategic Alignment, Scope Creep, Deliverables. Hold a higher bar. Look for leadership instincts, business acumen, and ability to communicate impact in numbers.`;
 
-    return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional named N with 20+ years of Fortune 500 and government contracting experience.
+    return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
 
 Candidate: ${userName}. Targeting: ${userRole}. Industry: ${userIndustry}.
 ${tierContext}
@@ -638,8 +662,23 @@ RULES: Never break character. Never admit being AI. No bullet points or lists. U
 
 // ══ NAVIGATION ══
 function show(id){
-    ['stage-ring','stage-billboard','stage-intake','stage-lab','stage-paywall'].forEach(s=>document.getElementById(s).classList.add('hidden'));
-    const el=document.getElementById(id);el.classList.remove('hidden');el.scrollTop=0;
+    const stages=['stage-ring','stage-billboard','stage-intake','stage-lab','stage-paywall'];
+    const current=stages.find(s=>!document.getElementById(s).classList.contains('hidden'));
+    if(current&&current!==id){
+        const el=document.getElementById(current);
+        el.style.opacity='0';
+        setTimeout(()=>{
+            stages.forEach(s=>document.getElementById(s).classList.add('hidden'));
+            const next=document.getElementById(id);
+            next.style.opacity='0';
+            next.classList.remove('hidden');
+            next.scrollTop=0;
+            requestAnimationFrame(()=>requestAnimationFrame(()=>{next.style.opacity='1';}));
+        },350);
+    } else {
+        stages.forEach(s=>document.getElementById(s).classList.add('hidden'));
+        const next=document.getElementById(id);next.classList.remove('hidden');next.scrollTop=0;
+    }
 }
 function answerCall(){show('stage-billboard');}
 function goToIntake(){show('stage-intake');}
@@ -661,7 +700,12 @@ function startInterview(){
     show('stage-lab');
     document.getElementById('recruiter-thumb').classList.add('visible');
     document.getElementById('sound-toggle').classList.add('visible');
-    updateProgress();askFirstQuestion();
+    updateProgress();
+    setStatus('Analyzing your profile...','#4a7fa5',true);
+    setTimeout(()=>{
+        setStatus('Building your session...','#4a7fa5',true);
+        setTimeout(()=>askFirstQuestion(),900);
+    },1100);
 }
 
 // ══ PROGRESS ══
@@ -704,7 +748,7 @@ async function handleAnswer(){
         const data=await callAPI(conversationHistory);const aiText=data.content[0].text;
         conversationHistory.push({role:'assistant',content:aiText});questionCount++;updateProgress();updateRecruiterThumb();
         stopAPIStatus();setLoading(false);input.value='';document.getElementById('char-count').textContent='0 / 1500';input.disabled=false;
-        typeBubble(aiText);input.focus();setStatus('Nichole is listening...','#4a7fa5',true);
+        typeBubble(aiText);input.focus();setTimeout(()=>setStatus('Nichole is listening...','#4a7fa5',true),200);
     }catch(e){stopAPIStatus();setLoading(false);input.disabled=false;document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";}
 }
 
