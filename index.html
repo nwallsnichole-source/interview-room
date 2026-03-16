@@ -564,7 +564,7 @@
             <option value="nonprofit">Nonprofit / Public Health</option>
             <option value="other">Other</option>
         </select>
-        <input type="hidden" id="intake-email" value="" />
+        <input type="email" id="intake-email" class="intake-field" placeholder="Your email address (required)" />
         <input type="hidden" id="intake-role" value="Professional" />
 
         <!-- TIER TOGGLE -->
@@ -983,7 +983,8 @@ function startInterview(){
     userIndustry=document.getElementById('intake-industry').value;
     userJD=document.getElementById('intake-jd')?document.getElementById('intake-jd').value.trim():'';
     const err=document.getElementById('intake-error');
-    if(!userName||!userIndustry){err.classList.add('visible');return;}
+    if(!userName||!userEmail||!userIndustry){err.classList.add('visible');return;}
+    if(!userEmail.includes('@')||!userEmail.includes('.')){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
     // email collected at paywall
     err.classList.remove('visible');
     conversationHistory=[];questionCount=0;backspaceCount=0;
@@ -991,6 +992,17 @@ function startInterview(){
     // Set tier badge
     const badge=document.getElementById('tier-badge');
     badge.textContent=userTier==='junior'?'⚡ Junior Track':'🎯 Mid-Level Track';
+
+    // Capture lead immediately at intake — don't wait for scorecard
+    fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            email: userEmail,
+            name: userName,
+            group_id: '182100097779107168'
+        })
+    }).catch(()=>{}); // Silent fail — never block the user experience
 
     show('stage-lab');
     document.getElementById('recruiter-thumb').classList.add('visible');
