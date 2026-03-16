@@ -21,11 +21,11 @@
             --transition: 0.8s cubic-bezier(0.4,0,0.2,1);
         }
         body.night-view {
-            --bg-main: #050505;
-            --card-bg: rgba(20,20,22,0.65);
+            --bg-main: #000000;
+            --card-bg: #1c1c1e;
             --text-primary: #f5f5f7;
-            --text-secondary: #a1a1a6;
-            --border-color: rgba(255,255,255,0.08);
+            --text-secondary: #86868b;
+            --border-color: #38383a;
         }
 
         *{box-sizing:border-box;margin:0;padding:0;}
@@ -104,7 +104,7 @@
         #stage-intake{background:var(--bg-main);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:80px 20px 48px;transition:background var(--transition);}
         .intake-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);max-width:520px;width:100%;padding:52px 48px;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,0.07);text-align:center;}
         .intake-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
-        .intake-title{font-family:'Playfair Display',serif;font-size:28px;margin-bottom:12px;line-height:1.2;color:var(--text-primary);}
+        .intake-title{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;line-height:1.2;color:var(--text-primary);}
         .intake-sub{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.6;}
         .intake-field{width:100%;border:1px solid var(--border-color);border-radius:14px;padding:16px 20px;font-size:16px;font-family:'Inter',sans-serif;margin-bottom:14px;transition:border 0.3s;background:rgba(0,0,0,0.02);color:var(--text-primary);}
         body.night-view .intake-field{background:rgba(255,255,255,0.04);}
@@ -155,7 +155,7 @@
         @keyframes s-blink{0%,100%{opacity:0.2}50%{opacity:1}}
         @keyframes heartbeat{0%,100%{opacity:0.35;transform:scaleX(1)}50%{opacity:0.7;transform:scaleX(1.02)}}
 
-        .lab-card{background:var(--card-bg);backdrop-filter:blur(40px) saturate(200%);-webkit-backdrop-filter:blur(40px) saturate(200%);border:1px solid var(--border-color);padding:48px 44px;border-radius:40px;box-shadow:0 50px 100px rgba(0,0,0,0.05);transition:background var(--transition);}
+        .lab-card{background:var(--card-bg);border:1px solid var(--border-color);padding:48px 44px;border-radius:32px;box-shadow:0 20px 40px rgba(0,0,0,0.05);transition:background var(--transition);}
         body.night-view .lab-card{box-shadow:0 50px 100px rgba(0,0,0,0.5);}
         body.night-view #stage-lab::before,body.night-view #stage-intake::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(74,127,165,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(74,127,165,0.04) 1px,transparent 1px);background-size:40px 40px;z-index:0;}
         body.night-view .lab-wrap,body.night-view .intake-card{position:relative;z-index:1;}
@@ -190,7 +190,7 @@
         .nichole-moment-img{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:top;flex-shrink:0;border:3px solid rgba(255,255,255,0.15);}
         .nichole-moment-text{font-family:'Playfair Display',serif;font-size:19px;line-height:1.55;color:var(--text-primary);font-style:italic;}
         .nichole-moment-name{font-family:'Inter',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#1a3a5c;margin-top:10px;display:block;}
-        .paywall-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);width:100%;padding:48px 44px;border-radius:36px;box-shadow:0 32px 80px rgba(0,0,0,0.3);}
+        .paywall-card{background:var(--card-bg);border:1px solid var(--border-color);width:100%;padding:48px 44px;border-radius:32px;box-shadow:0 20px 40px rgba(0,0,0,0.08);}
         .paywall-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .paywall-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15;margin-bottom:16px;color:var(--text-primary);}
         .paywall-sub{font-size:16px;color:var(--text-secondary);margin-bottom:28px;line-height:1.6;}
@@ -245,8 +245,8 @@
         body.night-view .sec-badge{background:rgba(74,127,165,0.08);border-color:rgba(74,127,165,0.2);color:#4a7fa5;}
 
         /* DISCOVERY PRIMARY CTA */
-        .btn-discovery-primary{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,#0a1d37,#1a3a5c);color:var(--white);padding:20px 24px;border-radius:20px;text-decoration:none;margin-bottom:16px;transition:all 0.3s;border:1px solid rgba(74,127,165,0.2);box-shadow:0 12px 32px rgba(10,29,55,0.3);}
-        .btn-discovery-primary:hover{transform:translateY(-3px);box-shadow:0 20px 48px rgba(10,29,55,0.4);}
+        .btn-discovery-primary{display:flex;align-items:center;gap:16px;background:var(--text-primary);color:var(--white);padding:20px 24px;border-radius:50px;text-decoration:none;margin-bottom:16px;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 8px 24px rgba(0,0,0,0.15);}
+        .btn-discovery-primary:hover{transform:scale(1.02);background:var(--purple);box-shadow:0 16px 40px rgba(105,65,198,0.3);}
         .discovery-icon{font-size:24px;flex-shrink:0;}
         .discovery-text{flex:1;display:flex;flex-direction:column;gap:3px;}
         .discovery-label{font-size:16px;font-weight:800;letter-spacing:-0.01em;}
@@ -256,6 +256,12 @@
         /* UPSELL SEPARATOR */
         .upsell-separator{display:flex;align-items:center;gap:12px;margin:20px 0 8px;color:var(--text-secondary);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;}
         .upsell-separator::before,.upsell-separator::after{content:'';flex:1;height:1px;background:var(--border-color);}
+
+        /* SCORE CIRCLE */
+        .score-circle-wrap{text-align:center;margin-bottom:24px;}
+        .score-circle{font-size:64px;font-weight:800;color:var(--purple);line-height:1;font-family:'Inter',sans-serif;}
+        body.night-view .score-circle{color:#bf5af2;}
+        .score-circle-label{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-secondary);margin-top:4px;}
 
         /* COST OF INACTION */
         .cost-of-inaction{display:flex;align-items:center;gap:0;margin-bottom:28px;background:rgba(26,58,92,0.05);border:1px solid rgba(26,58,92,0.1);border-radius:16px;overflow:hidden;}
@@ -654,24 +660,28 @@
         <!-- SCORECARD -->
         <div class="scorecard-block" id="scorecard-block" style="display:none;">
             <div class="scorecard-title">Your Recruiter Scorecard</div>
+            <div class="score-circle-wrap">
+                <div class="score-circle" id="score-circle">—</div>
+                <div class="score-circle-label" id="score-circle-label">Overall Score</div>
+            </div>
             <div class="scorecard-grid">
                 <div class="score-item">
-                    <div class="score-label">Communication</div>
+                    <div class="score-label">Translation Factor</div>
                     <div class="score-bar-wrap"><div class="score-bar" id="sc-communication"></div></div>
                     <div class="score-num" id="sc-communication-num">—</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">Authenticity</div>
+                    <div class="score-label">STAR Alignment</div>
                     <div class="score-bar-wrap"><div class="score-bar" id="sc-authenticity"></div></div>
                     <div class="score-num" id="sc-authenticity-num">—</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">Impact Language</div>
+                    <div class="score-label">Recruiter Buy-In</div>
                     <div class="score-bar-wrap"><div class="score-bar" id="sc-impact"></div></div>
                     <div class="score-num" id="sc-impact-num">—</div>
                 </div>
                 <div class="score-item">
-                    <div class="score-label">Confidence</div>
+                    <div class="score-label">Impact Clarity</div>
                     <div class="score-bar-wrap"><div class="score-bar" id="sc-confidence"></div></div>
                     <div class="score-num" id="sc-confidence-num">—</div>
                 </div>
@@ -709,17 +719,17 @@
             <a href="https://calendly.com/nwallsnichole/discovery-call-15-minutes" class="btn-discovery-primary" id="btn-discovery" target="_blank" rel="noopener">
                 <span class="discovery-icon">📞</span>
                 <span class="discovery-text">
-                    <span class="discovery-label">Book Your Free 30-Min Strategy Call</span>
+                    <span class="discovery-label">Claim Your Free 30-Min Tactical Debrief</span>
                     <span class="discovery-sub" id="discovery-sub">Real GovCon phone screens are make-or-break. Full mock + clearance-safe strategy — on this call.</span>
                 </span>
             </a>
 
             <div class="upsell-separator">
-                <span>or practice on your own</span>
+                <span>Just want to keep practicing on your own?</span>
             </div>
 
             <!-- SECONDARY CTA: $97 -->
-            <a href="https://buy.stripe.com/dRmaEZ87k56zbb84ZZbZe01" class="btn-pay-primary" target="_blank" rel="noopener">Unlock Unlimited Practice + Recruiter Notes — $97</a>
+            <a href="https://buy.stripe.com/dRmaEZ87k56zbb84ZZbZe01" class="btn-pay-primary" target="_blank" rel="noopener">Get the Full AI Tool Suite — $97</a>
 
             <!-- UPSELL BLOCK — swaps based on tier + score -->
             <div class="upsell-separator" id="upsell-separator" style="display:none;">
@@ -1052,7 +1062,7 @@ async function getFeedbackThenPaywall(val){
     const closingMessages=[...conversationHistory,{role:'user',content:`Give honest feedback on that last answer only. End your feedback with: "That wraps up your free session. You've given me a good sense of who you are so far."
 
 Then on a new line, output a JSON scorecard in this exact format and nothing else after it:
-SCORECARD:{"overall":"STRONG","communication":7,"authenticity":8,"impact":6,"confidence":7,"summary":"One honest sentence about their overall performance."}`}];
+SCORECARD:{"overall":"STRONG","communication":7,"authenticity":8,"impact":6,"confidence":7,"summary":"One honest sentence about their overall performance, written like a recruiter speaking directly to the candidate."}`}];
     try{
         const data=await callAPI(closingMessages);let aiText=data.content[0].text;
         let score='NEEDS-WORK';
@@ -1116,13 +1126,30 @@ function showPaywall(score,scorecard){
         const block=document.getElementById('scorecard-block');
         block.style.display='block';
         const fields=['communication','authenticity','impact','confidence'];
+        // Calculate overall score as average
+        const avg=Math.round((fields.reduce((sum,f)=>sum+(scorecard[f]||5),0))/fields.length*10);
+        const circleEl=document.getElementById('score-circle');
+        const labelEl=document.getElementById('score-circle-label');
+        if(circleEl){
+            setTimeout(()=>{
+                circleEl.textContent=avg;
+                if(avg>=80)circleEl.style.color='#34c759';
+                else if(avg>=65)circleEl.style.color='#f28c28';
+                else circleEl.style.color='#c0392b';
+                if(labelEl){
+                    if(avg>=80)labelEl.textContent='Strong Performance';
+                    else if(avg>=65)labelEl.textContent='Solid Effort — Room to Grow';
+                    else labelEl.textContent='Needs Work — Let\'s Fix This';
+                }
+            },200);
+        }
+
         fields.forEach((f,i)=>{
             const val=scorecard[f]||5;
             document.getElementById(`sc-${f}-num`).textContent=`${val}/10`;
             setTimeout(()=>{
                 const bar=document.getElementById(`sc-${f}`);
                 bar.style.width=`${val*10}%`;
-                // Color: red(<5), orange(5-6), navy(7-8), green(9-10)
                 if(val<=4)bar.style.background='linear-gradient(90deg,#c0392b,#e74c3c)';
                 else if(val<=6)bar.style.background='linear-gradient(90deg,#e67e22,#f28c28)';
                 else if(val<=8)bar.style.background='linear-gradient(90deg,#1a3a5c,#4a7fa5)';
