@@ -699,7 +699,7 @@
             </div>
 
             <div class="paywall-features">
-                <div class="paywall-feature"><div class="pf-icon">✓</div><span>⏱️ <strong>7–9 questions</strong> — the full phone screen, tailored to your experience level</span></div>
+                <div class="paywall-feature"><div class="pf-icon">✓</div><span>⏱️ <strong>6–7 questions</strong> — the full phone screen, tailored to your experience level</span></div>
                 <div class="paywall-feature"><div class="pf-icon">✓</div><span>🎯 <strong>Real-time recruiter feedback</strong> — specific coaching on your exact words</span></div>
                 <div class="paywall-feature"><div class="pf-icon">✓</div><span>🚩 <strong>Red flag detection</strong> — know before it costs you the offer</span></div>
                 <div class="paywall-feature"><div class="pf-icon">✓</div><span>🔓 <strong>90 days of unlimited access</strong> — practice for as many roles as you're targeting</span></div>
@@ -724,8 +724,8 @@
                 <img src="https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007036-1-PXSiizeY7l8f5oVG.jpg" alt="Resume Rewrite" class="upsell-img" />
                 <div class="upsell-text">
                     <div class="upsell-label">Fix the Foundation First</div>
-                    <div class="upsell-desc" id="resume-desc">Not sure if your interviewing skills are solid enough? Let's fix that before the phone rings.</div>
-                    <a href="https://calendly.com/nwallsnichole/discovery-call-15-minutes" class="btn-upsell orange" target="_blank" rel="noopener">Schedule a Free Discovery Call</a>
+                    <div class="upsell-desc" id="resume-desc">Not sure your resume is even getting you in the door? Let's fix that before the phone rings.</div>
+                    <a href="https://nicholewalls.gumroad.com/l/resume-rewrite" class="btn-upsell orange" target="_blank" rel="noopener">Fix the Foundation — Resume Rewrite $379</a>
                 </div>
             </div>
 
@@ -881,7 +881,7 @@ RULES: Never break character. Never admit being AI. No bullet points or lists. U
 }
 
 // ══ SCORE EMAIL CAPTURE ══
-function submitScoreEmail(){
+async function submitScoreEmail(){
     const emailInput=document.getElementById('score-email-input');
     const confirm=document.getElementById('score-email-confirm');
     const btn=document.querySelector('.score-email-btn');
@@ -890,12 +890,32 @@ function submitScoreEmail(){
         emailInput.style.borderColor='#ff453a';
         return;
     }
-    // Store locally and show confirmation (email delivery = phase 2 integration)
-    emailInput.style.display='none';
-    btn.style.display='none';
-    if(confirm)confirm.style.display='block';
-    // Log for now — wire to email service in phase 2
-    console.log('Score report requested for:',email,'Score:',window._lastScore||'N/A');
+    // Show loading state
+    btn.textContent='Sending...';
+    btn.disabled=true;
+
+    try {
+        // Call Netlify function to add to MailerLite
+        const response = await fetch('/.netlify/functions/subscribe', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                email: email,
+                name: userName || '',
+                group_id: '182100097779107168'
+            })
+        });
+
+        // Show confirmation regardless of response
+        emailInput.style.display='none';
+        btn.style.display='none';
+        if(confirm)confirm.style.display='block';
+    } catch(e) {
+        // Still show confirmation — don't let a network error hurt UX
+        emailInput.style.display='none';
+        btn.style.display='none';
+        if(confirm)confirm.style.display='block';
+    }
 }
 
 // ══ RETRY ANSWER ══
