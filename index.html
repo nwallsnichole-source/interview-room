@@ -122,6 +122,17 @@
         .intake-jd::placeholder{color:var(--text-secondary);font-size:13px;}
         .jd-badge{position:absolute;top:-10px;right:12px;background:#1a3a5c;color:var(--white);font-size:9px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:100px;}
 
+        /* ACCESS CODE */
+        .access-code-wrap{margin-bottom:16px;text-align:left;}
+        .access-code-toggle{font-size:13px;font-weight:600;color:var(--purple);cursor:pointer;padding:10px 0;display:flex;align-items:center;gap:6px;transition:opacity 0.2s;}
+        .access-code-toggle:hover{opacity:0.7;}
+        .access-code-field{margin-top:8px;}
+
+        /* ACCESS CODE */
+        .access-code-wrap{margin-bottom:8px;}
+        .access-code-toggle{font-size:12px;color:#1a3a5c;font-weight:600;cursor:pointer;margin-bottom:16px;text-align:left;user-select:none;}
+        .access-code-toggle:hover{text-decoration:underline;}
+
         /* INDUSTRY HINT */
         .industry-hint{font-size:13px;color:#4a7fa5;min-height:18px;margin-bottom:8px;margin-top:-6px;text-align:left;font-weight:500;transition:opacity 0.3s;opacity:0;}
         .industry-hint.visible{opacity:1;}
@@ -577,6 +588,19 @@
             </div>
         </div>
 
+        <div class="access-code-wrap" id="access-code-wrap">
+            <div class="access-code-toggle" onclick="toggleAccessCode()">
+                🔐 Have a Comeback Program access code?
+            </div>
+            <div class="access-code-field" id="access-code-field" style="display:none;">
+                <input type="text" id="intake-code" class="intake-field" placeholder="Enter your access code (e.g. COMEBACK-EDDIE)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
+            </div>
+        </div>
+        <div class="access-code-wrap" id="access-code-wrap" style="display:none;">
+            <input type="text" id="intake-code" class="intake-field" placeholder="Access code (Comeback Program clients only)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
+
+        </div>
+        <p class="access-code-toggle" onclick="toggleAccessCode()">🔐 I have an access code</p>
         <p class="industry-hint" id="industry-hint"></p>
         <div class="jd-field-wrap">
             <textarea id="intake-jd" class="intake-jd" placeholder="Optional: Paste the job description here — Nichole will tailor questions to this specific role." maxlength="3000"></textarea>
@@ -597,7 +621,7 @@
 
         <div class="notepad-progress">
             <div class="notepad-icon">📋</div>
-            <div class="notepad-lines">
+            <div class="notepad-lines" id="pip-container">
                 <div class="notepad-line active" id="pip-1"></div>
                 <div class="notepad-line" id="pip-2"></div>
                 <div class="notepad-line" id="pip-3"></div>
@@ -781,6 +805,32 @@ function setTier(tier){
     }
 }
 
+// ══ ACCESS CODE TOGGLE ══
+function toggleAccessCode(){
+    const field=document.getElementById('access-code-field');
+    field.style.display=field.style.display==='none'?'block':'none';
+}
+
+// ══ COMEBACK PROGRAM CLIENT LIST ══
+const comebackClients = {
+    'COMEBACK-MELLINA': 'mstephen323@comcast.net',
+    'COMEBACK-EDDIE': 'heribertogarcia212@gmail.com'
+};
+let isComeback = false;
+
+function toggleAccessCode(){
+    const wrap = document.getElementById('access-code-wrap');
+    const toggle = document.querySelector('.access-code-toggle');
+    if(wrap.style.display === 'none'){
+        wrap.style.display = 'block';
+        toggle.textContent = '✕ Hide access code field';
+    } else {
+        wrap.style.display = 'none';
+        toggle.textContent = '🔐 I have an access code';
+        document.getElementById('intake-code').value = '';
+    }
+}
+
 // ══ INDUSTRY HINT ══
 document.getElementById('intake-industry').addEventListener('change',function(){
     const hint=document.getElementById('industry-hint');
@@ -868,8 +918,14 @@ const midQuestions=[
 ];
 
 // ══ STATE ══
-let userName='',userEmail='',userRole='',userIndustry='',userJD='',questionCount=0,conversationHistory=[];
-const FREE_LIMIT=3;
+let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,questionCount=0,conversationHistory=[];
+
+// ══ COMEBACK PROGRAM CLIENT LIST ══
+const clientAccess={
+    'heribertogarcia212@gmail.com': 'COMEBACK-EDDIE',
+    'mstephen323@comcast.net': 'COMEBACK-MELLINA'
+};
+const FREE_LIMIT=3; // overridden for comeback clients // Overridden to 9 for Comeback clients
 
 function buildSystemPrompt(){
     const tierContext=userTier==='junior'
@@ -879,15 +935,26 @@ function buildSystemPrompt(){
     return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
 
 Candidate: ${userName}. Targeting: ${userRole}. Industry: ${userIndustry}.
+${isComeback?'This is a COMEBACK PROGRAM client with full access. Ask all 9 questions in the full flow. Give detailed, thorough feedback. No paywall interruption.':''}
 ${userJD?`JOB DESCRIPTION PROVIDED — tailor your questions specifically to this role:\n${userJD.substring(0,800)}`:''}
 ${tierContext}
 
 PERSONALITY: Warm but laser-focused. Direct. Real person on the phone. Empathetic but high bar.
 
 INTERVIEW FLOW — ask these questions in order:
+${isClient?`FULL SESSION (9 questions) — this is a paying Comeback Program client. Ask all questions in order:
+Q1: "I have your resume here, but I have you on the phone — who are you, and what made you apply to this role?"
+Q2: "Tell me about your current situation. What's going on?"
+Q3: "Walk me through a situation where a project was failing or off-track. How did you take personal accountability to pivot the outcome?"
+Q4: "What are you looking for in your next role that you feel you didn't have in your last one?"
+Q5: "Give me an example of a complex problem you solved by making the solution simpler. What did you have to kill to make it work?"
+Q6: "If we took away your job title and resume, what is the one thing people who work with you would say is your signature?"
+Q7: "What is something outside of work you are borderline obsessed with getting just right?"
+Q8: "Tell me about a time you failed publicly — in front of peers, leadership, or a client. What happened and what did you do next?"
+Q9: "What is the most beautiful thing you have seen or experienced lately, and why did it move you?"`:`FREE TRIAL (3 questions only):
 Q1: "${userTier==='junior'?juniorQuestions[0]:midQuestions[0]}"
 Q2: "${userTier==='junior'?juniorQuestions[1]:midQuestions[1]}"
-Q3: "${userTier==='junior'?juniorQuestions[2]:midQuestions[2]}"
+Q3: "${userTier==='junior'?juniorQuestions[2]:midQuestions[2]}"`}
 
 AFTER EACH ANSWER: Honest, specific, conversational feedback (2-3 sentences). React genuinely. One clear coaching note. Transition to next question. NO bullet points. You're on the phone.
 
@@ -942,6 +1009,63 @@ async function submitScoreEmail(){
     }
 }
 
+// ══ CLIENT FULL SESSION COMPLETE ══
+async function getFinalFeedbackClient(val){
+    setLoading(true);startAPIStatus();
+    document.getElementById('user-input').disabled=true;
+    conversationHistory.push({role:'user',content:val});
+    const closingMessages=[...conversationHistory,{role:'user',content:`Give honest, detailed feedback on that last answer. Then give an overall summary of the candidate's performance across all questions today. End with an encouraging but honest closing statement. Then output: SCORECARD:{"overall":"STRONG","communication":8,"authenticity":8,"impact":7,"confidence":8,"summary":"One honest summary sentence."}`}];
+    try{
+        const data=await callAPI(closingMessages);let aiText=data.content[0].text;
+        const scMatch=aiText.match(/SCORECARD:(\{.*\})/);
+        let scorecard=null;
+        if(scMatch){try{scorecard=JSON.parse(scMatch[1]);}catch(e){}aiText=aiText.replace(/SCORECARD:\{.*\}/,'').trim();}
+        stopAPIStatus();setLoading(false);
+        // Show completion screen for clients — no paywall
+        typeBubble(aiText,()=>{
+            setTimeout(()=>showClientCompletion(scorecard),2000);
+        });
+    }catch(e){stopAPIStatus();setLoading(false);document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";}
+}
+
+function showClientCompletion(scorecard){
+    document.getElementById('recruiter-thumb').classList.remove('visible');
+    document.getElementById('sound-toggle').classList.remove('visible');
+    if(soundOn)toggleSound();
+    // Show paywall but with client-specific content
+    document.getElementById('nichole-message').textContent='"That was a full session. You put in the work today — and it showed. Keep practicing before your next screen."';
+    document.getElementById('paywall-eyebrow').textContent='Session Complete · Comeback Program';
+    document.getElementById('paywall-title').textContent='Great work today, '+userName+'.';
+    document.getElementById('paywall-sub').textContent='Your session is saved. Come back anytime to practice again — your access is active for 90 days.';
+    // Hide all purchase CTAs for clients
+    const discoveryBtn=document.getElementById('btn-discovery');
+    if(discoveryBtn)discoveryBtn.style.display='none';
+    document.querySelectorAll('.btn-pay-primary,.upsell-block,.upsell-separator,.cost-of-inaction').forEach(el=>el.style.display='none');
+    // Show scorecard
+    if(scorecard){
+        const block=document.getElementById('scorecard-block');
+        if(block)block.style.display='block';
+        const fields=['communication','authenticity','impact','confidence'];
+        fields.forEach((f,i)=>{
+            const val=scorecard[f]||5;
+            document.getElementById(`sc-${f}-num`).textContent=`${val}/10`;
+            setTimeout(()=>{
+                const bar=document.getElementById(`sc-${f}`);
+                bar.style.width=`${val*10}%`;
+                if(val<=4)bar.style.background='linear-gradient(90deg,#c0392b,#e74c3c)';
+                else if(val<=6)bar.style.background='linear-gradient(90deg,#e67e22,#f28c28)';
+                else if(val<=8)bar.style.background='linear-gradient(90deg,#1a3a5c,#4a7fa5)';
+                else bar.style.background='linear-gradient(90deg,#1a3a5c,#34c759)';
+            },300+(i*150));
+        });
+        const avg=Math.round((fields.reduce((sum,f)=>sum+(scorecard[f]||5),0))/fields.length*10);
+        const circleEl=document.getElementById('score-circle');
+        if(circleEl){setTimeout(()=>{circleEl.textContent=avg;if(avg>=80)circleEl.style.color='#34c759';else if(avg>=65)circleEl.style.color='#f28c28';else circleEl.style.color='#c0392b';},200);}
+        if(scorecard.summary)document.getElementById('sc-summary').textContent=`"${scorecard.summary}"`;
+    }
+    show('stage-paywall');
+}
+
 // ══ RETRY ANSWER ══
 function retryAnswer(){
     const input=document.getElementById('user-input');
@@ -982,16 +1106,51 @@ function startInterview(){
     userRole=document.getElementById('intake-role').value.trim();
     userIndustry=document.getElementById('intake-industry').value;
     userJD=document.getElementById('intake-jd')?document.getElementById('intake-jd').value.trim():'';
+    userCode=document.getElementById('intake-code')?document.getElementById('intake-code').value.trim().toUpperCase():'';
+
+    // Check if client — email + code must match
+    const expectedCode=clientAccess[userEmail.toLowerCase()];
+    isClient=expectedCode&&userCode===expectedCode;
+
+    if(userCode&&!isClient){
+        err.textContent='That access code does not match your email. Please check and try again or contact nwallsnichole@gmail.com.';
+        err.classList.add('visible');
+        return;
+    }
     const err=document.getElementById('intake-error');
     if(!userName||!userEmail||!userIndustry){err.classList.add('visible');return;}
     if(!userEmail.includes('@')||!userEmail.includes('.')){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
+
+    // Check access code if entered
+    const codeInput = document.getElementById('intake-code');
+    const enteredCode = codeInput ? codeInput.value.trim().toUpperCase() : '';
+    isComeback = false;
+    if(enteredCode){
+        const expectedEmail = comebackClients[enteredCode];
+        if(!expectedEmail){
+            err.textContent = 'Invalid access code. Contact nwallsnichole@gmail.com for help.';
+            err.classList.add('visible'); return;
+        }
+        if(expectedEmail.toLowerCase() !== userEmail.toLowerCase()){
+            err.textContent = 'This code is registered to a different email address.';
+            err.classList.add('visible'); return;
+        }
+        isComeback = true;
+    }
     // email collected at paywall
     err.classList.remove('visible');
     conversationHistory=[];questionCount=0;backspaceCount=0;
 
     // Set tier badge
     const badge=document.getElementById('tier-badge');
-    badge.textContent=userTier==='junior'?'⚡ Junior Track':'🎯 Mid-Level Track';
+    if(isComeback){
+        badge.textContent='🏆 Comeback Program · Full Access';
+        badge.style.background='rgba(105,65,198,0.1)';
+        badge.style.borderColor='rgba(105,65,198,0.2)';
+        badge.style.color='#6941C6';
+    } else {
+        badge.textContent=userTier==='junior'?'⚡ Junior Track':'🎯 Mid-Level Track';
+    }
 
     // Capture lead immediately at intake — don't wait for scorecard
     fetch('/.netlify/functions/subscribe', {
@@ -1051,7 +1210,9 @@ async function handleAnswer(){
     const input=document.getElementById('user-input');const val=input.value.trim();const err=document.getElementById('lab-error');
     if(!val||val.length<10){err.textContent=val.length<10&&val.length>0?"That answer is too short. Give me more to work with.":"Please type your answer before continuing.";err.classList.add('visible');return;}
     err.classList.remove('visible');clearTimeout(idleTimer);backspaceCount=0;
-    if(questionCount>=FREE_LIMIT-1){await getFeedbackThenPaywall(val);return;}
+    // Clients get full access — no paywall
+    if(isClient&&questionCount>=8){await getFinalFeedbackClient(val);return;}
+    if(!isClient&&questionCount>=FREE_LIMIT-1){await getFeedbackThenPaywall(val);return;}
     setLoading(true);startAPIStatus();input.disabled=true;
     conversationHistory.push({role:'user',content:val});
     try{
