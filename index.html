@@ -124,8 +124,7 @@
 
         /* ACCESS CODE */
         .access-code-wrap{margin-bottom:16px;text-align:left;}
-        .access-code-toggle{font-size:13px;font-weight:600;color:var(--purple);cursor:pointer;padding:10px 0;display:flex;align-items:center;gap:6px;transition:opacity 0.2s;}
-        .access-code-toggle:hover{opacity:0.7;}
+
         .access-code-field{margin-top:8px;}
 
         /* ACCESS CODE */
@@ -768,9 +767,7 @@
         </div>
 
         <div class="access-code-wrap" id="access-code-wrap">
-            <div class="access-code-toggle" onclick="toggleAccessCode()">
-                🔐 Have a Comeback Program access code?
-            </div>
+
             <div class="access-code-field" id="access-code-field" style="display:none;">
                 <input type="text" id="intake-code" class="intake-field" placeholder="Enter your access code (e.g. COMEBACK-EDDIE)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
             </div>
@@ -1031,23 +1028,6 @@ function setTier(tier){
 }
 
 // ══ ACCESS CODE TOGGLE ══
-function toggleAccessCode(){
-    // Show full explainer items when code field opens (assumes comeback client)
-    const items = ['comeback-explainer','coach-explainer','debrief-explainer'];
-    items.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='flex';});
-    // original toggle logic below
-    const field=document.getElementById('access-code-field');
-    field.style.display=field.style.display==='none'?'block':'none';
-}
-
-// ══ COMEBACK PROGRAM CLIENT LIST ══
-const comebackClients = {
-    'COMEBACK-MELLINA': 'mstephen323@comcast.net',
-    'COMEBACK-EDDIE': 'heribertogarcia212@gmail.com',
-    'COMEBACK-NICHOLE': 'nwallsnichole@gmail.com'
-};
-let isComeback = false;
-
 function toggleAccessCode(){
     // Show full explainer items when code field opens (assumes comeback client)
     const items = ['comeback-explainer','coach-explainer','debrief-explainer'];
