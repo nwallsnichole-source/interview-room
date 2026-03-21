@@ -146,6 +146,7 @@
         .toggle-btn.active{color:var(--text-primary);}
         .toggle-bg{position:absolute;top:5px;left:5px;height:38px;width:90px;background:var(--card-bg);backdrop-filter:var(--frost);border-radius:100px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),width 0.3s ease;z-index:1;}
         .tier-mid .toggle-bg{transform:translateX(90px);}
+        .tier-gap .toggle-bg{transform:translateX(180px);}
 
         /* STAGE 3: LAB */
         #stage-lab{background:var(--bg-main);display:flex;align-items:flex-start;justify-content:center;min-height:100vh;padding:80px 20px 140px;transition:background var(--transition);}
@@ -754,12 +755,16 @@
 
         <!-- TIER TOGGLE -->
         <div class="tier-container" id="tier-container">
-            <span class="tier-label">Select Your Experience Level</span>
+            <span class="tier-label">Select Your Track</span>
             <div class="toggle-wrapper" id="toggle-wrapper">
                 <div class="toggle-bg" id="toggle-bg"></div>
                 <button class="toggle-btn active" id="btn-junior" onclick="setTier('junior')">Junior</button>
                 <button class="toggle-btn" id="btn-mid" onclick="setTier('mid')">Mid-Level</button>
+                <button class="toggle-btn" id="btn-gap" onclick="setTier('gap')">Gap Return</button>
             </div>
+        </div>
+        <div id="gap-hint" style="display:none;background:rgba(105,65,198,0.06);border:1px solid rgba(105,65,198,0.12);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#6941C6;font-weight:500;">
+            🎯 Gap Return track — questions designed specifically for career gaps, contract endings, and recompetes.
         </div>
 
         <div class="access-code-wrap" id="access-code-wrap">
@@ -809,6 +814,25 @@
         <div class="pitch-rewrite-card" id="pitch-rewrite-card">
             <div class="pitch-rewrite-label">✨ Your Reframed Pitch — from Nichole</div>
             <div class="pitch-rewrite-text" id="pitch-rewrite-text"></div>
+        </div>
+
+        <!-- PROGRESS DASHBOARD TOGGLE -->
+        <div id="progress-dashboard" style="display:none;background:#ffffff;border:1px solid #e5e5ea;border-radius:20px;padding:20px;margin-bottom:16px;">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#86868b;margin-bottom:14px;">Your Progress This Session</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <div style="flex:1;min-width:80px;background:#f9f9fb;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:24px;font-weight:800;color:#1a3a5c;" id="dash-questions">0</div>
+                    <div style="font-size:10px;color:#86868b;margin-top:2px;">Questions</div>
+                </div>
+                <div style="flex:1;min-width:80px;background:#f9f9fb;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:24px;font-weight:800;color:#f28c28;" id="dash-phase">Warm Up</div>
+                    <div style="font-size:10px;color:#86868b;margin-top:2px;">Current Phase</div>
+                </div>
+                <div style="flex:1;min-width:80px;background:#f9f9fb;border-radius:12px;padding:12px;text-align:center;">
+                    <div style="font-size:24px;font-weight:800;color:#6941C6;" id="dash-remaining">7</div>
+                    <div style="font-size:10px;color:#86868b;margin-top:2px;">Remaining</div>
+                </div>
+            </div>
         </div>
 
         <div class="notepad-progress">
@@ -988,17 +1012,30 @@ function setTier(tier){
     const wrapper=document.getElementById('toggle-wrapper');
     const bjr=document.getElementById('btn-junior');
     const bmd=document.getElementById('btn-mid');
+    const bgp=document.getElementById('btn-gap');
+    const gapHint=document.getElementById('gap-hint');
+    wrapper.classList.remove('tier-mid','tier-gap');
+    [bjr,bmd,bgp].forEach(b=>b&&b.classList.remove('active'));
     if(tier==='junior'){
-        wrapper.classList.remove('tier-mid');
-        bjr.classList.add('active');bmd.classList.remove('active');
-    }else{
+        bjr.classList.add('active');
+        if(gapHint)gapHint.style.display='none';
+    }else if(tier==='mid'){
         wrapper.classList.add('tier-mid');
-        bmd.classList.add('active');bjr.classList.remove('active');
+        bmd.classList.add('active');
+        if(gapHint)gapHint.style.display='none';
+    }else{
+        wrapper.classList.add('tier-gap');
+        if(bgp)bgp.classList.add('active');
+        if(gapHint)gapHint.style.display='block';
     }
 }
 
 // ══ ACCESS CODE TOGGLE ══
 function toggleAccessCode(){
+    // Show full explainer items when code field opens (assumes comeback client)
+    const items = ['comeback-explainer','coach-explainer','debrief-explainer'];
+    items.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='flex';});
+    // original toggle logic below
     const field=document.getElementById('access-code-field');
     field.style.display=field.style.display==='none'?'block':'none';
 }
@@ -1006,12 +1043,16 @@ function toggleAccessCode(){
 // ══ COMEBACK PROGRAM CLIENT LIST ══
 const comebackClients = {
     'COMEBACK-MELLINA': 'mstephen323@comcast.net',
-    'COMEBACK-EDDIE': 'heribertogarcia212@gmail.com'
+    'COMEBACK-EDDIE': 'heribertogarcia212@gmail.com',
+    'COMEBACK-NICHOLE': 'nwallsnichole@gmail.com'
 };
 let isComeback = false;
 
 function toggleAccessCode(){
-    const wrap = document.getElementById('access-code-wrap');
+    // Show full explainer items when code field opens (assumes comeback client)
+    const items = ['comeback-explainer','coach-explainer','debrief-explainer'];
+    items.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='flex';});
+        const wrap = document.getElementById('access-code-wrap');
     const toggle = document.querySelector('.access-code-toggle');
     if(wrap.style.display === 'none'){
         wrap.style.display = 'block';
@@ -1098,6 +1139,39 @@ function startAPIStatus(){let i=0;setStatus(apiMsgs[0],'#4a7fa5',true);apiTimer=
 function stopAPIStatus(){clearInterval(apiTimer);setStatus('','',false);}
 
 // ══ QUESTION BANKS ══
+const gapQuestions = [
+    "Walk me through what's been going on professionally over the last year. Don't skip anything — I'm going to ask about it anyway.",
+    "Tell me about the role or contract you were most recently in. What did you accomplish and how did it end?",
+    "What have you been doing to stay sharp and relevant during your gap? Be specific.",
+    "How do you talk about your career gap when someone asks? Walk me through your current answer.",
+    "What's the one thing you learned about yourself during this transition that you didn't know before?",
+    "How has this gap changed what you're looking for in your next role?",
+    "What do you want a hiring manager to know about you that your resume doesn't show?",
+    "If I asked your last manager about you today, what would they say — honestly?",
+    "What skills did you develop or deepen during your time away from the workforce?",
+    "Tell me about a time during your gap when you had to stay motivated without external structure. How did you manage it?",
+    "Walk me through how you're framing your gap in interviews. What's your current story and what's landing — and what isn't?",
+    "Your contract ended. A lot of people in your position freeze. What did you do instead — and how quickly did you act?",
+    "Tell me about a project, initiative, or responsibility from your last role that you're most proud of. Walk me through the impact.",
+    "How do you address the gap when a recruiter asks directly? Give me your actual answer, not the polished version.",
+    "What's the narrative you're building around this transition? Not the explanation — the story.",
+    "Describe a moment during your gap where you had to advocate for yourself professionally. What did that look like?",
+    "What's one thing you wish you had done differently in your last role before the gap happened?",
+    "How are you staying connected to your industry and network during this transition? Be specific.",
+    "Tell me about a skill or credential you pursued during your gap. How does it strengthen your candidacy?",
+    "If a hiring manager said 'I'm concerned about the gap' — what do you say next? Give me your real answer.",
+    "Walk me through the story of your career — including this gap — as if you're telling it to a skeptical hiring manager who needs to be convinced. Don't apologize. Make the case.",
+    "Your clearance is still active but you've been off contract for a while. How do you position that as an asset, not a liability?",
+    "Tell me about a recompete or contract transition you lived through. What happened, what did you do, and what did you learn about yourself?",
+    "You've had time to reflect. What do you know now about your professional value that you didn't fully own before this gap?",
+    "Give me an example of something you accomplished in your last role that would survive scrutiny — a result that's undeniable even with a gap on the page.",
+    "How have you kept your technical skills, clearance relevance, or industry knowledge current during this period? Walk me through your approach.",
+    "Describe a moment where the gap actually gave you clarity — about what you want, who you are professionally, or what you're worth. What changed?",
+    "If this gap has cost you confidence, tell me honestly — and then tell me what you're doing to rebuild it.",
+    "Walk me through your ideal next role — not just the title and salary, but what the environment looks like, how you work best, and what success looks like in 90 days.",
+    "If we took away the gap entirely and just looked at your career arc — what's the strongest argument for hiring you? Make it without apologizing for anything."
+];
+
 const juniorQuestions = [
     "Tell me about a time you made a mistake at work. How did you handle it and what did you learn?",
     "Describe a situation where you had to explain something technical to someone who wasn't in your field. How did you approach it?",
@@ -1169,7 +1243,7 @@ const midQuestions = [
 function getRotationKey(tier){ return `nl_rotation_${tier}`; }
 
 function getNextQuestion(tier){
-    const questions = tier === 'junior' ? juniorQuestions : midQuestions;
+    const questions = tier === 'junior' ? juniorQuestions : tier === 'gap' ? gapQuestions : midQuestions;
     const key = getRotationKey(tier);
     let used = JSON.parse(sessionStorage.getItem(key) || '[]');
     
@@ -1211,6 +1285,8 @@ const FREE_LIMIT=3; // overridden for comeback clients // Overridden to 9 for Co
 function buildSystemPrompt(){
     const tierContext=userTier==='junior'
         ?`This candidate is JUNIOR level (0-5 years experience). Focus on Execution, Reliability, and Potential. Use accessible language. Look for growth mindset, reliability, and ability to take direction. Be encouraging but honest. GovCon/Corporate context — help them move from task-speak to impact-speak.`
+        :userTier==='gap'
+        ?`This candidate is in CAREER GAP or CONTRACT TRANSITION mode. They have a gap on their resume — could be a contract ending, recompete, layoff, or personal reason. Focus on: how they frame the gap, what they did during it, their confidence level, and whether their story is compelling or apologetic. Coach them to own their narrative without over-explaining. Be direct but deeply empathetic — this is a vulnerable moment. GovCon/cleared professionals in particular need help translating gap time into impact language. Push them to stop apologizing and start positioning.`
         :`This candidate is MID-LEVEL (5-15 years experience). Focus on Strategy, Influence, and ROI. Use terms like Stakeholder Management, Operational Excellence, Strategic Alignment, Scope Creep, Deliverables. Hold a higher bar. Look for leadership instincts, business acumen, and ability to communicate impact in numbers.`;
 
     return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
@@ -1433,7 +1509,7 @@ function startInterview(){
     err.classList.remove('visible');
     conversationHistory=[];questionCount=0;backspaceCount=0;
     // Generate questions for this session using rotation system
-    const qCount = isComeback ? 9 : 3;
+    const qCount = isComeback ? 7 : 3;
     sessionQuestions = getSessionQuestions(userTier, qCount);
 
     // Set tier badge
@@ -1444,7 +1520,9 @@ function startInterview(){
         badge.style.borderColor='rgba(105,65,198,0.2)';
         badge.style.color='#6941C6';
     } else {
-        badge.textContent=userTier==='junior'?'⚡ Junior Track':'🎯 Mid-Level Track';
+        if(userTier==='junior') badge.textContent='⚡ Junior Track';
+        else if(userTier==='gap') { badge.textContent='🔄 Gap Return Track'; badge.style.color='#6941C6'; }
+        else badge.textContent='🎯 Mid-Level Track';
     }
 
     // Capture lead immediately at intake — don't wait for scorecard
@@ -1472,8 +1550,8 @@ function startInterview(){
 // ══ PROGRESS ══
 // ══ PHASE MANAGEMENT ══
 let currentPhase = 'recruiter';
-const ELEVATOR_Q = 5; // Q6 (0-indexed = 5)
-const COACH_START = 6; // Q7
+const ELEVATOR_Q = 4; // Q5 (0-indexed = 4)
+const COACH_START = 5; // Q6
 
 function updatePhase(qIndex){
     const wrap = document.getElementById('lab-wrap');
@@ -1543,6 +1621,100 @@ async function callAPI(messages){
     if(!r.ok)throw new Error('API error');return await r.json();
 }
 
+// ══ ERROR LOGGING ══
+async function logError(location, message, context){
+    try {
+        await fetch('/.netlify/functions/log-error', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                location,
+                message,
+                context,
+                user: userName || 'unknown',
+                tier: userTier || 'unknown',
+                isComeback,
+                timestamp: new Date().toISOString(),
+                url: window.location.href
+            })
+        });
+    } catch(e){
+        // Silent fail — never let logging break the app
+        console.error('Log error failed:', e);
+    }
+}
+
+// ══ SESSION MEMORY ══
+const SESSION_KEY = 'nl_session_state';
+
+function saveSessionState(){
+    if(!isComeback) return;
+    const state = {
+        userName, userEmail, userTier, userIndustry, userJD,
+        questionCount, conversationHistory, sessionQuestions,
+        isComeback, timestamp: Date.now()
+    };
+    try { localStorage.setItem(SESSION_KEY, JSON.stringify(state)); } catch(e){}
+}
+
+function loadSessionState(){
+    try {
+        const raw = localStorage.getItem(SESSION_KEY);
+        if(!raw) return null;
+        const state = JSON.parse(raw);
+        // Expire after 24 hours
+        if(Date.now() - state.timestamp > 86400000){
+            localStorage.removeItem(SESSION_KEY);
+            return null;
+        }
+        return state;
+    } catch(e){ return null; }
+}
+
+function clearSessionState(){
+    try { localStorage.removeItem(SESSION_KEY); } catch(e){}
+}
+
+function checkForResumableSession(){
+    const state = loadSessionState();
+    if(!state || !state.isComeback) return false;
+    if(state.questionCount <= 0) return false;
+
+    // Show resume prompt
+    const resumeBanner = document.createElement('div');
+    resumeBanner.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a3a5c;color:#fff;padding:14px 24px;border-radius:100px;font-size:13px;font-weight:600;font-family:Inter,sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.2);z-index:9999;display:flex;gap:12px;align-items:center;';
+    resumeBanner.innerHTML = `<span>Resume your session? (Q${state.questionCount+1} of 7)</span><button onclick="resumeSession()" style="background:#f28c28;color:#000;border:none;border-radius:100px;padding:6px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:Inter,sans-serif;">Resume</button><button onclick="this.parentElement.remove()" style="background:transparent;color:rgba(255,255,255,0.5);border:none;font-size:18px;cursor:pointer;line-height:1;">×</button>`;
+    document.body.appendChild(resumeBanner);
+    return true;
+}
+
+function resumeSession(){
+    const state = loadSessionState();
+    if(!state) return;
+    // Restore state
+    userName=state.userName; userEmail=state.userEmail;
+    userTier=state.userTier; userIndustry=state.userIndustry;
+    userJD=state.userJD||''; isComeback=state.isComeback;
+    questionCount=state.questionCount;
+    conversationHistory=state.conversationHistory;
+    sessionQuestions=state.sessionQuestions;
+    // Remove banner
+    document.querySelectorAll('[style*="Resume your session"]').forEach(el=>el.remove());
+    // Go to lab
+    show('stage-lab');
+    document.getElementById('recruiter-thumb').classList.add('visible');
+    document.getElementById('sound-toggle').classList.add('visible');
+    updateProgress();
+    // Show last AI message
+    if(conversationHistory.length > 0){
+        const lastAI = [...conversationHistory].reverse().find(m=>m.role==='assistant');
+        if(lastAI) document.getElementById('ai-bubble').textContent = lastAI.content;
+    }
+    document.getElementById('user-input').disabled = false;
+    document.getElementById('user-input').focus();
+    setStatus('Welcome back, '+userName+'!','#34c759',true);
+}
+
 async function askFirstQuestion(){
     setLoading(true);startAPIStatus();
     const messages=[{role:'user',content:`Start the phone screen for a ${userTier==='junior'?'junior':'mid-level'} professional. Give a warm opening greeting and ask the first question. Address me as ${userName}. Natural and conversational — like you just dialed in.`}];
@@ -1552,7 +1724,11 @@ async function askFirstQuestion(){
         stopAPIStatus();setLoading(false);typeBubble(aiText);
         document.getElementById('user-input').disabled=false;document.getElementById('user-input').focus();
         setStatus('Nichole is listening...','#4a7fa5',true);
-    }catch(e){stopAPIStatus();setLoading(false);document.getElementById('ai-bubble').textContent="Something went wrong. Please refresh and try again.";}
+    }catch(e){
+        stopAPIStatus();setLoading(false);
+        logError('askFirstQuestion', e.message, {userName, userTier, userIndustry});
+        document.getElementById('ai-bubble').textContent="Something went wrong. Please refresh and try again.";
+    }
 }
 
 async function handleAnswer(){
@@ -1580,7 +1756,12 @@ async function handleAnswer(){
             displayText = checkForPitchRewrite(aiText);
         }
         typeBubble(displayText);input.focus();setTimeout(()=>setStatus('Nichole is listening...','#4a7fa5',true),200);
-    }catch(e){stopAPIStatus();setLoading(false);input.disabled=false;document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";}
+        saveSessionState(); // Save progress
+    }catch(e){
+        stopAPIStatus();setLoading(false);input.disabled=false;
+        logError('handleAnswer', e.message, {questionCount, userTier});
+        document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";
+    }
 }
 
 async function getFeedbackThenPaywall(val){
@@ -1665,6 +1846,11 @@ ASSIGNMENT: Keep practicing your craft. Know your audience. And own what you bri
                     <div class="debrief-assignment debrief-section-text">Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do.</div>
                 </div>
                 <div class="debrief-affirmation">${affirmation}</div>
+                <div style="margin-top:28px;padding-top:24px;border-top:1px solid #f0f0f5;text-align:center;">
+                    <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#86868b;margin-bottom:12px;">Ready for your next session?</p>
+                    <a href="https://calendly.com/nwallsnichole/the-comeback-session-executive-coaching-45-minutes" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#1a3a5c,#0a1d37);color:#ffffff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;text-decoration:none;box-shadow:0 8px 24px rgba(26,58,92,0.25);transition:all 0.3s;">Book Your Next Session with Nichole →</a>
+                    <p style="font-size:12px;color:#aeaeb2;margin-top:10px;">60 min · Comeback Program</p>
+                </div>
             `;
 
             // Smooth scroll to debrief
