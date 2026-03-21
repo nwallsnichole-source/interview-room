@@ -311,6 +311,180 @@
         .btn-retry{background:none;border:1.5px solid var(--border-color);border-radius:100px;padding:10px 20px;font-size:12px;font-weight:600;font-family:'Inter',sans-serif;color:var(--text-secondary);cursor:pointer;transition:all 0.2s;letter-spacing:0.3px;align-self:flex-start;}
         .btn-retry:hover{border-color:#1a3a5c;color:#1a3a5c;}
 
+        /* ══ PHASE TRANSITIONS ══ */
+
+        /* Phase indicator */
+        .phase-indicator{
+            display:none;
+            align-items:center;
+            gap:12px;
+            margin-bottom:20px;
+            padding:10px 16px;
+            border-radius:100px;
+            font-size:10px;
+            font-weight:700;
+            text-transform:uppercase;
+            letter-spacing:0.2em;
+        }
+        .phase-indicator.visible{display:flex;}
+        .phase-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+
+        /* Phase 1 — Recruiter Mode (default) */
+        .phase-recruiter .phase-indicator{background:rgba(26,58,92,0.06);color:#1a3a5c;}
+        .phase-recruiter .phase-dot{background:#1a3a5c;}
+
+        /* Phase shift moment */
+        .shift-card{
+            display:none;
+            background:#ffffff;
+            border:1px solid #f0f0f5;
+            border-left:4px solid var(--orange);
+            border-radius:24px;
+            padding:32px 36px;
+            margin-bottom:20px;
+            box-shadow:0 4px 24px rgba(242,140,40,0.08);
+        }
+        .shift-card.visible{display:block;}
+        .shift-card-text{
+            font-family:'Playfair Display',serif;
+            font-size:20px;
+            line-height:1.6;
+            color:var(--text-primary);
+            font-style:italic;
+            margin-bottom:12px;
+        }
+        .shift-card-name{
+            font-size:10px;
+            font-weight:700;
+            text-transform:uppercase;
+            letter-spacing:0.2em;
+            color:var(--orange);
+        }
+
+        /* Phase 2 — Elevator Pitch Lab */
+        .phase-elevator .lab-card{
+            background:#ffffff;
+            border:1px solid #e8e0f8;
+            border-left:4px solid var(--purple);
+            box-shadow:0 8px 40px rgba(105,65,198,0.08);
+        }
+        .phase-elevator .q-label{color:var(--purple);}
+        .phase-elevator .phase-indicator{background:rgba(105,65,198,0.06);color:var(--purple);}
+        .phase-elevator .phase-dot{background:var(--purple);}
+        .phase-elevator .notepad-line.active{background:rgba(105,65,198,0.3);}
+        .phase-elevator .notepad-line.checked{background:var(--purple);}
+        .phase-elevator .btn-lock{background:var(--purple);}
+        body.night-view .phase-elevator .btn-lock{background:var(--purple);}
+
+        /* Pitch rewrite card */
+        .pitch-rewrite-card{
+            display:none;
+            background:linear-gradient(135deg,#faf8ff,#f5f0ff);
+            border:1px solid rgba(105,65,198,0.15);
+            border-radius:20px;
+            padding:24px 28px;
+            margin-bottom:20px;
+        }
+        .pitch-rewrite-card.visible{display:block;}
+        .pitch-rewrite-label{
+            font-size:10px;
+            font-weight:700;
+            text-transform:uppercase;
+            letter-spacing:0.2em;
+            color:var(--purple);
+            margin-bottom:10px;
+        }
+        .pitch-rewrite-text{
+            font-size:15px;
+            line-height:1.7;
+            color:var(--text-primary);
+            font-style:italic;
+        }
+
+        /* Phase 3 — Coach Mode */
+        .phase-coach .lab-card{
+            background:#ffffff;
+            border:1px solid #fde8d8;
+            border-left:4px solid var(--orange);
+            box-shadow:0 8px 40px rgba(242,140,40,0.06);
+        }
+        .phase-coach .q-label{color:var(--orange);}
+        .phase-coach .phase-indicator{background:rgba(242,140,40,0.06);color:var(--orange);}
+        .phase-coach .phase-dot{background:var(--orange);}
+        .phase-coach .ai-bubble{font-size:19px;line-height:1.6;}
+        .phase-coach .btn-lock{background:var(--orange);color:#000;}
+        body.night-view .phase-coach .btn-lock{background:var(--orange);color:#000;}
+
+        /* Phase 4 — Debrief */
+        .debrief-card{
+            display:none;
+            background:#ffffff;
+            border:1px solid #f0f0f5;
+            border-radius:32px;
+            overflow:hidden;
+            box-shadow:0 20px 60px rgba(0,0,0,0.06);
+            margin-top:20px;
+        }
+        .debrief-card.visible{display:block;}
+        .debrief-header{
+            background:linear-gradient(135deg,#1a3a5c,#0a1d37);
+            padding:28px 36px;
+            display:flex;
+            align-items:center;
+            gap:16px;
+        }
+        .debrief-header-img{
+            width:56px;height:56px;border-radius:50%;
+            object-fit:cover;object-position:top;
+            border:2px solid rgba(255,255,255,0.2);
+            flex-shrink:0;
+        }
+        .debrief-header-text{}
+        .debrief-header-label{
+            font-size:10px;font-weight:700;
+            text-transform:uppercase;letter-spacing:0.2em;
+            color:rgba(255,255,255,0.5);margin-bottom:4px;
+        }
+        .debrief-header-title{
+            font-family:'Playfair Display',serif;
+            font-size:20px;color:#ffffff;line-height:1.2;
+        }
+        .debrief-body{padding:36px;}
+        .debrief-section{margin-bottom:28px;}
+        .debrief-section:last-child{margin-bottom:0;}
+        .debrief-section-label{
+            font-size:10px;font-weight:700;
+            text-transform:uppercase;letter-spacing:0.2em;
+            margin-bottom:10px;
+        }
+        .debrief-section-label.strength{color:var(--green-call);}
+        .debrief-section-label.growth{color:var(--orange);}
+        .debrief-section-label.mindset{color:var(--purple);}
+        .debrief-section-label.assignment{color:#1a3a5c;}
+        .debrief-section-text{
+            font-size:15px;line-height:1.7;
+            color:var(--text-primary);
+        }
+        .debrief-assignment{
+            background:linear-gradient(135deg,#faf8ff,#fff8f5);
+            border:1px solid rgba(105,65,198,0.1);
+            border-radius:16px;
+            padding:20px 24px;
+        }
+        .debrief-affirmation{
+            background:linear-gradient(135deg,#f0fdf4,#f0f9ff);
+            border-radius:16px;
+            padding:20px 24px;
+            font-family:'Playfair Display',serif;
+            font-size:17px;
+            line-height:1.6;
+            color:var(--text-primary);
+            font-style:italic;
+            margin-top:20px;
+            text-align:center;
+        }
+
+        /* SHARED */
         /* SHARED */
         .btn-main-action{background:var(--text-primary);color:var(--bg-main);padding:20px 48px;border-radius:100px;border:none;cursor:pointer;font-weight:600;font-size:16px;font-family:'Inter',sans-serif;letter-spacing:-0.01em;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;display:inline-block;text-decoration:none;}
         .btn-main-action:hover{transform:scale(1.04);box-shadow:0 12px 32px rgba(0,0,0,0.2);}
@@ -617,7 +791,25 @@
     <div class="top-progress-line">
         <div class="top-progress-fill" id="top-progress-fill"></div>
     </div>
-    <div class="lab-wrap">
+    <div class="lab-wrap" id="lab-wrap">
+
+        <!-- Phase Indicator -->
+        <div class="phase-indicator" id="phase-indicator">
+            <div class="phase-dot"></div>
+            <span id="phase-label">Phone Screen</span>
+        </div>
+
+        <!-- Shift Moment Card -->
+        <div class="shift-card" id="shift-card">
+            <div class="shift-card-text" id="shift-card-text">"Okay — step out of interview mode for a second. You just did something most people never do. You showed up and you practiced. That takes courage. Now let's go a little deeper."</div>
+            <div class="shift-card-name">Nichole Walls · Nehemiah's Ladder</div>
+        </div>
+
+        <!-- Pitch Rewrite Card -->
+        <div class="pitch-rewrite-card" id="pitch-rewrite-card">
+            <div class="pitch-rewrite-label">✨ Your Reframed Pitch — from Nichole</div>
+            <div class="pitch-rewrite-text" id="pitch-rewrite-text"></div>
+        </div>
 
         <div class="notepad-progress">
             <div class="notepad-icon">📋</div>
@@ -906,16 +1098,105 @@ function startAPIStatus(){let i=0;setStatus(apiMsgs[0],'#4a7fa5',true);apiTimer=
 function stopAPIStatus(){clearInterval(apiTimer);setStatus('','',false);}
 
 // ══ QUESTION BANKS ══
-const juniorQuestions=[
-    "When a deliverable's scope shifts 24 hours before a deadline, how do you re-prioritize without losing quality?",
-    "Describe a time you received critical feedback on your work. How did you integrate that into your next win?",
-    "What is your process for managing multiple stakeholders who all claim their task is Priority 1?"
+const juniorQuestions = [
+    "Tell me about a time you made a mistake at work. How did you handle it and what did you learn?",
+    "Describe a situation where you had to explain something technical to someone who wasn't in your field. How did you approach it?",
+    "Walk me through how you typically prioritize your work when you have multiple tasks due at the same time.",
+    "If I called your last supervisor right now and asked what you're known for on a team, what would they say?",
+    "What does a good working environment look like to you, and why?",
+    "Tell me about a time a project didn't go the way you planned. What did you do?",
+    "Tell me about your current situation. What's going on and what's driving your search right now?",
+    "Describe a time you had to deliver news someone didn't want to hear. How did you handle it?",
+    "How do you stay organized when you're juggling multiple deadlines?",
+    "Tell me about something you improved in your current or last role — even something small. What changed because of you?",
+    "When a deliverable's scope shifts 24 hours before a deadline, how do you re-prioritize without losing quality or relationships?",
+    "Describe a time you received critical feedback that was hard to hear. How did you integrate it into your next performance?",
+    "What is your process for managing multiple stakeholders who all claim their task is Priority 1? Walk me through a real example.",
+    "Tell me about a time you had to get a team aligned on a direction they initially pushed back on. What did you do?",
+    "Describe a time you identified a process on your contract or team that wasn't working. What did you do about it without overstepping?",
+    "Walk me through your career timeline — including any gaps. Don't skip anything, I'm going to ask about it anyway.",
+    "Tell me about the most stressful professional situation you've been in. How did you stay functional and what was the outcome?",
+    "Give me a specific example of something you did that made your team, contract, or department more efficient. Put a number on it if you can.",
+    "Describe a time you had to manage up — meaning influence or push back on someone more senior than you. How did you do it?",
+    "What do you bring to a team that isn't on your resume? What's the thing people notice about you when you actually work with them?",
+    "Walk me through a situation where a project was failing or off-track. Instead of pointing to the system or the team, how did you take personal accountability to change the outcome?",
+    "Tell me about a time you had to manage competing priorities between a government client and your internal leadership. How did you navigate that without burning either relationship?",
+    "Describe a time you led a team or initiative you had no formal authority over. How did you drive results when you couldn't direct anyone?",
+    "You have a gap on your resume. I'm going to push on this — not to embarrass you, but because every hiring manager will. Tell me exactly what happened, what you did during that time, and why it makes you a stronger candidate today.",
+    "Give me an example of a complex problem you solved by making the solution simpler — not by adding more layers. What did you have to eliminate or kill to make it work?",
+    "Walk me through a contribution you made that you're most proud of. Don't give me your job description — tell me what specifically changed because you were there.",
+    "Tell me about a time you failed publicly — where other people saw it. How did you recover professionally and personally?",
+    "Describe a time when your communication style caused a misunderstanding or conflict. How did you realize it, and what did you do differently?",
+    "If your contract ended tomorrow, what's your plan? Walk me through exactly what you'd do in the first 30 days of your search.",
+    "If we took away your job title and your resume, what is the one thing people who've worked with you would say is your signature — the thing you always leave behind on every team or project?"
 ];
-const midQuestions=[
-    "Tell me about a process you optimized that directly impacted the bottom line or contract profitability. What was the delta?",
-    "How do you handle a scenario where a client is pushing for a solution you know will fail? Walk me through the negotiation.",
-    "Describe how you have influenced a team or project you had no formal authority over. How did you drive the outcome?"
+
+const midQuestions = [
+    "Walk me through your background in two minutes or less — not your resume, your story.",
+    "Tell me about a time you had to translate a complex situation into simple language for a senior leader or client. How did you approach it?",
+    "Describe a decision you made that you'd make differently today. What did you learn?",
+    "What does career success look like to you right now — not in ten years, right now?",
+    "Tell me about a time you had to keep going when you felt like quitting. What kept you moving?",
+    "What's one process, system, or habit you introduced to a team that outlasted you? What was the impact?",
+    "How do you communicate impact and results when you can't share classified or sensitive details about the work?",
+    "Tell me about a time you mentored or developed someone junior to you. What was your approach and what changed for them?",
+    "Walk me through how you approach a problem you've never seen before. Take me inside your thinking process.",
+    "What are you looking for in your next role that you didn't have in your last one? Be specific.",
+    "Tell me about a process you optimized that directly impacted the bottom line, contract profitability, or team efficiency. What was the measurable delta?",
+    "How do you handle a scenario where a client — government or corporate — is pushing for a solution you know will fail? Walk me through the negotiation.",
+    "Describe how you have influenced a team or project you had no formal authority over. What levers did you pull to drive the outcome?",
+    "Tell me about a time you had to manage a difficult stakeholder relationship — someone who was actively working against you or your project. How did you turn it around?",
+    "Walk me through how you've managed scope creep on a contract or project. What did you do when the client kept asking for more than was agreed?",
+    "You've been in your industry for a while. Tell me about a moment when you seriously considered leaving — and what made you stay or go.",
+    "Describe a time you changed someone's mind about something important — a strategy, a hire, a direction. How did you do it without forcing it?",
+    "Tell me about a time your team or organization went through a major disruption — reorg, leadership change, contract loss. How did you show up and what was your role in stabilizing things?",
+    "What is your professional reputation? Not what you want it to be — what is it actually, based on feedback you've received?",
+    "Give me an example of a time you identified a risk before it became a problem. What did you see, what did you do, and what was the outcome?",
+    "Tell me about a time you had to make a significant strategic recommendation with incomplete information. How did you build your case and how did it land?",
+    "Describe how you have navigated a recompete or contract transition — either helping your team survive it or positioning yourself through it. What did you do differently than everyone else?",
+    "Tell me about the hardest people management situation you've been in — someone you had to let go, performance manage, or work around. How did you handle it and what was the outcome?",
+    "Describe a time you had to influence an outcome at the executive or senior leadership level — without being in the room. How did you move the needle?",
+    "Walk me through the single most complex project or initiative you've led from start to finish. What was the scope, what went wrong, and what did it produce?",
+    "You've been doing the work. Now you want to be seen as a leader. Tell me specifically what's been holding that recognition back and what you're doing about it.",
+    "Tell me about a time you were the most senior person in a crisis and everyone was looking to you. Walk me through your thinking and your actions.",
+    "Describe a time when your silence or inaction on something caused a problem. What did you avoid saying or doing, why, and what was the cost?",
+    "Walk me through how you talk about your cleared work in an interview without over-sharing. Give me a real example of how you frame impact without exposing program details.",
+    "If we took away your clearance, your title, and your years of experience — what is the actual argument for hiring you over someone else? Make the case."
 ];
+
+// ══ QUESTION ROTATION SYSTEM ══
+// Tracks used questions per tier per session storage
+function getRotationKey(tier){ return `nl_rotation_${tier}`; }
+
+function getNextQuestion(tier){
+    const questions = tier === 'junior' ? juniorQuestions : midQuestions;
+    const key = getRotationKey(tier);
+    let used = JSON.parse(sessionStorage.getItem(key) || '[]');
+    
+    // If all questions used, reset the pool
+    if(used.length >= questions.length){ used = []; }
+    
+    // Get available questions
+    const available = questions.map((_,i) => i).filter(i => !used.includes(i));
+    
+    // Pick random from available
+    const randomIndex = available[Math.floor(Math.random() * available.length)];
+    
+    // Mark as used
+    used.push(randomIndex);
+    sessionStorage.setItem(key, JSON.stringify(used));
+    
+    return questions[randomIndex];
+}
+
+function getSessionQuestions(tier, count){
+    const questions = [];
+    for(let i = 0; i < count; i++){
+        questions.push(getNextQuestion(tier));
+    }
+    return questions;
+}
+
 
 // ══ STATE ══
 let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,questionCount=0,conversationHistory=[];
@@ -968,7 +1249,18 @@ RED FLAGS:
 
 GOVCON CLEARANCE AWARENESS: If a candidate over-shares classified details, program names, agency names, or sensitive contract info, gently redirect: "I appreciate the detail — but in a real screen, you'd want to frame that around impact, not specifics. Let's try that again with the details protected." Coach them to speak in outcomes and skills, not classified context.
 
-RULES: Never break character. Never admit being AI. No bullet points or lists. Under 120 words per response. Be honest — don't just validate.`;
+PHASE AWARENESS:
+You operate in distinct phases for Comeback Program clients (isComeback=true):
+
+PHASE 1 — PHONE SCREEN (Q1-Q5): You are the recruiter. Sharp, direct, professional. Standard phone screen energy. Under 120 words per response.
+
+PHASE 2 — ELEVATOR PITCH LAB (Q6): Shift your tone completely. You are now their coach and brand strategist. Ask them to give you their 30-second elevator pitch — who they are, what they do, what makes them different. After they respond: give honest feedback, then provide a REFRAMED VERSION of their pitch in their voice (start it with "REFRAME:"). Then ask them to try again with the new version.
+
+PHASE 3 — COACH MODE (Q7-Q9): Warm, reflective, self-awareness focused. You're building their confidence and identity. Ask questions that help them see themselves clearly. Mindset work. Encourage vulnerability. Under 150 words per response.
+
+PHASE 4 — DEBRIEF: You are fully their coach now. Give honest, specific, warm feedback. Structure it as: what landed well, one blind spot, a personal affirmation tied to what you actually heard, and always end with: "Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do."
+
+RULES: Never break character. Never admit being AI. No bullet points or lists. Be honest — don't just validate.`;
 }
 
 // ══ SCORE EMAIL CAPTURE ══
@@ -1140,6 +1432,9 @@ function startInterview(){
     // email collected at paywall
     err.classList.remove('visible');
     conversationHistory=[];questionCount=0;backspaceCount=0;
+    // Generate questions for this session using rotation system
+    const qCount = isComeback ? 9 : 3;
+    sessionQuestions = getSessionQuestions(userTier, qCount);
 
     // Set tier badge
     const badge=document.getElementById('tier-badge');
@@ -1175,6 +1470,60 @@ function startInterview(){
 }
 
 // ══ PROGRESS ══
+// ══ PHASE MANAGEMENT ══
+let currentPhase = 'recruiter';
+const ELEVATOR_Q = 5; // Q6 (0-indexed = 5)
+const COACH_START = 6; // Q7
+
+function updatePhase(qIndex){
+    const wrap = document.getElementById('lab-wrap');
+    const indicator = document.getElementById('phase-indicator');
+    const label = document.getElementById('phase-label');
+    const shiftCard = document.getElementById('shift-card');
+
+    // Remove all phase classes
+    wrap.classList.remove('phase-recruiter','phase-elevator','phase-coach');
+
+    if(qIndex < ELEVATOR_Q){
+        currentPhase = 'recruiter';
+        wrap.classList.add('phase-recruiter');
+        if(qIndex > 0){
+            indicator.classList.add('visible');
+            label.textContent = 'Phone Screen · Recruiter Mode';
+        }
+        shiftCard.classList.remove('visible');
+    } else if(qIndex === ELEVATOR_Q){
+        currentPhase = 'elevator';
+        wrap.classList.add('phase-elevator');
+        indicator.classList.add('visible');
+        label.textContent = 'Elevator Pitch Lab';
+        // Show shift card
+        shiftCard.classList.add('visible');
+    } else {
+        currentPhase = 'coach';
+        wrap.classList.add('phase-coach');
+        indicator.classList.add('visible');
+        label.textContent = 'Coach Mode · Mindset & Identity';
+        shiftCard.classList.remove('visible');
+    }
+}
+
+// Extract and show pitch rewrite if present
+function checkForPitchRewrite(text){
+    const reframeMatch = text.match(/REFRAME:(.*?)(?=\n|$)/s);
+    if(reframeMatch){
+        const rewriteCard = document.getElementById('pitch-rewrite-card');
+        const rewriteText = document.getElementById('pitch-rewrite-text');
+        if(rewriteCard && rewriteText){
+            rewriteText.textContent = reframeMatch[1].trim();
+            rewriteCard.classList.add('visible');
+        }
+        // Remove the REFRAME: line from the bubble text
+        return text.replace(/REFRAME:.*?(?=\n|$)/s, '').trim();
+    }
+    return text;
+}
+
 function updateProgress(){
     for(let i=1;i<=3;i++){
         const p=document.getElementById(`pip-${i}`);p.className='notepad-line';
@@ -1220,12 +1569,17 @@ async function handleAnswer(){
         conversationHistory.push({role:'assistant',content:aiText});questionCount++;updateProgress();updateRecruiterThumb();
         stopAPIStatus();setLoading(false);input.value='';document.getElementById('char-count').textContent='0 / 1500';input.disabled=false;
         // Show retry option and highlight current question
-        const qTexts=[userTier==='junior'?juniorQuestions[0]:midQuestions[0],userTier==='junior'?juniorQuestions[1]:midQuestions[1],userTier==='junior'?juniorQuestions[2]:midQuestions[2]];
+        const qTexts=sessionQuestions;
         if(questionCount<3){
             document.getElementById('current-question-pill').textContent='📌 '+qTexts[questionCount];
             document.getElementById('retry-wrap').style.display='flex';
         }
-        typeBubble(aiText);input.focus();setTimeout(()=>setStatus('Nichole is listening...','#4a7fa5',true),200);
+        // Check for elevator pitch rewrite
+        let displayText = aiText;
+        if(currentPhase === 'elevator'){
+            displayText = checkForPitchRewrite(aiText);
+        }
+        typeBubble(displayText);input.focus();setTimeout(()=>setStatus('Nichole is listening...','#4a7fa5',true),200);
     }catch(e){stopAPIStatus();setLoading(false);input.disabled=false;document.getElementById('ai-bubble').textContent="Something went wrong. Please try again.";}
 }
 
@@ -1256,6 +1610,80 @@ SCORECARD:{"overall":"STRONG","communication":7,"authenticity":8,"impact":6,"con
 }
 
 // ══ DUAL PAYWALL WITH TIER ROUTING ══
+// ══ COMEBACK CLIENT DEBRIEF ══
+async function generateCombackDebrief(){
+    setStatus('Nichole is preparing your debrief...','var(--purple)',true);
+
+    const debriefPrompt = [...conversationHistory, {
+        role: 'user',
+        content: `Now step fully into coach mode. Give a warm, honest, specific debrief of this entire session. Structure your response EXACTLY like this with these labels on separate lines:
+
+STRENGTH: [2-3 sentences on what genuinely landed well — be specific to what they actually said]
+
+BLIND SPOT: [1-2 sentences on one thing that would cost them in a real interview — honest but kind]
+
+AFFIRMATION: [A personal, powerful affirmation based on what you actually heard from them today — not generic, tied to who they showed up as]
+
+ASSIGNMENT: Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do.`
+    }];
+
+    try {
+        const data = await callAPI(debriefPrompt);
+        const text = data.content[0].text;
+        stopAPIStatus();
+        setLoading(false);
+
+        // Parse debrief sections
+        const strength = text.match(/STRENGTH:(.*?)(?=BLIND SPOT:|$)/s)?.[1]?.trim() || '';
+        const blindspot = text.match(/BLIND SPOT:(.*?)(?=AFFIRMATION:|$)/s)?.[1]?.trim() || '';
+        const affirmation = text.match(/AFFIRMATION:(.*?)(?=ASSIGNMENT:|$)/s)?.[1]?.trim() || '';
+
+        // Hide the lab input area
+        document.getElementById('user-input').style.display='none';
+        document.getElementById('btn-submit').style.display='none';
+        document.getElementById('char-count').style.display='none';
+        document.querySelector('.retry-wrap') && (document.querySelector('.retry-wrap').style.display='none');
+
+        // Update AI bubble with closing message
+        typeBubble("That wraps up today's session. Here's your debrief...", ()=>{
+            // Show debrief card
+            const debriefCard = document.getElementById('debrief-card');
+            const debriefBody = document.getElementById('debrief-body');
+            debriefCard.classList.add('visible');
+
+            debriefBody.innerHTML = `
+                <div class="debrief-section">
+                    <div class="debrief-section-label strength">✓ What Landed</div>
+                    <div class="debrief-section-text">${strength}</div>
+                </div>
+                <div class="debrief-section">
+                    <div class="debrief-section-label growth">↗ One Thing to Sharpen</div>
+                    <div class="debrief-section-text">${blindspot}</div>
+                </div>
+                <div class="debrief-section">
+                    <div class="debrief-section-label assignment">📋 Your Assignment</div>
+                    <div class="debrief-assignment debrief-section-text">Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do.</div>
+                </div>
+                <div class="debrief-affirmation">${affirmation}</div>
+            `;
+
+            // Smooth scroll to debrief
+            setTimeout(()=>{
+                debriefCard.scrollIntoView({behavior:'smooth',block:'start'});
+            }, 400);
+
+            // Hide recruiter thumb, show completion
+            document.getElementById('recruiter-thumb').classList.remove('visible');
+            setStatus('Session complete','#34c759',true);
+        });
+
+    } catch(e) {
+        stopAPIStatus();
+        setLoading(false);
+        document.getElementById('ai-bubble').textContent = "Something went wrong generating your debrief. Please try again.";
+    }
+}
+
 function showPaywall(score,scorecard){
     // Dynamic discovery call copy based on industry
     const industryLabel=userIndustry==='govcon'||userIndustry===''?'GovCon':userIndustry==='corporate'?'corporate':userIndustry==='tech'?'tech':'professional';
