@@ -7,11 +7,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-main: #f5f5f7;
-            --card-bg: rgba(255,255,255,0.6);
+            --bg-main: #ffffff;
+            --card-bg: #ffffff;
             --text-primary: #1d1d1f;
-            --text-secondary: #86868b;
-            --border-color: rgba(0,0,0,0.07);
+            --text-secondary: #6e6e73;
+            --border-color: #d2d2d7;
             --frost: blur(30px) saturate(160%);
             --orange: #f28c28;
             --purple: #6941C6;
@@ -24,7 +24,7 @@
             --bg-main: #000000;
             --card-bg: #1c1c1e;
             --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
+            --text-secondary: #6e6e73;
             --border-color: #38383a;
         }
 
@@ -763,7 +763,7 @@
             </div>
         </div>
         <div id="gap-hint" style="display:none;background:rgba(105,65,198,0.06);border:1px solid rgba(105,65,198,0.12);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#6941C6;font-weight:500;">
-            🎯 Gap Return track — questions designed specifically for career gaps, contract endings, and recompetes.
+            🎯 Gap Return & Career Pivot track — questions designed for career gaps, contract endings, recompetes, and full industry changes.
         </div>
 
         <div class="access-code-wrap" id="access-code-wrap">
@@ -1266,7 +1266,7 @@ function buildSystemPrompt(){
     const tierContext=userTier==='junior'
         ?`This candidate is JUNIOR level (0-5 years experience). Focus on Execution, Reliability, and Potential. Use accessible language. Look for growth mindset, reliability, and ability to take direction. Be encouraging but honest. GovCon/Corporate context — help them move from task-speak to impact-speak.`
         :userTier==='gap'
-        ?`This candidate is in CAREER GAP or CONTRACT TRANSITION mode. They have a gap on their resume — could be a contract ending, recompete, layoff, or personal reason. Focus on: how they frame the gap, what they did during it, their confidence level, and whether their story is compelling or apologetic. Coach them to own their narrative without over-explaining. Be direct but deeply empathetic — this is a vulnerable moment. GovCon/cleared professionals in particular need help translating gap time into impact language. Push them to stop apologizing and start positioning.`
+        ?`This candidate is in CAREER GAP, CONTRACT TRANSITION, or CAREER PIVOT mode. This includes candidates with resume gaps AND candidates making a full industry or career change. For gap candidates: focus on how they frame the gap, confidence, and whether their story is compelling. For career changers: push them hard on WHY they're leaving a successful field, what they've done to prepare, and whether they can articulate their transferable value without apologizing. Be direct but deeply empathetic. Push them to stop justifying and start positioning.`
         :`This candidate is MID-LEVEL (5-15 years experience). Focus on Strategy, Influence, and ROI. Use terms like Stakeholder Management, Operational Excellence, Strategic Alignment, Scope Creep, Deliverables. Hold a higher bar. Look for leadership instincts, business acumen, and ability to communicate impact in numbers.`;
 
     return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
