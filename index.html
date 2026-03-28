@@ -962,6 +962,20 @@
     </div>
 </div>
 
+<!-- DEBRIEF CARD — Comeback clients only -->
+<div class="debrief-card" id="debrief-card">
+    <div class="debrief-header">
+        <img src="https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000004708-G1RKyHiVj1d4Q7Io.png" alt="AI Nichole" class="debrief-header-img" />
+        <div class="debrief-header-text">
+            <div class="debrief-header-label">Session Debrief · AI Nichole</div>
+            <div class="debrief-header-title">Here's what I observed.</div>
+        </div>
+    </div>
+    <div class="debrief-body" id="debrief-body">
+        <!-- Populated dynamically -->
+    </div>
+</div>
+
 <!-- STAGE 4: PAYWALL -->
 <div id="stage-paywall" class="stage hidden">
     <div class="paywall-inner">
@@ -1536,7 +1550,7 @@ function retryAnswer(){
 
 // ══ NAVIGATION ══
 function show(id){
-    const stages=['stage-ring','stage-billboard','stage-intake','stage-lab','stage-paywall'];
+    const stages=['stage-ring','stage-billboard','stage-intake','stage-grounding','stage-lab','stage-paywall'];
     const current=stages.find(s=>!document.getElementById(s).classList.contains('hidden'));
     if(current&&current!==id){
         const el=document.getElementById(current);
@@ -1618,13 +1632,8 @@ function startInterview(){
         })
     }).catch(()=>{}); // Silent fail — never block the user experience
 
-    document.getElementById('sound-toggle').classList.add('visible');
-    updateProgress();
-    setStatus('Analyzing your profile...','#4a7fa5',true);
-    setTimeout(()=>{
-        setStatus('Building your session...','#4a7fa5',true);
-        setTimeout(()=>askFirstQuestion(),900);
-    },1100);
+    // Show grounding moment then go to lab
+    showGrounding();
 }
 
 // ══ PROGRESS ══
@@ -1745,6 +1754,7 @@ const groundingMessages = [
 
 function showGrounding(){
     show('stage-grounding');
+    document.getElementById('stage-intake').classList.add('hidden');
     let step = 0;
     const msg = document.getElementById('grounding-message');
     const sub = document.getElementById('grounding-sub');
