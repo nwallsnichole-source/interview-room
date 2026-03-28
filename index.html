@@ -171,7 +171,7 @@
         body.night-view #stage-lab::before,body.night-view #stage-intake::before{content:'';position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(74,127,165,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(74,127,165,0.04) 1px,transparent 1px);background-size:40px 40px;z-index:0;}
         body.night-view .lab-wrap,body.night-view .intake-card{position:relative;z-index:1;}
         .q-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:#4a7fa5;margin-bottom:16px;}
-        .ai-bubble{font-family:'Playfair Display',serif;font-size:21px;line-height:1.5;color:var(--text-primary);margin-bottom:28px;min-height:80px;}
+        .ai-bubble{font-family:'Playfair Display',serif;font-size:21px;line-height:1.75;color:var(--text-primary);margin-bottom:28px;min-height:80px;white-space:pre-wrap;}
 
         textarea{width:100%;min-height:160px;background:rgba(0,0,0,0.02);border:1px solid var(--border-color);border-radius:24px;padding:24px;font-size:17px;color:var(--text-primary);font-family:'Inter',sans-serif;resize:none;outline:none;transition:all 0.4s ease;margin-bottom:8px;line-height:1.6;}
         body.night-view textarea{background:rgba(255,255,255,0.03);}
@@ -1061,7 +1061,7 @@
             <a href="https://calendly.com/nwallsnichole/discovery-call-15-minutes" class="btn-discovery-primary" id="btn-discovery" target="_blank" rel="noopener">
                 <span class="discovery-icon">📞</span>
                 <span class="discovery-text">
-                    <span class="discovery-label">Claim Your Free 30-Min Tactical Debrief</span>
+                    <span class="discovery-label">Claim Your Free 30-Min Discovery Call</span>
                     <span class="discovery-sub" id="discovery-sub">Real GovCon phone screens are make-or-break. Full mock + clearance-safe strategy — on this call.</span>
                 </span>
             </a>
@@ -1091,7 +1091,7 @@
                 <div class="upsell-text">
                     <div class="upsell-label">Fix the Foundation First</div>
                     <div class="upsell-desc" id="resume-desc">Not sure your resume is even getting you in the door? Let's fix that before the phone rings.</div>
-                    <a href="https://nicholewalls.gumroad.com/l/resume-rewrite" class="btn-upsell orange" target="_blank" rel="noopener">Fix the Foundation — Resume Rewrite $379</a>
+                    <a href="https://nicholewalls.gumroad.com/l/resume-rewrite" class="btn-upsell orange" target="_blank" rel="noopener">Fix the Foundation — Resume Rewrite $579</a>
                 </div>
             </div>
 
@@ -2147,6 +2147,8 @@ function setLoading(on){
 function typeBubble(text,callback){
     // Cancel any in-progress typing
     if(window._typeTimer){clearTimeout(window._typeTimer);window._typeTimer=null;}
+    // Format AI text for readability
+    text = (text || "").replace(/\n{3,}/g, "\n\n").trim();
 
     const bubble=document.getElementById('ai-bubble');
     const overlay=document.getElementById('frost-overlay');
