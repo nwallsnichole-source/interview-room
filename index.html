@@ -10,7 +10,7 @@
             --bg-main: #ffffff;
             --card-bg: #ffffff;
             --text-primary: #1d1d1f;
-            --text-secondary: #6e6e73;
+            --text-secondary: #515154;
             --border-color: #d2d2d7;
             --frost: blur(30px) saturate(160%);
             --orange: #f28c28;
@@ -24,7 +24,7 @@
             --bg-main: #000000;
             --card-bg: #1c1c1e;
             --text-primary: #f5f5f7;
-            --text-secondary: #6e6e73;
+            --text-secondary: #515154;
             --border-color: #38383a;
         }
 
@@ -102,7 +102,7 @@
 
         /* STAGE 2: INTAKE */
         #stage-intake{background:var(--bg-main);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:80px 20px 48px;transition:background var(--transition);}
-        .intake-card{background:var(--card-bg);backdrop-filter:var(--frost);-webkit-backdrop-filter:var(--frost);border:1px solid var(--border-color);max-width:520px;width:100%;padding:52px 48px;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,0.07);text-align:center;}
+        .intake-card{background:var(--card-bg);border:1px solid var(--border-color);max-width:520px;width:100%;padding:52px 48px;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,0.07);text-align:center;}
         .intake-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .intake-title{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;line-height:1.2;color:var(--text-primary);}
         .intake-sub{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.6;}
@@ -141,11 +141,11 @@
         .tier-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-secondary);margin-bottom:12px;display:block;}
         .toggle-wrapper{display:inline-flex;background:rgba(0,0,0,0.04);padding:5px;border-radius:100px;position:relative;border:1px solid var(--border-color);}
         body.night-view .toggle-wrapper{background:rgba(255,255,255,0.04);}
-        .toggle-btn{padding:12px 28px;border-radius:100px;border:none;background:transparent;color:var(--text-secondary);font-weight:600;font-size:13px;cursor:pointer;z-index:2;transition:color 0.4s ease;font-family:'Inter',sans-serif;position:relative;}
+        .toggle-btn{padding:10px 18px;border-radius:100px;border:none;background:transparent;color:var(--text-secondary);font-weight:600;font-size:12px;cursor:pointer;z-index:2;transition:color 0.4s ease;font-family:'Inter',sans-serif;position:relative;white-space:nowrap;}
         .toggle-btn.active{color:var(--text-primary);}
-        .toggle-bg{position:absolute;top:5px;left:5px;height:38px;width:90px;background:var(--card-bg);backdrop-filter:var(--frost);border-radius:100px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),width 0.3s ease;z-index:1;}
-        .tier-mid .toggle-bg{transform:translateX(90px);}
-        .tier-gap .toggle-bg{transform:translateX(180px);}
+        .toggle-bg{position:absolute;top:5px;left:5px;height:38px;width:80px;background:var(--card-bg);backdrop-filter:var(--frost);border-radius:100px;box-shadow:0 4px 15px rgba(0,0,0,0.1);transition:transform 0.5s cubic-bezier(0.23,1,0.32,1),width 0.3s ease;z-index:1;}
+        .tier-mid .toggle-bg{transform:translateX(82px);}
+        .tier-gap .toggle-bg{transform:translateX(164px);}
 
         /* STAGE 3: LAB */
         #stage-lab{background:var(--bg-main);display:flex;align-items:flex-start;justify-content:center;min-height:100vh;padding:80px 20px 140px;transition:background var(--transition);}
@@ -181,7 +181,7 @@
         .char-count{font-size:12px;color:var(--text-secondary);text-align:right;margin-bottom:20px;}
         .char-count.warn{color:#ff453a;}
 
-        .btn-lock{background:var(--text-primary);color:var(--bg-main);border:none;padding:20px 44px;border-radius:100px;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 20px 40px rgba(0,0,0,0.1);font-family:'Inter',sans-serif;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;}
+        .btn-lock{background:var(--text-primary);color:var(--bg-main);border:none;padding:20px 44px;border-radius:100px;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.3s ease;box-shadow:0 20px 40px rgba(0,0,0,0.1);font-family:'Inter',sans-serif;width:100%;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;-webkit-tap-highlight-color:transparent;}
         body.night-view .btn-lock{background:var(--orange);color:#000;}
         .btn-lock:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 30px 60px rgba(0,0,0,0.2);}
         .btn-lock:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
@@ -449,7 +449,7 @@
             font-family:'Playfair Display',serif;
             font-size:20px;color:#ffffff;line-height:1.2;
         }
-        .debrief-body{padding:36px;}
+        .debrief-body{padding:28px;}
         .debrief-section{margin-bottom:28px;}
         .debrief-section:last-child{margin-bottom:0;}
         .debrief-section-label{
@@ -484,7 +484,80 @@
             text-align:center;
         }
 
+        /* ══ GROUNDING MOMENT ══ */
+        #stage-grounding{
+            background:var(--bg-main);
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            min-height:100vh;
+            padding:40px 20px;
+        }
+        .grounding-card{
+            max-width:480px;
+            width:100%;
+            text-align:center;
+            animation:groundFade 0.8s ease forwards;
+        }
+        @keyframes groundFade{
+            from{opacity:0;transform:translateY(16px);}
+            to{opacity:1;transform:translateY(0);}
+        }
+        .grounding-breath{
+            width:64px;height:64px;
+            border-radius:50%;
+            background:linear-gradient(135deg,rgba(242,140,40,0.1),rgba(105,65,198,0.1));
+            border:2px solid rgba(242,140,40,0.2);
+            margin:0 auto 32px;
+            display:flex;align-items:center;justify-content:center;
+            font-size:28px;
+            animation:breathe 4s ease-in-out infinite;
+        }
+        @keyframes breathe{
+            0%,100%{transform:scale(1);opacity:0.7;}
+            50%{transform:scale(1.15);opacity:1;}
+        }
+        .grounding-eyebrow{
+            font-size:10px;font-weight:700;
+            text-transform:uppercase;letter-spacing:0.2em;
+            color:var(--orange);margin-bottom:20px;
+            display:block;
+        }
+        .grounding-message{
+            font-family:'Playfair Display',serif;
+            font-size:clamp(20px,4vw,26px);
+            line-height:1.6;
+            color:var(--text-primary);
+            margin-bottom:12px;
+            font-style:italic;
+        }
+        .grounding-sub{
+            font-size:15px;line-height:1.7;
+            color:var(--text-secondary);
+            margin-bottom:8px;
+        }
+        .grounding-sub strong{color:var(--text-primary);}
+        .grounding-sig{
+            font-family:'Playfair Display',serif;
+            font-size:17px;
+            color:var(--orange);
+            margin-top:32px;
+            font-style:italic;
+        }
+        .grounding-progress{
+            display:flex;gap:6px;justify-content:center;
+            margin-top:40px;
+        }
+        .grounding-dot{
+            width:6px;height:6px;border-radius:50%;
+            background:var(--border-color);
+            transition:background 0.3s;
+        }
+        .grounding-dot.active{background:var(--orange);}
+
         /* SHARED */
+        /* ══ GROUNDING MOMENT ══ */
+        
         /* SHARED */
         .btn-main-action{background:var(--text-primary);color:var(--bg-main);padding:20px 48px;border-radius:100px;border:none;cursor:pointer;font-weight:600;font-size:16px;font-family:'Inter',sans-serif;letter-spacing:-0.01em;transition:transform 0.2s cubic-bezier(0.34,1.56,0.64,1),box-shadow 0.2s ease;display:inline-block;text-decoration:none;}
         .btn-main-action:hover{transform:scale(1.04);box-shadow:0 12px 32px rgba(0,0,0,0.2);}
@@ -539,7 +612,9 @@
             .intake-field{padding:14px 16px;font-size:15px;margin-bottom:12px;}
             .role-select{padding:14px 16px;font-size:15px;}
             .intake-jd{min-height:70px;font-size:13px;padding:12px 14px;}
-            .toggle-btn{padding:10px 20px;font-size:12px;}
+            .toggle-btn{padding:8px 12px;font-size:11px;}
+            .toggle-wrapper{width:100%;justify-content:space-between;}
+            .tier-container{width:100%;}
             .tier-badge{font-size:9px;padding:5px 12px;}
 
             /* LAB */
@@ -601,6 +676,12 @@
             .score-email-row{flex-direction:column;gap:8px;}
             .score-email-input{padding:10px 14px;font-size:14px;}
             .score-email-btn{padding:12px;font-size:13px;border-radius:10px;}
+            .debrief-body{padding:20px 16px;}
+            .debrief-header{padding:20px;}
+            .debrief-header-title{font-size:16px;}
+            .debrief-affirmation{font-size:15px;padding:16px;}
+            .debrief-assignment{padding:14px 16px;}
+            .score-circle{font-size:48px;}
 
             /* LOBBY MOBILE */
             .lobby-card{padding:36px 20px;}
@@ -613,6 +694,7 @@
             .intake-title{font-size:20px;}
             .paywall-title{font-size:1.3rem;}
             .btn-lock{font-size:13px;padding:14px 20px;}
+            .phone-icon{width:90px;height:90px;font-size:36px;}
         }
     </style>
 </head>
@@ -631,6 +713,22 @@
     <span id="sound-icon">🔈</span>
     <span id="sound-label">Office Sounds</span>
 </button>
+
+<!-- STAGE GROUNDING: MINDSET MOMENT -->
+<div id="stage-grounding" class="stage hidden">
+    <div class="grounding-card">
+        <div class="grounding-breath">🤍</div>
+        <span class="grounding-eyebrow">AI Nichole · Before We Begin</span>
+        <p class="grounding-message" id="grounding-message">"Before we begin — take one breath."</p>
+        <p class="grounding-sub" id="grounding-sub">You showed up today. That already puts you ahead of the person who's still waiting for the right time.</p>
+        <div class="grounding-progress">
+            <div class="grounding-dot active" id="gdot-1"></div>
+            <div class="grounding-dot" id="gdot-2"></div>
+            <div class="grounding-dot" id="gdot-3"></div>
+        </div>
+        <p class="grounding-sig" id="grounding-sig"></p>
+    </div>
+</div>
 
 <!-- STAGE 0: LOBBY -->
 <div id="stage-ring" class="stage hidden">
@@ -766,17 +864,10 @@
             🎯 Gap Return & Career Pivot track — questions designed for career gaps, contract endings, recompetes, and full industry changes.
         </div>
 
-        <div class="access-code-wrap" id="access-code-wrap">
-
-            <div class="access-code-field" id="access-code-field" style="display:none;">
-                <input type="text" id="intake-code" class="intake-field" placeholder="Enter your access code (e.g. COMEBACK-EDDIE)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
-            </div>
-        </div>
-        <div class="access-code-wrap" id="access-code-wrap" style="display:none;">
-            <input type="text" id="intake-code" class="intake-field" placeholder="Access code (Comeback Program clients only)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
-
-        </div>
         <p class="access-code-toggle" onclick="toggleAccessCode()">🔐 I have an access code</p>
+        <div class="access-code-wrap" id="access-code-wrap" style="display:none;">
+            <input type="text" id="intake-code" class="intake-field" placeholder="Enter your access code (e.g. COMEBACK-EDDIE)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
+        </div>
         <p class="industry-hint" id="industry-hint"></p>
         <div class="jd-field-wrap">
             <textarea id="intake-jd" class="intake-jd" placeholder="Optional: Paste the job description here — Nichole will tailor questions to this specific role." maxlength="3000"></textarea>
@@ -804,7 +895,7 @@
         <!-- Shift Moment Card -->
         <div class="shift-card" id="shift-card">
             <div class="shift-card-text" id="shift-card-text">"Okay — step out of interview mode for a second. You just did something most people never do. You showed up and you practiced. That takes courage. Now let's go a little deeper."</div>
-            <div class="shift-card-name">Nichole Walls · Nehemiah's Ladder</div>
+            <div class="shift-card-name">AI Nichole · Nehemiah's Ladder</div>
         </div>
 
         <!-- Pitch Rewrite Card -->
@@ -816,8 +907,8 @@
         <!-- PROGRESS DASHBOARD TOGGLE -->
         <div id="progress-dashboard" style="display:none;background:#ffffff;border:1px solid #e5e5ea;border-radius:20px;padding:20px;margin-bottom:16px;">
             <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#86868b;margin-bottom:14px;">Your Progress This Session</p>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <div style="flex:1;min-width:80px;background:#f9f9fb;border-radius:12px;padding:12px;text-align:center;">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <div style="flex:1;min-width:70px;background:#f9f9fb;border-radius:12px;padding:10px;text-align:center;">
                     <div style="font-size:24px;font-weight:800;color:#1a3a5c;" id="dash-questions">0</div>
                     <div style="font-size:10px;color:#86868b;margin-top:2px;">Questions</div>
                 </div>
@@ -878,7 +969,7 @@
             <img src="https://assets.zyrosite.com/dWxLepKRPyfee3W1/1000007037-MalIVUilzSH8q6CZ.jpg" alt="Nichole Walls" class="nichole-moment-img" />
             <div>
                 <div class="nichole-moment-text" id="nichole-message">"You've given me a real sense of who you are. Now let's talk about what comes next."</div>
-                <span class="nichole-moment-name">Nichole Walls · Nehemiah's Ladder</span>
+                <span class="nichole-moment-name">AI Nichole · Nehemiah's Ladder</span>
             </div>
         </div>
 
@@ -1028,18 +1119,18 @@ function setTier(tier){
 
 // ══ ACCESS CODE TOGGLE ══
 function toggleAccessCode(){
-    // Show full explainer items when code field opens (assumes comeback client)
-    const items = ['comeback-explainer','coach-explainer','debrief-explainer'];
-    items.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='flex';});
-        const wrap = document.getElementById('access-code-wrap');
+    const wrap = document.getElementById('access-code-wrap');
     const toggle = document.querySelector('.access-code-toggle');
-    if(wrap.style.display === 'none'){
+    const items = ['comeback-explainer','coach-explainer','debrief-explainer'];
+    if(wrap.style.display === 'none' || wrap.style.display === ''){
         wrap.style.display = 'block';
         toggle.textContent = '✕ Hide access code field';
+        items.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='flex';});
     } else {
         wrap.style.display = 'none';
         toggle.textContent = '🔐 I have an access code';
-        document.getElementById('intake-code').value = '';
+        const codeEl = document.getElementById('intake-code');
+        if(codeEl) codeEl.value = '';
     }
 }
 
@@ -1091,7 +1182,7 @@ inputArea.addEventListener('keydown',(e)=>{
     if(e.key==='Backspace'){backspaceCount++;if(backspaceCount>15)setStatus("Nichole notices you're over-editing. Stay authentic.",'#f28c28',true);}
     else{backspaceCount=0;}
     clearTimeout(idleTimer);
-    idleTimer=setTimeout(()=>{if(inputArea.value.length>10&&!document.getElementById('btn-submit').disabled)setStatus("Nichole is waiting for you to commit to that thought...",'#f28c28',true);},10000);
+    idleTimer=setTimeout(()=>{if(inputArea.value.length>10&&!document.getElementById('btn-submit').disabled)setStatus("AI Nichole is waiting for you to commit to that thought...",'#f28c28',true);},10000);
 });
 inputArea.addEventListener('input',function(){
     const len=this.value.length;
@@ -1102,7 +1193,7 @@ inputArea.addEventListener('input',function(){
     const found=fillerWords.find(f=>lower.includes(f));
     if(found)setStatus(`Careful — "${found}" weakens your signal.`,'#ff453a',true);
     else if(len>40)setStatus('Nichole is locked in on your narrative.','#34c759',true);
-    else setStatus('Nichole is listening...','#4a7fa5',true);
+    else setStatus('AI Nichole is listening...','#4a7fa5',true);
 });
 inputArea.addEventListener('keypress',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();handleAnswer();}});
 
@@ -1112,7 +1203,7 @@ function setStatus(msg,color,showDot){
 }
 
 // ══ API STATUS ══
-const apiMsgs=['Nichole is typing...','Taking notes...','Nichole is thinking...','Writing feedback...','Almost done...'];
+const apiMsgs=['Nichole is typing...','Taking notes...','AI Nichole is thinking...','Writing feedback...','Almost done...'];
 let apiTimer=null;
 function startAPIStatus(){let i=0;setStatus(apiMsgs[0],'#4a7fa5',true);apiTimer=setInterval(()=>{i=(i+1)%apiMsgs.length;setStatus(apiMsgs[i],'#4a7fa5',true);},1600);}
 function stopAPIStatus(){clearInterval(apiTimer);setStatus('','',false);}
@@ -1289,9 +1380,9 @@ Q6: "If we took away your job title and resume, what is the one thing people who
 Q7: "What is something outside of work you are borderline obsessed with getting just right?"
 Q8: "Tell me about a time you failed publicly — in front of peers, leadership, or a client. What happened and what did you do next?"
 Q9: "What is the most beautiful thing you have seen or experienced lately, and why did it move you?"`:`FREE TRIAL (3 questions only):
-Q1: "${userTier==='junior'?juniorQuestions[0]:midQuestions[0]}"
-Q2: "${userTier==='junior'?juniorQuestions[1]:midQuestions[1]}"
-Q3: "${userTier==='junior'?juniorQuestions[2]:midQuestions[2]}"`}
+Q1: "${sessionQuestions[0]||'Tell me about yourself and your current career situation.'}"
+Q2: "${sessionQuestions[1]||'Walk me through your most recent professional experience.'}"
+Q3: "${sessionQuestions[2]||'What are you looking for in your next opportunity?'}"`}
 
 AFTER EACH ANSWER: Honest, specific, conversational feedback (2-3 sentences). React genuinely. One clear coaching note. Transition to next question. NO bullet points. You're on the phone.
 
@@ -1312,9 +1403,26 @@ PHASE 1 — PHONE SCREEN (Q1-Q5): You are the recruiter. Sharp, direct, professi
 
 PHASE 2 — ELEVATOR PITCH LAB (Q6): Shift your tone completely. You are now their coach and brand strategist. Ask them to give you their 30-second elevator pitch — who they are, what they do, what makes them different. After they respond: give honest feedback, then provide a REFRAMED VERSION of their pitch in their voice (start it with "REFRAME:"). Then ask them to try again with the new version.
 
-PHASE 3 — COACH MODE (Q7-Q9): Warm, reflective, self-awareness focused. You're building their confidence and identity. Ask questions that help them see themselves clearly. Mindset work. Encourage vulnerability. Under 150 words per response.
+PHASE 3 — COACH MODE (Q6-Q9): This is where you shift from recruiter to AI coaching partner. You are an extension of Nichole Walls — warm, direct, faith-grounded, and in the fire with them.
 
-PHASE 4 — DEBRIEF: You are fully their coach now. Give honest, specific, warm feedback. Structure it as: what landed well, one blind spot, a personal affirmation tied to what you actually heard, and always end with: "Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do."
+YOUR APPROACH IN COACH MODE:
+1. ALWAYS respond to what they actually said first. Acknowledge it specifically — not generically.
+2. Reflect back what you heard UNDERNEATH their words — the pattern, the belief, the fear, the strength they're not owning yet.
+3. Then ask the next layer question to go deeper.
+
+EXAMPLE ENERGY:
+If they say "I think I over-explain because I'm not sure they'll understand my background" — you respond: "What I'm hearing underneath that is you've been shrinking yourself to make other people comfortable. That's not a communication problem — that's a worth problem. And worth is exactly what we're going to work on. So tell me this — what would you say if you fully believed they needed to hear it?"
+
+MINDSET PATTERNS TO WATCH FOR AND NAME:
+- Hedging language ("I think", "maybe", "kind of") → gently name it as confidence erosion
+- Over-explaining gaps → name it as apologizing for your story
+- Underselling impact → name it as playing small
+- Rushing through answers → name it as not trusting they deserve the space
+- Vague answers → name it as hiding behind professionalism
+
+Under 160 words per response. Never lecture. Stay in dialogue.
+
+PHASE 4 — DEBRIEF: You are fully their coach now. Give honest, specific, diagnostic feedback like a real career strategist who just observed them in action. Structure it as: what landed well (specific moment), blind spot (the pattern costing them), coaching diagnostic (what this reveals about their professional story), a pause-and-reflect question (deep homework for the soul), a personal affirmation (what you truly saw in them today), and always close the assignment with: "Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do. Come to your next session ready to go deeper."
 
 RULES: Never break character. Never admit being AI. No bullet points or lists. Be honest — don't just validate.`;
 }
@@ -1423,7 +1531,7 @@ function retryAnswer(){
     document.getElementById('ai-bubble').textContent='Take your time. Same question. Let\'s hear it again.';
     input.disabled=false;
     input.focus();
-    setStatus('Nichole is listening...','#4a7fa5',true);
+    setStatus('AI Nichole is listening...','#4a7fa5',true);
 }
 
 // ══ NAVIGATION ══
@@ -1449,6 +1557,7 @@ function show(id){
 function answerCall(){show('stage-intake');}
 function goToIntake(){show('stage-intake');}
 function startInterview(){
+    const err=document.getElementById('intake-error');
     userName=document.getElementById('intake-name').value.trim();
     userEmail=document.getElementById('intake-email').value.trim();
     userRole=document.getElementById('intake-role').value.trim();
@@ -1456,16 +1565,7 @@ function startInterview(){
     userJD=document.getElementById('intake-jd')?document.getElementById('intake-jd').value.trim():'';
     userCode=document.getElementById('intake-code')?document.getElementById('intake-code').value.trim().toUpperCase():'';
 
-    // Check if client — email + code must match
-    const expectedCode=clientAccess[userEmail.toLowerCase()];
-    isClient=expectedCode&&userCode===expectedCode;
-
-    if(userCode&&!isClient){
-        err.textContent='That access code does not match your email. Please check and try again or contact nwallsnichole@gmail.com.';
-        err.classList.add('visible');
-        return;
-    }
-    const err=document.getElementById('intake-error');
+    // Basic validation first
     if(!userName||!userEmail||!userIndustry){err.classList.add('visible');return;}
     if(!userEmail.includes('@')||!userEmail.includes('.')){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
 
@@ -1473,6 +1573,7 @@ function startInterview(){
     const codeInput = document.getElementById('intake-code');
     const enteredCode = codeInput ? codeInput.value.trim().toUpperCase() : '';
     isComeback = false;
+    isClient = false;
     if(enteredCode){
         const expectedEmail = comebackClients[enteredCode];
         if(!expectedEmail){
@@ -1517,8 +1618,6 @@ function startInterview(){
         })
     }).catch(()=>{}); // Silent fail — never block the user experience
 
-    show('stage-lab');
-    document.getElementById('recruiter-thumb').classList.add('visible');
     document.getElementById('sound-toggle').classList.add('visible');
     updateProgress();
     setStatus('Analyzing your profile...','#4a7fa5',true);
@@ -1598,7 +1697,7 @@ function updateProgress(){
 
 // ══ API ══
 async function callAPI(messages){
-    const r=await fetch('/.netlify/functions/interview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1000,system:buildSystemPrompt(),messages})});
+    const r=await fetch('/.netlify/functions/interview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-6',max_tokens:1000,system:buildSystemPrompt(),messages})});
     if(!r.ok)throw new Error('API error');return await r.json();
 }
 
@@ -1623,6 +1722,69 @@ async function logError(location, message, context){
         // Silent fail — never let logging break the app
         console.error('Log error failed:', e);
     }
+}
+
+// ══ GROUNDING MOMENT ══
+const groundingMessages = [
+    {
+        message: "\"Before we begin — take one breath.\"",
+        sub: "You showed up today. That already puts you ahead of the person who's still waiting for the <strong>right time</strong>.",
+        sig: ''
+    },
+    {
+        message: "\"What happens in this room stays in this room.\"",
+        sub: 'There are no wrong answers here — only honest ones. And <strong>honest is exactly what gets people hired</strong>.',
+        sig: ''
+    },
+    {
+        message: "\"I'm ready when you are.\"",
+        sub: 'This is your space. No judgment. No pressure. Just focused work and forward movement.',
+        sig: '— AI Nichole 🤍'
+    }
+];
+
+function showGrounding(){
+    show('stage-grounding');
+    let step = 0;
+    const msg = document.getElementById('grounding-message');
+    const sub = document.getElementById('grounding-sub');
+    const sig = document.getElementById('grounding-sig');
+
+    function nextStep(){
+        if(step >= groundingMessages.length){
+            // Transition to lab
+            show('stage-lab');
+            document.getElementById('recruiter-thumb').classList.add('visible');
+            document.getElementById('sound-toggle').classList.add('visible');
+            updateProgress();
+            if(isComeback) updatePhase(0);
+            askFirstQuestion();
+            return;
+        }
+        // Update dots
+        for(let i=1;i<=3;i++){
+            const dot = document.getElementById(`gdot-${i}`);
+            if(dot) dot.className = 'grounding-dot' + (i===step+1?' active':'');
+        }
+        // Fade out
+        const card = document.querySelector('.grounding-card');
+        card.style.opacity='0';
+        card.style.transform='translateY(8px)';
+        card.style.transition='all 0.4s ease';
+
+        setTimeout(()=>{
+            const g = groundingMessages[step];
+            if(msg) msg.textContent = g.message;
+            if(sub) sub.innerHTML = g.sub;
+            if(sig) sig.textContent = g.sig;
+            card.style.opacity='1';
+            card.style.transform='translateY(0)';
+            step++;
+            setTimeout(nextStep, step===3?3000:2800);
+        }, 400);
+    }
+
+    nextStep();
 }
 
 // ══ SESSION MEMORY ══
@@ -1704,7 +1866,7 @@ async function askFirstQuestion(){
         conversationHistory.push({role:'user',content:messages[0].content});conversationHistory.push({role:'assistant',content:aiText});
         stopAPIStatus();setLoading(false);typeBubble(aiText);
         document.getElementById('user-input').disabled=false;document.getElementById('user-input').focus();
-        setStatus('Nichole is listening...','#4a7fa5',true);
+        setStatus('AI Nichole is listening...','#4a7fa5',true);
     }catch(e){
         stopAPIStatus();setLoading(false);
         logError('askFirstQuestion', e.message, {userName, userTier, userIndustry});
@@ -1718,7 +1880,7 @@ async function handleAnswer(){
     err.classList.remove('visible');clearTimeout(idleTimer);backspaceCount=0;
     // Clients get full access — no paywall
     if(isClient&&questionCount>=8){await getFinalFeedbackClient(val);return;}
-    if(!isClient&&questionCount>=FREE_LIMIT-1){await getFeedbackThenPaywall(val);return;}
+    if(!isComeback&&!isClient&&questionCount>=FREE_LIMIT-1){await getFeedbackThenPaywall(val);return;}
     setLoading(true);startAPIStatus();input.disabled=true;
     conversationHistory.push({role:'user',content:val});
     try{
@@ -1736,7 +1898,7 @@ async function handleAnswer(){
         if(currentPhase === 'elevator'){
             displayText = checkForPitchRewrite(aiText);
         }
-        typeBubble(displayText);input.focus();setTimeout(()=>setStatus('Nichole is listening...','#4a7fa5',true),200);
+        typeBubble(displayText);input.focus();setTimeout(()=>setStatus('AI Nichole is listening...','#4a7fa5',true),200);
         saveSessionState(); // Save progress
     }catch(e){
         stopAPIStatus();setLoading(false);input.disabled=false;
@@ -1774,19 +1936,27 @@ SCORECARD:{"overall":"STRONG","communication":7,"authenticity":8,"impact":6,"con
 // ══ DUAL PAYWALL WITH TIER ROUTING ══
 // ══ COMEBACK CLIENT DEBRIEF ══
 async function generateCombackDebrief(){
-    setStatus('Nichole is preparing your debrief...','var(--purple)',true);
+    setStatus('AI Nichole is preparing your debrief...','var(--purple)',true);
 
     const debriefPrompt = [...conversationHistory, {
         role: 'user',
-        content: `Now step fully into coach mode. Give a warm, honest, specific debrief of this entire session. Structure your response EXACTLY like this with these labels on separate lines:
+        content: `Now step fully into coach mode. You are AI Nichole — a real recruiter turned career strategist. This is your diagnostic debrief. Be specific, be honest, be warm. You've just watched this person show up. Tell them what you actually observed — not what sounds nice.
 
-STRENGTH: [2-3 sentences on what genuinely landed well — be specific to what they actually said]
+Structure your response EXACTLY like this with these labels on separate lines:
 
-BLIND SPOT: [1-2 sentences on one thing that would cost them in a real interview — honest but kind]
+STRENGTH: [2-3 sentences on what genuinely landed well — name the specific moment or answer that showed their real value. Be precise. "You did well" is not enough — tell them exactly what worked and why it would land with a real hiring manager.]
 
-AFFIRMATION: [A personal, powerful affirmation based on what you actually heard from them today — not generic, tied to who they showed up as]
+BLIND SPOT: [1-2 sentences on the one pattern that would quietly cost them in a real interview — the thing they probably don't know they're doing. Honest, direct, delivered with care. This is the insight they came for.]
 
-ASSIGNMENT: Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do.`
+DIAGNOSTIC: [1-2 sentences of real coaching insight — what this reveals about where they are in their professional story. Are they underselling? Over-explaining? Playing it safe? Rushing? Help them see themselves clearly.]
+
+MINDSET: [2-3 sentences speaking directly to the inner work. Name what you heard underneath their answers — the fear, the self-doubt, the imposter voice, OR the emerging confidence. Speak to who they ARE becoming. Faith-grounded, warm, direct.]
+
+PAUSE AND REFLECT: Before your next session, sit with this question: [Give them one powerful reflective question tailored to what you observed — something that will make them think deeply about their story, their value, or how they show up. This is their homework for the soul, not just the resume.]
+
+AFFIRMATION: [A personal, powerful statement rooted in what you actually heard today — not generic encouragement. Speak to who they are, not just what they said. Make it feel like you truly saw them.]
+
+ASSIGNMENT: Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do. Come to your next session ready to go deeper.`
     }];
 
     try {
@@ -1796,9 +1966,12 @@ ASSIGNMENT: Keep practicing your craft. Know your audience. And own what you bri
         setLoading(false);
 
         // Parse debrief sections
-        const strength = text.match(/STRENGTH:(.*?)(?=BLIND SPOT:|$)/s)?.[1]?.trim() || '';
-        const blindspot = text.match(/BLIND SPOT:(.*?)(?=AFFIRMATION:|$)/s)?.[1]?.trim() || '';
-        const affirmation = text.match(/AFFIRMATION:(.*?)(?=ASSIGNMENT:|$)/s)?.[1]?.trim() || '';
+        const strength = text.match(/STRENGTH:(.*?)(?=DIAGNOSTIC:|BLIND SPOT:|$)/s)?.[1]?.trim() || '';
+        const diagnostic = text.match(/DIAGNOSTIC:(.*?)(?=BLIND SPOT:|$)/s)?.[1]?.trim() || '';
+        const blindspot = text.match(/BLIND SPOT:(.*?)(?=REFLECTION:|AFFIRMATION:|$)/s)?.[1]?.trim() || '';
+        const reflection = text.match(/REFLECTION:(.*?)(?=AFFIRMATION:|$)/s)?.[1]?.trim() || '';
+        const affirmation = text.match(/AFFIRMATION:(.*?)(?=CLOSING:|ASSIGNMENT:|$)/s)?.[1]?.trim() || '';
+        const closing = text.match(/CLOSING:(.*?)(?=$)/s)?.[1]?.trim() || "Before your next session — pause. Digest what came up today. Journal if you need to. Rest in it. Growth doesn't happen in the doing alone — it happens in the reflecting. I'll see you on the other side of that reflection. Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do.";
 
         // Hide the lab input area
         document.getElementById('user-input').style.display='none';
@@ -1818,18 +1991,28 @@ ASSIGNMENT: Keep practicing your craft. Know your audience. And own what you bri
                     <div class="debrief-section-label strength">✓ What Landed</div>
                     <div class="debrief-section-text">${strength}</div>
                 </div>
+                ${diagnostic ? `<div class="debrief-section">
+                    <div class="debrief-section-label" style="color:#1a3a5c;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;margin-bottom:10px;">🔍 Coaching Diagnostic</div>
+                    <div class="debrief-section-text">${diagnostic}</div>
+                </div>` : ''}
                 <div class="debrief-section">
-                    <div class="debrief-section-label growth">↗ One Thing to Sharpen</div>
+                    <div class="debrief-section-label growth">↗ Blind Spot to Address</div>
                     <div class="debrief-section-text">${blindspot}</div>
                 </div>
-                <div class="debrief-section">
-                    <div class="debrief-section-label assignment">📋 Your Assignment</div>
-                    <div class="debrief-assignment debrief-section-text">Keep practicing your craft. Know your audience. And own what you bring to the table — because nobody else can bring it the way you do.</div>
-                </div>
+                ${reflection ? `<div class="debrief-section">
+                    <div class="debrief-section-label mindset">🧠 Sit With This Before Next Session</div>
+                    <div class="debrief-section-text" style="font-style:italic;">${reflection}</div>
+                </div>` : ''}
                 <div class="debrief-affirmation">${affirmation}</div>
+                <div class="debrief-section" style="margin-top:24px;">
+                    <div class="debrief-assignment">
+                        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#1a3a5c;margin-bottom:12px;">📋 Before Your Next Session — Pause.</div>
+                        <div class="debrief-section-text" style="font-size:15px;line-height:1.8;">${closing}</div>
+                    </div>
+                </div>
                 <div style="margin-top:28px;padding-top:24px;border-top:1px solid #f0f0f5;text-align:center;">
                     <p style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.15em;color:#86868b;margin-bottom:12px;">Ready for your next session?</p>
-                    <a href="https://calendly.com/nwallsnichole/the-comeback-session-executive-coaching-45-minutes" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#1a3a5c,#0a1d37);color:#ffffff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:16px 36px;border-radius:100px;text-decoration:none;box-shadow:0 8px 24px rgba(26,58,92,0.25);transition:all 0.3s;">Book Your Next Session with Nichole →</a>
+                    <a href="https://calendly.com/nwallsnichole/the-comeback-session-executive-coaching-45-minutes" target="_blank" style="display:inline-block;background:linear-gradient(135deg,#1a3a5c,#0a1d37);color:#ffffff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:16px 28px;border-radius:100px;text-decoration:none;box-shadow:0 8px 24px rgba(26,58,92,0.25);transition:all 0.3s;max-width:100%;box-sizing:border-box;">Book Your Next Session with Nichole →</a>
                     <p style="font-size:12px;color:#aeaeb2;margin-top:10px;">60 min · Comeback Program</p>
                 </div>
             `;
