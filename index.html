@@ -1605,7 +1605,7 @@ async function callAPI(messages){
 // ══ ERROR LOGGING ══
 async function logError(location, message, context){
     try {
-        await fetch('/.netlify/functions/log-error', {
+        await fetch('/.netlify/functions/logerror', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
