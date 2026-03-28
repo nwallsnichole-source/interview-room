@@ -774,7 +774,7 @@
                 </p>
                 <button class="btn-enter-billboard" onclick="goToIntake()">Enter the Interview Room →</button>
                 <div style="margin-top:16px;">
-                    <span class="free-badge">The Clearance Check — free, no credit card needed</span>
+                    <span class="free-badge">Your Practice Session — free, no credit card needed</span>
                 </div>
             </div>
             <div class="billboard-right">
@@ -1579,16 +1579,16 @@ function startInterview(){
     userJD=document.getElementById('intake-jd')?document.getElementById('intake-jd').value.trim():'';
     userCode=document.getElementById('intake-code')?document.getElementById('intake-code').value.trim().toUpperCase():'';
 
-    // Basic validation first
-    if(!userName||!userEmail||!userIndustry){err.classList.add('visible');return;}
-    if(!userEmail.includes('@')||!userEmail.includes('.')){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
-
-    // Check access code if entered
+    // Check access code first
     const codeInput = document.getElementById('intake-code');
     const enteredCode = codeInput ? codeInput.value.trim().toUpperCase() : '';
     isComeback = false;
     isClient = false;
+
     if(enteredCode){
+        // Access code holders only need name + email
+        if(!userName||!userEmail){err.textContent='Please enter your name and email to continue.';err.classList.add('visible');return;}
+        if(!userEmail.includes('@')||!userEmail.includes('.')){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
         const expectedEmail = comebackClients[enteredCode];
         if(!expectedEmail){
             err.textContent = 'Invalid access code. Contact nwallsnichole@gmail.com for help.';
@@ -1600,6 +1600,12 @@ function startInterview(){
         }
         isComeback = true;
         isClient = true;
+        // Set default industry if not selected
+        if(!userIndustry) userIndustry = 'govcon';
+    } else {
+        // Public users need all fields
+        if(!userName||!userEmail||!userIndustry){err.classList.add('visible');return;}
+        if(!userEmail.includes('@')||!userEmail.includes('.')){err.textContent='Please enter a valid email address.';err.classList.add('visible');return;}
     }
     // email collected at paywall
     err.classList.remove('visible');
@@ -1701,7 +1707,7 @@ function updateProgress(){
     const pct=[0,33,66,100];
     const fill=document.getElementById('top-progress-fill');
     if(fill)fill.style.width=pct[questionCount]+'%';
-    document.getElementById('q-label').textContent=`Question ${questionCount+1} of 3 · The Clearance Check`;
+    document.getElementById('q-label').textContent=`Question ${questionCount+1} of 3 · Your Practice Session`;
 }
 
 // ══ API ══
@@ -1891,6 +1897,7 @@ async function handleAnswer(){
     // Clients get full access — no paywall
     if(isClient&&questionCount>=8){await getFinalFeedbackClient(val);return;}
     if(!isComeback&&!isClient&&questionCount>=FREE_LIMIT-1){await getFeedbackThenPaywall(val);return;}
+    if((isComeback||isClient)&&questionCount>=6){await getFeedbackThenPaywall(val);return;} // 7 questions (0-indexed to 6)
     setLoading(true);startAPIStatus();input.disabled=true;
     conversationHistory.push({role:'user',content:val});
     try{
