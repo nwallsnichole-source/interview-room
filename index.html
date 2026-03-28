@@ -738,7 +738,7 @@
     <div class="intake-card">
         <div class="intake-eyebrow">Before we begin</div>
         <h2 class="intake-title">Let's set the stage.</h2>
-        <p class="intake-sub">Two quick things and we're in. Clearance-safe, private, and built for cleared professionals.</p>
+        <p class="intake-sub">Three quick things and you're in. Clearance-safe, private, and built for talented professionals like you.</p>
 
         <input type="text" id="intake-name" class="intake-field" placeholder="Your first name (required)" maxlength="50" />
         <select id="intake-industry" class="role-select">
@@ -1003,7 +1003,6 @@ function toggleView(){
 }
 
 // ══ TIER TOGGLE ══
-let userTier='junior';
 function setTier(tier){
     userTier=tier;
     const wrapper=document.getElementById('toggle-wrapper');
@@ -1253,12 +1252,13 @@ function getSessionQuestions(tier, count){
 
 
 // ══ STATE ══
-let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,questionCount=0,conversationHistory=[];
+let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,isComeback=false,userTier='junior',sessionQuestions=[],questionCount=0,conversationHistory=[];
 
 // ══ COMEBACK PROGRAM CLIENT LIST ══
-const clientAccess={
-    'heribertogarcia212@gmail.com': 'COMEBACK-EDDIE',
-    'mstephen323@comcast.net': 'COMEBACK-MELLINA'
+const comebackClients={
+    'COMEBACK-EDDIE': 'heribertogarcia212@gmail.com',
+    'COMEBACK-MELLINA': 'mstephen323@comcast.net',
+    'COMEBACK-NICHOLE': 'nwallsnichole@gmail.com'
 };
 const FREE_LIMIT=3; // overridden for comeback clients // Overridden to 9 for Comeback clients
 
@@ -1484,6 +1484,7 @@ function startInterview(){
             err.classList.add('visible'); return;
         }
         isComeback = true;
+        isClient = true;
     }
     // email collected at paywall
     err.classList.remove('visible');
@@ -1597,7 +1598,7 @@ function updateProgress(){
 
 // ══ API ══
 async function callAPI(messages){
-    const r=await fetch('/.netlify/functions/interview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:buildSystemPrompt(),messages})});
+    const r=await fetch('/.netlify/functions/interview',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-5',max_tokens:1000,system:buildSystemPrompt(),messages})});
     if(!r.ok)throw new Error('API error');return await r.json();
 }
 
@@ -1674,7 +1675,7 @@ function resumeSession(){
     // Restore state
     userName=state.userName; userEmail=state.userEmail;
     userTier=state.userTier; userIndustry=state.userIndustry;
-    userJD=state.userJD||''; isComeback=state.isComeback;
+    userJD=state.userJD||''; isComeback=state.isComeback||false; isClient=state.isComeback||false; userTier=state.userTier||'junior';
     questionCount=state.questionCount;
     conversationHistory=state.conversationHistory;
     sessionQuestions=state.sessionQuestions;
