@@ -612,9 +612,8 @@
             .intake-field{padding:14px 16px;font-size:15px;margin-bottom:12px;}
             .role-select{padding:14px 16px;font-size:15px;}
             .intake-jd{min-height:70px;font-size:13px;padding:12px 14px;}
-            .toggle-btn{padding:8px 12px;font-size:11px;}
-            .toggle-wrapper{width:100%;justify-content:space-between;}
-            .tier-container{width:100%;}
+            #session-type-wrap{gap:8px;}
+            #session-type-wrap button{min-width:100%;}
             .tier-badge{font-size:9px;padding:5px 12px;}
 
             /* LAB */
@@ -850,18 +849,19 @@
         <input type="email" id="intake-email" class="intake-field" placeholder="Your email address (required)" />
         <input type="hidden" id="intake-role" value="Professional" />
 
-        <!-- TIER TOGGLE -->
-        <div class="tier-container" id="tier-container">
-            <span class="tier-label">Select Your Track</span>
-            <div class="toggle-wrapper" id="toggle-wrapper">
-                <div class="toggle-bg" id="toggle-bg"></div>
-                <button class="toggle-btn active" id="btn-junior" onclick="setTier('junior')">Junior</button>
-                <button class="toggle-btn" id="btn-mid" onclick="setTier('mid')">Mid-Level</button>
-                <button class="toggle-btn" id="btn-gap" onclick="setTier('gap')">Gap Return</button>
+        <!-- SESSION TYPE SELECTION — two clean options -->
+        <div id="session-type-wrap" style="margin-bottom:20px;">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-secondary);margin-bottom:12px;">What would you like to practice today?</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                <button onclick="setSessionType('phone')" id="btn-session-phone" style="flex:1;min-width:140px;padding:16px;border-radius:16px;border:2px solid var(--orange);background:var(--orange);color:#000;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;">
+                    📞 Practice the Phone Screen
+                    <span style="display:block;font-size:11px;font-weight:400;opacity:0.7;margin-top:4px;">Real interview questions + honest feedback</span>
+                </button>
+                <button onclick="setSessionType('pitch')" id="btn-session-pitch" style="flex:1;min-width:140px;padding:16px;border-radius:16px;border:2px solid var(--border-color);background:var(--card-bg);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;">
+                    🎤 Practice My Elevator Pitch
+                    <span style="display:block;font-size:11px;font-weight:400;color:var(--text-secondary);margin-top:4px;">Coach your 30-second personal story</span>
+                </button>
             </div>
-        </div>
-        <div id="gap-hint" style="display:none;background:rgba(105,65,198,0.06);border:1px solid rgba(105,65,198,0.12);border-radius:12px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#6941C6;font-weight:500;">
-            🎯 Gap Return & Career Pivot track — questions designed for career gaps, contract endings, recompetes, and full industry changes.
         </div>
 
         <p class="access-code-toggle" onclick="toggleAccessCode()">🔐 I have an access code</p>
@@ -1132,6 +1132,27 @@ function setTier(tier){
 }
 
 // ══ ACCESS CODE TOGGLE ══
+function setSessionType(type){
+    sessionType = type;
+    const phoneBtn = document.getElementById('btn-session-phone');
+    const pitchBtn = document.getElementById('btn-session-pitch');
+    if(type === 'phone'){
+        phoneBtn.style.background = 'var(--orange)';
+        phoneBtn.style.borderColor = 'var(--orange)';
+        phoneBtn.style.color = '#000';
+        pitchBtn.style.background = 'var(--card-bg)';
+        pitchBtn.style.borderColor = 'var(--border-color)';
+        pitchBtn.style.color = 'var(--text-primary)';
+    } else {
+        pitchBtn.style.background = 'var(--purple)';
+        pitchBtn.style.borderColor = 'var(--purple)';
+        pitchBtn.style.color = '#fff';
+        phoneBtn.style.background = 'var(--card-bg)';
+        phoneBtn.style.borderColor = 'var(--border-color)';
+        phoneBtn.style.color = 'var(--text-primary)';
+    }
+}
+
 function toggleAccessCode(){
     const wrap = document.getElementById('access-code-wrap');
     const toggle = document.querySelector('.access-code-toggle');
@@ -1140,6 +1161,7 @@ function toggleAccessCode(){
         wrap.style.display = 'block';
         toggle.textContent = '✕ Hide access code field';
         items.forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='flex';});
+
     } else {
         wrap.style.display = 'none';
         toggle.textContent = '🔐 I have an access code';
@@ -1357,7 +1379,7 @@ function getSessionQuestions(tier, count){
 
 
 // ══ STATE ══
-let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,isComeback=false,userTier='junior',sessionQuestions=[],questionCount=0,conversationHistory=[];
+let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,isComeback=false,userTier='mid',sessionType='phone',sessionQuestions=[],questionCount=0,conversationHistory=[];
 
 // ══ COMEBACK PROGRAM CLIENT LIST ══
 const comebackClients={
@@ -1367,12 +1389,39 @@ const comebackClients={
 };
 const FREE_LIMIT=3; // overridden for comeback clients // Overridden to 9 for Comeback clients
 
+function buildPitchSystemPrompt(){
+    return `You are AI Nichole — an AI coaching partner and extension of Nichole Walls, a real recruiter and career strategist with 20+ years of experience.
+
+Your role right now is Elevator Pitch Coach. The client is going to share their elevator pitch — a 30-second personal brand statement that answers "Tell me about yourself."
+
+YOUR COACHING APPROACH:
+1. Listen to their pitch carefully
+2. Acknowledge what they gave you specifically — not generically
+3. Name what's working and what's missing with precision
+4. Identify the ONE biggest thing to fix — clarity, confidence language, impact, specificity, or memorability
+5. Ask a pointed follow-up question to help them dig deeper into their own story
+6. NEVER rewrite it for them — coach them to find their own words
+7. After they try again, compare to their first version and name the improvement specifically
+
+WHAT A GREAT ELEVATOR PITCH NEEDS:
+- Who they are professionally (not just job title — their value)
+- What they do and the impact they create
+- What makes them different or memorable
+- Where they're headed and why it matters
+
+WATCH FOR AND NAME THESE PATTERNS:
+- Leading with job title instead of value → "You started with what you are, not who you are"
+- Too vague → "I can't picture you in a room yet — be specific"
+- Too long → "If it takes 60 seconds, they've already moved on"
+- No hook → "What makes someone want to ask you more?"
+- Underselling → "You buried the most interesting thing about yourself"
+- Robotic / rehearsed → "I need to hear you, not your LinkedIn summary"
+
+TONE: Warm, direct, encouraging but honest. You're in their corner — not cheering from the sidelines. Under 150 words per response.`;
+}
+
 function buildSystemPrompt(){
-    const tierContext=userTier==='junior'
-        ?`This candidate is JUNIOR level (0-5 years experience). Focus on Execution, Reliability, and Potential. Use accessible language. Look for growth mindset, reliability, and ability to take direction. Be encouraging but honest. GovCon/Corporate context — help them move from task-speak to impact-speak.`
-        :userTier==='gap'
-        ?`This candidate is in CAREER GAP, CONTRACT TRANSITION, or CAREER PIVOT mode. This includes candidates with resume gaps AND candidates making a full industry or career change. For gap candidates: focus on how they frame the gap, confidence, and whether their story is compelling. For career changers: push them hard on WHY they're leaving a successful field, what they've done to prepare, and whether they can articulate their transferable value without apologizing. Be direct but deeply empathetic. Push them to stop justifying and start positioning.`
-        :`This candidate is MID-LEVEL (5-15 years experience). Focus on Strategy, Influence, and ROI. Use terms like Stakeholder Management, Operational Excellence, Strategic Alignment, Scope Creep, Deliverables. Hold a higher bar. Look for leadership instincts, business acumen, and ability to communicate impact in numbers.`;
+    const tierContext=`Calibrate naturally from their answers. Listen for experience level, industry context, and career situation. If they mention a gap — address it. If they're pivoting industries — push on the why. If they're junior — be more encouraging. If they're senior — hold a higher bar. You are reading the room in real time. GovCon, defense, corporate, nonprofit — meet them where they are.`;
 
     return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
 
@@ -1617,14 +1666,18 @@ function startInterview(){
     // Set tier badge
     const badge=document.getElementById('tier-badge');
     if(isComeback){
-        badge.textContent='🏆 Comeback Program · Full Access';
-        badge.style.background='rgba(105,65,198,0.1)';
-        badge.style.borderColor='rgba(105,65,198,0.2)';
-        badge.style.color='#6941C6';
+        if(sessionType==='pitch'){
+            badge.textContent='🎤 Elevator Pitch Lab';
+            badge.style.background='rgba(105,65,198,0.08)';
+            badge.style.color='#6941C6';
+        } else {
+            badge.textContent='🏆 Comeback Program · Phone Screen';
+            badge.style.background='rgba(105,65,198,0.1)';
+            badge.style.borderColor='rgba(105,65,198,0.2)';
+            badge.style.color='#6941C6';
+        }
     } else {
-        if(userTier==='junior') badge.textContent='⚡ Junior Track';
-        else if(userTier==='gap') { badge.textContent='🔄 Gap Return Track'; badge.style.color='#6941C6'; }
-        else badge.textContent='🎯 Mid-Level Track';
+        badge.textContent = sessionType==='pitch' ? '🎤 Elevator Pitch Lab' : '📞 Phone Screen Practice';
     }
 
     // Capture lead immediately at intake — don't wait for scorecard
@@ -1875,6 +1928,20 @@ function resumeSession(){
 }
 
 async function askFirstQuestion(){
+    // If elevator pitch session — start with pitch request
+    if(sessionType === 'pitch'){
+        stopAPIStatus();
+        setLoading(false);
+        const pitchOpener = "Welcome to the Elevator Pitch Lab.\n\nIn a real interview, you have about 30 seconds to answer \"Tell me about yourself.\" Most people wing it. We're going to make yours intentional.\n\nGo ahead — give me your pitch right now. Don't overthink it. Say what you'd actually say in an interview.";
+        typeBubble(pitchOpener);
+        document.getElementById('user-input').disabled = false;
+        document.getElementById('user-input').focus();
+        setStatus('AI Nichole is listening...','#6941C6',true);
+        // Update badge
+        const badge = document.getElementById('tier-badge');
+        if(badge){ badge.textContent = '🎤 Elevator Pitch Lab'; badge.style.color = '#6941C6'; badge.style.background = 'rgba(105,65,198,0.08)'; }
+        return;
+    }
     setLoading(true);startAPIStatus();
     const messages=[{role:'user',content:`Start the phone screen for a ${userTier==='junior'?'junior':'mid-level'} professional. Give a warm opening greeting and ask the first question. Address me as ${userName}. Natural and conversational — like you just dialed in.`}];
     try{
@@ -1897,7 +1964,8 @@ async function handleAnswer(){
     // Clients get full access — no paywall
     if(isClient&&questionCount>=8){await getFinalFeedbackClient(val);return;}
     if(!isComeback&&!isClient&&questionCount>=FREE_LIMIT-1){await getFeedbackThenPaywall(val);return;}
-    if((isComeback||isClient)&&questionCount>=6){await getFeedbackThenPaywall(val);return;} // 7 questions (0-indexed to 6)
+    if((isComeback||isClient)&&sessionType!=='pitch'&&questionCount>=6){await getFeedbackThenPaywall(val);return;} // 7 questions for phone screen
+    // Pitch sessions have no question limit — coach as many rounds as needed
     setLoading(true);startAPIStatus();input.disabled=true;
     conversationHistory.push({role:'user',content:val});
     try{
