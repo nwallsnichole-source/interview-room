@@ -102,7 +102,7 @@
 
         /* STAGE 2: INTAKE */
         #stage-intake{background:var(--bg-main);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:80px 20px 48px;transition:background var(--transition);}
-        .intake-card{background:var(--card-bg);border:1px solid var(--border-color);max-width:520px;width:100%;padding:52px 48px;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,0.07);text-align:center;}
+        .intake-card{background:var(--card-bg);border:1px solid var(--border-color);max-width:520px;width:100%;padding:48px 44px;border-radius:40px;box-shadow:0 20px 60px rgba(0,0,0,0.07);text-align:center;}
         .intake-eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#4a7fa5;margin-bottom:16px;}
         .intake-title{font-family:'Playfair Display',serif;font-size:32px;margin-bottom:16px;line-height:1.2;color:var(--text-primary);}
         .intake-sub{font-size:15px;color:var(--text-secondary);margin-bottom:36px;line-height:1.6;}
@@ -833,12 +833,17 @@
 <!-- STAGE 2: INTAKE -->
 <div id="stage-intake" class="stage hidden">
     <div class="intake-card">
+
         <div class="intake-eyebrow">Before we begin</div>
         <h2 class="intake-title">Let's set the stage.</h2>
-        <p class="intake-sub">Three quick things and you're in. Clearance-safe, private, and built for talented professionals like you.</p>
+        <p class="intake-sub" style="margin-bottom:32px;">Private, safe, and built for talented professionals like you.</p>
 
-        <input type="text" id="intake-name" class="intake-field" placeholder="Your first name (required)" maxlength="50" />
-        <select id="intake-industry" class="role-select">
+        <!-- NAME + EMAIL -->
+        <input type="text" id="intake-name" class="intake-field" placeholder="Your first name (required)" maxlength="50" style="margin-bottom:14px;" />
+        <input type="email" id="intake-email" class="intake-field" placeholder="Your email address (required)" style="margin-bottom:14px;" />
+
+        <!-- INDUSTRY -->
+        <select id="intake-industry" class="role-select" style="margin-bottom:28px;">
             <option value="" disabled selected>Your industry / background</option>
             <option value="govcon">Government Contracting / Defense</option>
             <option value="tech">Technology</option>
@@ -846,36 +851,67 @@
             <option value="nonprofit">Nonprofit / Public Health</option>
             <option value="other">Other</option>
         </select>
-        <input type="email" id="intake-email" class="intake-field" placeholder="Your email address (required)" />
         <input type="hidden" id="intake-role" value="Professional" />
+        <p class="industry-hint" id="industry-hint"></p>
 
-        <!-- SESSION TYPE SELECTION — two clean options -->
-        <div id="session-type-wrap" style="margin-bottom:20px;">
-            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-secondary);margin-bottom:12px;">What would you like to practice today?</p>
+        <!-- DIVIDER -->
+        <div style="border-top:1px solid var(--border-color);margin-bottom:24px;"></div>
+
+        <!-- SESSION TYPE -->
+        <div id="session-type-wrap" style="margin-bottom:24px;text-align:left;">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-secondary);margin-bottom:12px;">What would you like to practice?</p>
             <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                <button onclick="setSessionType('phone')" id="btn-session-phone" style="flex:1;min-width:140px;padding:16px;border-radius:16px;border:2px solid var(--orange);background:var(--orange);color:#000;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;">
-                    📞 Practice the Phone Screen
-                    <span style="display:block;font-size:11px;font-weight:400;opacity:0.7;margin-top:4px;">Real interview questions + honest feedback</span>
+                <button onclick="setSessionType('phone')" id="btn-session-phone" style="flex:1;min-width:130px;padding:14px 12px;border-radius:14px;border:2px solid var(--orange);background:var(--orange);color:#000;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;">
+                    📞 Phone Screen Practice
+                    <span style="display:block;font-size:10px;font-weight:400;opacity:0.7;margin-top:3px;">Real questions + honest feedback</span>
                 </button>
-                <button onclick="setSessionType('pitch')" id="btn-session-pitch" style="flex:1;min-width:140px;padding:16px;border-radius:16px;border:2px solid var(--border-color);background:var(--card-bg);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;">
-                    🎤 Practice My Elevator Pitch
-                    <span style="display:block;font-size:11px;font-weight:400;color:var(--text-secondary);margin-top:4px;">Coach your 30-second personal story</span>
+                <button onclick="setSessionType('pitch')" id="btn-session-pitch" style="flex:1;min-width:130px;padding:14px 12px;border-radius:14px;border:2px solid var(--border-color);background:var(--card-bg);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:left;-webkit-tap-highlight-color:transparent;">
+                    🎤 Elevator Pitch Lab
+                    <span style="display:block;font-size:10px;font-weight:400;color:var(--text-secondary);margin-top:3px;">Coach your 30-second story</span>
                 </button>
             </div>
         </div>
 
-        <p class="access-code-toggle" onclick="toggleAccessCode()">🔐 I have an access code</p>
-        <div class="access-code-wrap" id="access-code-wrap" style="display:none;">
+        <!-- AUDIENCE SELECTOR -->
+        <div id="audience-wrap" style="margin-bottom:24px;text-align:left;">
+            <p style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.2em;color:var(--text-secondary);margin-bottom:12px;">Who are you practicing for?</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                <button onclick="setAudience('recruiter')" id="btn-aud-recruiter" style="flex:1;min-width:80px;padding:12px 8px;border-radius:12px;border:2px solid var(--orange);background:var(--orange);color:#000;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center;-webkit-tap-highlight-color:transparent;">
+                    🔍 Recruiter
+                    <span style="display:block;font-size:10px;font-weight:400;opacity:0.7;margin-top:2px;">Keywords & screening</span>
+                </button>
+                <button onclick="setAudience('manager')" id="btn-aud-manager" style="flex:1;min-width:80px;padding:12px 8px;border-radius:12px;border:2px solid var(--border-color);background:var(--card-bg);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center;-webkit-tap-highlight-color:transparent;">
+                    👥 Hiring Manager
+                    <span style="display:block;font-size:10px;font-weight:400;color:var(--text-secondary);margin-top:2px;">Team fit & execution</span>
+                </button>
+                <button onclick="setAudience('director')" id="btn-aud-director" style="flex:1;min-width:80px;padding:12px 8px;border-radius:12px;border:2px solid var(--border-color);background:var(--card-bg);color:var(--text-primary);font-family:'Inter',sans-serif;font-size:11px;font-weight:700;cursor:pointer;transition:all 0.2s;text-align:center;-webkit-tap-highlight-color:transparent;">
+                    🎯 Director / Exec
+                    <span style="display:block;font-size:10px;font-weight:400;color:var(--text-secondary);margin-top:2px;">Strategy & ROI</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div style="border-top:1px solid var(--border-color);margin-bottom:24px;"></div>
+
+        <!-- ACCESS CODE -->
+        <p class="access-code-toggle" onclick="toggleAccessCode()" style="margin-bottom:16px;">🔐 I have a Comeback Program access code</p>
+        <div class="access-code-wrap" id="access-code-wrap" style="display:none;margin-bottom:16px;">
             <input type="text" id="intake-code" class="intake-field" placeholder="Enter your access code (e.g. COMEBACK-EDDIE)" maxlength="30" style="text-transform:uppercase;letter-spacing:0.1em;" />
         </div>
-        <p class="industry-hint" id="industry-hint"></p>
-        <div class="jd-field-wrap">
-            <textarea id="intake-jd" class="intake-jd" placeholder="Optional: Paste the job description here — Nichole will tailor questions to this specific role." maxlength="3000"></textarea>
+
+        <!-- JD PASTE -->
+        <div class="jd-field-wrap" style="margin-bottom:24px;">
+            <textarea id="intake-jd" class="intake-jd" placeholder="Optional: Paste the job description here — AI Nichole will tailor questions to this specific role." maxlength="3000"></textarea>
             <span class="jd-badge">🎯 Role-specific questions</span>
         </div>
+
         <p class="error-msg" id="intake-error">Please fill in all fields before continuing.</p>
-        <button class="btn-main-action" style="width:100%;" onclick="startInterview()">Enter the Interviewing Room →</button>
-        <p style="font-size:12px;color:var(--text-secondary);margin-top:16px;line-height:1.6;">Your information is never shared or sold. This is a private practice session.</p>
+
+        <button class="btn-main-action" style="width:100%;margin-top:8px;" onclick="startInterview()">Enter the Interviewing Room →</button>
+
+        <p style="font-size:12px;color:var(--text-secondary);margin-top:20px;line-height:1.6;">Your information is never shared or sold. This is a private practice session.</p>
+
     </div>
 </div>
 
@@ -1132,6 +1168,32 @@ function setTier(tier){
 }
 
 // ══ ACCESS CODE TOGGLE ══
+function setAudience(audience){
+    userAudience = audience;
+    const btns = {
+        recruiter: document.getElementById('btn-aud-recruiter'),
+        manager: document.getElementById('btn-aud-manager'),
+        director: document.getElementById('btn-aud-director')
+    };
+    // Reset all
+    Object.values(btns).forEach(b => {
+        if(!b) return;
+        b.style.background = 'var(--card-bg)';
+        b.style.borderColor = 'var(--border-color)';
+        b.style.color = 'var(--text-primary)';
+        b.querySelectorAll('span').forEach(s => s.style.color = 'var(--text-secondary)');
+    });
+    // Highlight selected
+    const colors = {recruiter: ['var(--orange)','#000'], manager: ['#1a3a5c','#fff'], director: ['#6941C6','#fff']};
+    const selected = btns[audience];
+    if(selected){
+        selected.style.background = colors[audience][0];
+        selected.style.borderColor = colors[audience][0];
+        selected.style.color = colors[audience][1];
+        selected.querySelectorAll('span').forEach(s => { s.style.color = colors[audience][1]; s.style.opacity = '0.7'; });
+    }
+}
+
 function setSessionType(type){
     sessionType = type;
     const phoneBtn = document.getElementById('btn-session-phone');
@@ -1379,7 +1441,7 @@ function getSessionQuestions(tier, count){
 
 
 // ══ STATE ══
-let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',isClient=false,isComeback=false,userTier='mid',sessionType='phone',sessionQuestions=[],questionCount=0,conversationHistory=[];
+let userName='',userEmail='',userRole='',userIndustry='',userJD='',userCode='',userAudience='recruiter',isClient=false,isComeback=false,userTier='mid',sessionType='phone',sessionQuestions=[],questionCount=0,conversationHistory=[];
 
 // ══ COMEBACK PROGRAM CLIENT LIST ══
 const comebackClients={
@@ -1421,6 +1483,12 @@ TONE: Warm, direct, encouraging but honest. You're in their corner — not cheer
 }
 
 function buildSystemPrompt(){
+    const audienceContext = userAudience === 'recruiter'
+        ? `AUDIENCE — RECRUITER: Evaluate through a screening lens. Is this candidate clear, concise, and red-flag free? Do their keywords land for this type of role? Are they presenting themselves in a way you could confidently pass to a hiring manager? Flag vague answers, over-explaining, weak impact language, and anything that would make a recruiter pause. Push them to be sharp and memorable in under 90 seconds.`
+        : userAudience === 'manager'
+        ? `AUDIENCE — HIRING MANAGER: Evaluate through a team lens. Can this person actually do the job? Will they make the manager's life easier or harder? Are they communicating reliability, collaboration, and execution? Listen for whether they can take direction and own outcomes. Push them to speak in specifics — not what they were responsible for, but what they delivered and how it helped the team win.`
+        : `AUDIENCE — DIRECTOR / EXECUTIVE: Evaluate through a strategic lens. Does this person think above the task level? Can they connect their work to business outcomes, contract value, or organizational impact? Do they have executive presence — confidence without arrogance, brevity without vagueness? Push them to speak at the right altitude. Junior-level task language will not land here. They need to sound like someone who belongs in the room.`;
+
     const tierContext=`Calibrate naturally from their answers. Listen for experience level, industry context, and career situation. If they mention a gap — address it. If they're pivoting industries — push on the why. If they're junior — be more encouraging. If they're senior — hold a higher bar. You are reading the room in real time. GovCon, defense, corporate, nonprofit — meet them where they are.`;
 
     return`You are conducting a phone screen interview. You ARE the recruiter — a senior talent acquisition professional. Your name is Nichole — you built this tool. You have 20+ years of Fortune 500 and government contracting experience.
@@ -1429,6 +1497,8 @@ Candidate: ${userName}. Targeting: ${userRole}. Industry: ${userIndustry}.
 ${isComeback?'This is a COMEBACK PROGRAM client with full access. Ask all 9 questions in the full flow. Give detailed, thorough feedback. No paywall interruption.':''}
 ${userJD?`JOB DESCRIPTION PROVIDED — tailor your questions specifically to this role:\n${userJD.substring(0,800)}`:''}
 ${tierContext}
+
+${audienceContext}
 
 PERSONALITY: Warm but laser-focused. Direct. Real person on the phone. Empathetic but high bar.
 
@@ -1624,6 +1694,7 @@ function startInterview(){
     userName=document.getElementById('intake-name').value.trim();
     userEmail=document.getElementById('intake-email').value.trim();
     userRole=document.getElementById('intake-role').value.trim();
+    // userAudience already set via setAudience() button clicks
     userIndustry=document.getElementById('intake-industry').value;
     userJD=document.getElementById('intake-jd')?document.getElementById('intake-jd').value.trim():'';
     userCode=document.getElementById('intake-code')?document.getElementById('intake-code').value.trim().toUpperCase():'';
@@ -1677,7 +1748,8 @@ function startInterview(){
             badge.style.color='#6941C6';
         }
     } else {
-        badge.textContent = sessionType==='pitch' ? '🎤 Elevator Pitch Lab' : '📞 Phone Screen Practice';
+        const audienceLabel = userAudience==='recruiter'?'🔍 Recruiter':userAudience==='manager'?'👥 Hiring Manager':'🎯 Director';
+        badge.textContent = sessionType==='pitch' ? '🎤 Elevator Pitch Lab' : `📞 Phone Screen · ${audienceLabel}`;
     }
 
     // Capture lead immediately at intake — don't wait for scorecard
